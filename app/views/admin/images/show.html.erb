@@ -1,0 +1,48 @@
+<div id="contents_header">
+  <h2>Admin Images</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Image Details</h1>
+<p>
+<%= thumb_for @image %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%=h @image.token %>
+</p>
+
+<p>
+  <b>File Name:</b>
+  <%=h @image.filename %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @image.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @image.height %>
+</p>
+
+<p>
+  <b>Content Type:</b>
+  <%=h @image.content_type %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @image.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_image_path(@image) %> |
+<%= link_to 'Back', admin_images_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

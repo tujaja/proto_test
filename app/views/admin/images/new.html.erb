@@ -1,0 +1,29 @@
+<div id="contents_header">
+  <h2>Admin Images</h2>
+</div>
+
+<div id="contents_main" class="admin_images">
+  <h3>Create Image</h3>
+
+  <% form_for @image,
+    :url => admin_images_path,
+    :html => { :multipart => true } do |f| -%>
+
+    <p>
+      <label for="upload_file">Upload File</label>
+      <%= f.file_field :uploaded_file %>
+    </p>
+    <p>
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %>
+    </p>
+    <p>
+      <%= f.submit 'Create' %>
+    </p>
+  <% end %>
+
+</div>
+
+<div id="contents_footer">
+</div>
+

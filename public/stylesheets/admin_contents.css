@@ -1,0 +1,137 @@
+/*================================================*/
+/* Contents */
+/*================================================*/
+
+/*-----------------------------------
+ * contents_header
+ *----------------------------------*/
+#contents_header {
+  padding: 10px;
+  background-color: #BED69E;
+
+}
+
+#contents_header h2 {
+  color: #333;
+  font-weight: bold;
+}
+
+#contents_header p {
+  font-size: 14px;
+  color: #000;
+}
+
+
+/*-----------------------------------
+ * contents_main
+ *----------------------------------*/
+#contents_main {
+  padding: 10px;
+}
+
+#contents_main h3 {
+  color: #111;
+  border-left: 5px solid #CCC;
+  padding: 4px 10px;
+  margin: 10px 0;
+
+}
+
+/* detail */
+#contents_main #detail dl {
+  padding: 5px 0px;
+}
+
+#contents_main #detail dt {
+  font-weight: bold;
+}
+
+#contents_main #detail dd {
+  padding-left: 10px;
+}
+/*================================================*/
+/* Table */
+/*================================================*/
+
+table.items {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-style: solid;
+  border-width: 3px 1px;
+  /*border-width: 1px;*/
+  display: block;
+  margin-bottom: 20px;
+}
+
+table.items th, td {
+  text-align: left;
+  width: 150px;
+  padding-left: 10px;
+}
+
+table.items th {
+  border-bottom: 1px solid;
+  height: 30px;
+}
+
+table.items td {
+  border-bottom: 1px solid #CCC;
+  height: 70px;
+}
+
+table.items th.w25, td.w25 {
+  width: 25px;
+}
+
+table.items th.w50, td.w50 {
+  width: 50px;
+}
+
+table.items th.w75, td.w75 {
+  width: 75px;
+}
+
+table.items th.w100, td.w100 {
+  width: 100px;
+}
+
+table.items th.w150, td.w150 {
+  width: 150px;
+}
+
+/*================================================*/
+/* form */
+/*================================================*/
+table.normal_form {
+  width: 100%;
+  bnormal-collapse: collapse;
+  bnormal-spacing: 0;
+  bnormal-style: solid;
+  bnormal-width: 3px 1px;
+  /*bnormal-width: 1px;*/
+  display: block;
+  margin-bottom: 20px;
+}
+
+table.normal_form td.lh {
+  width: 200px;
+  text-align: right;
+  vertical-align: top;
+
+  padding: 10px;
+  bnormal-right: 1px dotted #CCC;
+  bnormal-top: 1px dotted #CCC;
+}
+
+table.normal_form td.input_area {
+  width: 500px;
+
+  padding: 10px;
+  bnormal-top: 1px dotted #CCC;
+}
+
+.input_area input {
+  bnormal: 4px solid #CCC;
+  padding: 5px;
+}

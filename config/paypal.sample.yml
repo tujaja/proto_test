@@ -1,0 +1,38 @@
+# PayPal API Access Setup
+#
+# Instructions:
+#
+# 1. Go to https://developer.paypal.com/.
+# 2. Click the "Sandbox" link or the "Sandbox" tab.
+# 3. Select the Business Test Account and click the "Enter Sandbox Test Site" button.
+# 4. Once you log in, click "Profile."
+# 5. Click on "API Access" under the 'Account Information' column.
+# 6. Click the "Request API Credentials" link.
+# 7. Select the radio button entitled "Request API certificate".
+# 8. Click the "Agree and Submit" button.
+# 9. Fill in api_username and api_password below with the information on this page
+# 10. Click on "Download Certificate." and save to locations in client_key and client_cert
+
+# Test settings
+development:
+  api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  api_password: "XXXXXXXXXXXXXXXX"
+  client_cert: "certs/sandbox_api.crt"
+  client_keys: "certs/sandbox_api.key"
+#  wiredump: true # Turn on logging of communications with PayPal during development
+
+# Follow steps 4 to 11 but with your real PayPal account.
+# NOTE: Your PayPal account must have Website Payments Pro already for this to work.
+
+# Live settings
+production:
+  api_username: "XXXXXXXXXXXXXXXXXXXXXXXXXXX"
+  api_password: "XXXXXXXXXXXXXXXX"
+  client_cert: "certs/live_api.crt"
+  client_keys: "certs/live_api.key"
+  # Don't turn this on in production mode unless you absolutely have to. It'll log people's credit card information
+  wiredump: false 
+
+# Common setting
+# NOTE: This file is already provided for you. You don't need to download it again.
+ca_file: "certs/api_cert_chain.crt"

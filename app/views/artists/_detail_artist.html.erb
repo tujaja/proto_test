@@ -1,0 +1,16 @@
+<div id="detail" class="artist">
+
+  <h3><%=h artist.name %></h3>
+  <h4><%=h artist.subname %></h4>
+
+  <%= thumb_for artist.images[0] %>
+
+  <dl class="label"><dt>Label</dt><dd><%=h artist.label.name %></dd></dl>
+  <dl class="description"><dt>Description</dt><dd><%=h artist.description %></dd></dl>
+
+  <dl class="url"><dt>URL</dt> <dd><%=h artist.url %></dd></dl>
+  <dl class="mail"><dt>email</dt> <dd><%=h artist.mail %></dd></dl>
+
+</div>
+
+

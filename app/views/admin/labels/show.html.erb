@@ -1,0 +1,63 @@
+<div id="contents_header">
+  <h2>Admin Labels</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Label Details</h1>
+<p>
+<%= thumb_for @label.images[0] %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%=h @label.token %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <%=h @label.domain %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @label.name %>
+</p>
+
+<p>
+  <b>Subname:</b>
+  <%=h @label.subname %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @label.description %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%=h @label.url %>
+</p>
+
+<p>
+  <b>Mail:</b>
+  <%=h @label.mail %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @label.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @label.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_label_path(@label) %> |
+<%= link_to 'Back', admin_labels_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

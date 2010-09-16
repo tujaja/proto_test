@@ -1,0 +1,57 @@
+<div id="contents_header">
+  <h2>Admin Contents</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Content Details</h1>
+<p>
+<%= thumb_for @content.images[0] %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%=h @content.token %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <%=h @content.domain %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @content.name %>
+</p>
+
+<p>
+  <b>Subname:</b>
+  <%=h @content.subname %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%=h @content.price %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @content.description %>
+</p>
+
+<p>
+  <b>Sales:</b>
+  <%=h @content.sales %>
+</p>
+
+<p>
+  <b>Download Counts:</b>
+  <%=h @content.download_counts %>
+</p>
+
+<%= link_to 'Edit', edit_admin_content_path(@content) %> |
+<%= link_to 'Back', admin_contents_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

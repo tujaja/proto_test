@@ -1,0 +1,52 @@
+<% form_for @label, :url => admin_labels_path do |f| %>
+  <%= f.error_messages %>
+
+  <table class="normal_form">
+    <tbody>
+
+      <tr>
+        <td class="lh"><%= f.label :domain %></td>
+        <td class="input_area"><%= f.text_field :domain, :class => 'inputsize' %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :name %></td>
+        <td class="input_area"><%= f.text_field :name, :class => 'inputsize' %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :subname %></td>
+        <td class="input_area"><%= f.text_field :subname, :class => 'inputsize' %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :description %></td>
+        <td class="input_textarea"><%= f.text_area :description %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :url %></td>
+        <td class="input_area"><%= f.text_field :url %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :mail %></td>
+        <td class="input_area"><%= f.text_field :mail %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :address %></td>
+        <td class="input_area"><%= f.text_field :address %></td>
+      </tr>
+
+      <tr>
+        <td class="lh"><%= f.label :phone %></td>
+        <td class="input_area"><%= f.text_field :phone %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <%= f.submit 'Create' %>
+
+<% end %>

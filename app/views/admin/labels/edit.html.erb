@@ -1,0 +1,58 @@
+<div id="contents_header">
+  <h2>Admin Labels</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Editing Label</h1>
+
+<% form_for @label, :url => { :action => "update" } do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :token %><br />
+    <%= f.text_field :token %>
+  </p>
+  <p>
+    <%= f.label :domain %><br />
+    <%= f.text_field :domain %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :subname %><br />
+    <%= f.text_field :subname %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_field :url %>
+  </p>
+  <p>
+    <%= f.label :mail %><br />
+    <%= f.text_field :mail %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', admin_label_path(@label) %> |
+<%= link_to 'Back', admin_labels_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

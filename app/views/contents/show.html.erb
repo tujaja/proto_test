@@ -1,0 +1,13 @@
+<div id="contents_header">
+  <h2>商品詳細</h2>
+  <%#= render :partial => "store/search_form" %>
+  <%#= render :partial => "store/breadcrumbs" %>
+</div>
+
+<div id="contents_main" class="products">
+  <%= render :partial => "detail_content", :locals => { :content => @content } %>
+</div>
+
+<div id="contents_footer">
+</div>
+

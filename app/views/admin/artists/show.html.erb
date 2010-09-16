@@ -1,0 +1,53 @@
+<div id="contents_header">
+  <h2>Admin Artists</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Artist Details</h1>
+<p>
+<%= thumb_for @artist.images[0] %>
+</p>
+
+<p>
+  <b>Token:</b>
+  <%=h @artist.token %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <%=h @artist.domain %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @artist.name %>
+</p>
+
+<p>
+  <b>Subname:</b>
+  <%=h @artist.subname %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @artist.description %>
+</p>
+
+<p>
+  <b>URL:</b>
+  <%=h @artist.url %>
+</p>
+
+<p>
+  <b>Mail:</b>
+  <%=h @artist.mail %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_artist_path(@artist) %> |
+<%= link_to 'Back', admin_artists_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+body {
+  /*background: #556666 url(/images/bg.jpg) repeat-x scroll 0 0;*/
+  background: #FFF;
+
+  font-family:
+      "Lucida Grande", "Verdana",
+      Meiryo,
+      "Hiragino Kaku Gothic Pro W3",
+      Osaka,
+      sans-serif;
+  font-size: 14px;
+
+  color: #111;
+}
+
+/*================================================*/
+/* Basic Elements */
+/*================================================*/
+h1 {
+  font-size: 172.8%;
+  font-family: helvetica, sans-serif;
+  font-weight: bold;
+}
+h2 {
+  font-size: 20px;
+  font-family: helvetica, sans-serif;
+}
+h3 {
+  font-size: 18px;
+  font-family: helvetica, sans-serif;
+}
+
+p {
+  font-size: 12px;
+  font-family: helvetica, sans-serif;
+}
+
+dt, dd {
+  font-size: 12px;
+  font-family: helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: 1px solid #AAA;
+}
+
+/*================================================*/
+/* multipurpose class */
+/*================================================*/
+
+div.clear {
+  clear: both;
+}
+
+div.left {
+  float: left;
+}
+
+div.right {
+  float: right;
+}

@@ -1,0 +1,34 @@
+<table class="items">
+  <tbody>
+
+    <tr>
+      <th class="icon">Image</th>
+      <th class="name">Name</th>
+      <th class="artist">Artist</th>
+      <th class="last">残りダウンロード回数</th>
+      <th class="download">Download</th>
+    </tr>
+
+
+    <% @order.order_items.each do |item| -%>
+    <tr>
+      <td class="icon"><%= icon_for item.content.images[0] %></td>
+      <td class="name"><%= h item.content.name %></td>
+      <td class="artist"><%= h item.content.artist.name %></td>
+      <td class="last">残り 10 回</td>
+      <td class="download">
+        <%= link_to "DL", file_path(item.token) %>
+      </td>
+    </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="5" class="expire">ダウンロード有効期限は200X年12月31日です</td>
+    </tr>
+
+  </tbody>
+</table>
+
+
+
+

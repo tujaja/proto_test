@@ -1,0 +1,176 @@
+/*================================================*/
+/* Contents Common */
+/*================================================*/
+
+/*-----------------------------------
+ * contents_header
+ *----------------------------------*/
+#contents_header {
+  margin: 5px;
+  padding: 10px;
+  color: #111;
+  background-color: #EEE;
+
+  border: 1px solid #CCC;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px
+
+}
+
+#contents_header h2 {
+  color: #333;
+}
+
+#contents_header p {
+  font-size: 14px;
+  color: #000;
+}
+
+
+/*-----------------------------------
+ * contents_main
+ *----------------------------------*/
+#contents_main {
+  padding: 10px;
+}
+
+#contents_main h3 {
+  color: #111;
+  border-bottom: 2px solid #CCC;
+  padding: 5px 0px;
+  margin: 5px 0 5px 0;
+}
+
+#contents_main h4 {
+  margin: 0 0 5px 0;
+}
+
+/*================================================*/
+/* Contents */
+/*================================================*/
+
+/* thumb */
+#contents_main #thumb {
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #CCC;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+}
+
+#contents_main #thumb p {
+  padding: 2px 0;
+}
+
+#contents_main #thumb.content {
+  width: 100px;
+  height: 185px;
+}
+
+#contents_main #thumb.artist {
+  width: 100px;
+  height: 155px;
+}
+
+#contents_main #thumb.label {
+  width: 100px;
+  height: 145px;
+}
+
+/* detail */
+#contents_main #detail dl {
+  padding: 5px 0px;
+}
+
+#contents_main #detail dt {
+  font-weight: bold;
+}
+
+#contents_main #detail dd {
+  padding-left: 10px;
+}
+
+/*================================================*/
+/* Table */
+/*================================================*/
+
+table.items {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-style: solid;
+  border-width: 3px 1px;
+  /*border-width: 1px;*/
+  display: block;
+  margin-bottom: 20px;
+}
+
+table.items th, td {
+  text-align: left;
+  width: 150px;
+  padding-left: 10px;
+}
+
+table.items th {
+  border-bottom: 1px solid;
+  height: 30px;
+}
+
+table.items td {
+  border-bottom: 1px solid #CCC;
+  height: 70px;
+}
+
+table.items th.icon, td.icon {
+  width: 80px;
+}
+
+table.items th.name, th.name {
+  width: 150;
+}
+
+table.items td.total_price {
+  font-size: large;
+  padding: 10px 100px 10px 0;
+  text-align: right;
+}
+
+/* form */
+table.order_form {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-style: solid;
+  border-width: 3px 1px;
+  /*border-width: 1px;*/
+  display: block;
+  margin-bottom: 20px;
+}
+
+table.order_form td.lh {
+  width: 200px;
+  text-align: right;
+  vertical-align: top;
+
+  padding: 10px;
+  border-right: 1px dotted #CCC;
+  border-top: 1px dotted #CCC;
+}
+
+table.order_form td.input_area {
+  width: 500px;
+
+  padding: 10px;
+  border-top: 1px dotted #CCC;
+}
+
+.input_area input {
+  border: 4px solid #CCC;
+  padding: 5px;
+}

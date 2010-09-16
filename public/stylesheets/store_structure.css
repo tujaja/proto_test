@@ -1,0 +1,123 @@
+/*================================================*/
+/* Wrapper*/
+/*================================================*/
+
+#wrapper {
+  width: 740px;
+  margin:  0px auto;
+  margin-top: 40px;
+  padding: 0px auto;
+  background-color: #FFF;
+  /*border: 1px solid #333;*/
+
+}
+
+
+/*================================================*/
+/* Header*/
+/*================================================*/
+
+#header {
+  position: relative;
+  background-color: #FFF;
+  /*border: 1px solid #333;*/
+
+  height: 84px;
+}
+
+#logo {
+  background: url("../images/3shimeji_s.jpg") no-repeat scroll left;
+  background-color: #FFF;
+
+  text-indent: -3000px;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 80px;
+  height: 82px;
+  z-index: 5;
+
+  /*-moz-border-radius-topleft: 3px;*/
+}
+
+#logo a {
+  display: block;
+  height: 84px;
+  width: 84px;
+}
+
+#utility {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+#utility li {
+  float: left;
+ font-size: 12px;
+  padding: 0 5px;
+}
+
+#navigation {
+  position: absolute;
+  bottom: 20px;
+  left: 100px;
+}
+
+#navigation li {
+  float: left;
+}
+
+#navigation li a {
+  text-decoration: none;
+  text-align: center;
+
+  color: #111;
+  background-color: #EEE;
+
+  display: block;
+  width: 75px;
+  margin-left: 10px;
+  padding: 6px 20px;
+  border: solid 1px #CCC;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+}
+
+#navigation li a:hover {
+  /*text-decoration: underline;*/
+
+  color: #D5B006;
+  background-color: #78576A;
+
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+}
+
+/*================================================*/
+/* Contents*/
+/*================================================*/
+
+#contents {
+  position: relative;
+  background-color: #FFF;
+  /*border: 1px solid #333;*/
+}
+
+
+/*================================================*/
+/* Footer */
+/*================================================*/
+
+#footer {
+  background-color: #FFF;
+  height: 30px;
+  padding: 10px;
+  /*border: 1px solid #333;*/
+}
+

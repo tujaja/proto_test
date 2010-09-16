@@ -1,0 +1,37 @@
+<div id="contents_header">
+  <h2>Admin Downloads</h2>
+</div>
+
+<div id="contents_main" class="admin_downloads">
+<h3>Index Downloads</h3>
+<table class="items">
+<tbody>
+  <tr>
+    <th>ID</th>
+    <th>FileName</th>
+    <th>ContentType</th>
+    <th>Token</th>
+  </tr>
+
+<% @downloads.each do |download| %>
+  <tr>
+    <td><%=h download.id %></td>
+    <td><%=h download.filename %></td>
+    <td><%=h download.content_type %></td>
+    <td><%=h download.token %></td>
+    <td><%= link_to 'Show', admin_download_path(download) %></td>
+    <td><%= link_to 'Edit', edit_admin_download_path(download) %></td>
+    <td><%= link_to 'Destroy', admin_download_path(download), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to 'New download', new_admin_download_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>
+
+

@@ -1,0 +1,41 @@
+<% form_for @payment, :url => payment_path do |f| %>
+  <%= f.error_messages %>
+
+  <table class="order_form">
+<tbody>
+
+  <tr>
+    <td class="lh"><%= f.label :first_name %></td>
+    <td class="input_area"><%= f.text_field :first_name, :value => '北原', :class => 'inputsize' %></td>
+  </tr>
+
+  <tr>
+    <td class="lh"><%= f.label :last_name %></td>
+    <td class="input_area"><%= f.text_field :last_name, :value => '豪', :class => 'inputsize' %></td>
+  </tr>
+
+  <tr>
+    <td class="lh"><%= f.label :email %></td>
+    <td class="input_area"><%= f.text_field :email, :value => 'tujaja3@gmail.com' %></td>
+  </tr>
+
+  <!--tr>
+    <td class="lh"><%= f.label :email_confirm %></td>
+    <td class="input_area"><%= f.text_field :email_confirm, :value => 'tujaja3@gmail.com' %></td>
+  </tr-->
+
+  <tr>
+    <td class="lh"><%= f.label "支払い方法" %></td>
+    <td class="input_area">
+      <%= f.radio_button(:payment_type, "free", {:checked => true} ) %>Free
+      <%= f.radio_button(:payment_type, "paypal") %>Paypal
+    </td>
+  </tr>
+
+</tbody>
+</table>
+
+<%= f.submit '支払い手続きへ' %>
+
+<% end %>
+

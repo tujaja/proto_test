@@ -1,0 +1,30 @@
+<div id="contents_header">
+  <h2>Admin Orders</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Orders Index</h1>
+<table class="items">
+<tbody>
+  <tr>
+    <th class="id">ID</th>
+    <th>Email</th>
+    <th>Token</th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%=h order.id %></td>
+    <td><%=h order.email %></td>
+    <td><%=h order.token %></td>
+    <td><%= link_to 'Show', admin_order_path(order) %></td>
+    <td><%= link_to 'Destroy', admin_order_path(order), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+</div>
+
+<div id="contents_footer">
+</div>

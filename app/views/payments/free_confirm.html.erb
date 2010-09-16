@@ -1,0 +1,30 @@
+<div id="contents_header">
+  <h2>ご注文の確認</h2>
+</div>
+
+<div id="contents_main" class="contents_index">
+
+  <%= render :partial => "carts/cart_items" %>
+
+<hr />
+
+<dl>
+  <dt>first_name</dt> <dd><%=h @payment.first_name %></dd>
+  <dt>last_name</dt> <dd><%=h @payment.last_name %></dd>
+  <dt>email</dt> <dd><%=h @payment.email %></dd>
+  <dt>payment_type</dt> <dd><%=h @payment.payment_type %></dd>
+</dl>
+
+<hr />
+
+<%#PUTメソッドで送信%>
+<% form_tag payment_path do -%>
+  <input name="_method" type="hidden" value="put" />
+  <%= hidden_field_tag("payment_method", "free_confirm") %>
+  <%= submit_tag "CONFIRM" %>
+<% end -%>
+
+</div>
+
+<div id="contents_footer">
+</div>

@@ -1,0 +1,21 @@
+<div id="thumb" class="content">
+<ul>
+  <li>
+    <p><%= link_to (thumb_for content.images[0]), content_path(content.domain)  %></p>
+    <p><%= link_to h(content.name), content_path(content.domain) %></p>
+    <p><%= link_to h(content.artist.name), artist_path(content.artist.domain) %></p>
+    <p><%= h to_yen(content.price) %></p>
+
+    <%#PUTメソッドで送信%>
+    <% form_tag( {:controller => "carts", :action => "update",
+                  :protocol => 'https://', :only_path => false}) do -%>
+      <input name="_method" type="hidden" value="put" />
+      <%= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>
+      <%= hidden_field_tag("cart_item[quantity]", "1") %>
+      <%= submit_tag "Buy" %>
+    <% end -%>
+
+  </li>
+</ul>
+</div>
+

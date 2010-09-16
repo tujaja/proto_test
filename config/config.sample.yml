@@ -1,0 +1,9 @@
+development:
+  storage:
+    images_path:    "/home/snoky/dev/3shimeji_1.0/public/images"
+    downloads_path: "/home/snoky/dev/3shimeji_1.0/public/downloads"
+
+    tmp_path:              '/home/snoky/3shimeji_shared/tmp'
+    sample_images_path:    '/home/snoky/3shimeji_shared/sample/images'
+    sample_downloads_path: '/home/snoky/3shimeji_shared/sample/downloads'
+

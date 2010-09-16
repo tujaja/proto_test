@@ -1,0 +1,53 @@
+<div id="contents_header">
+  <h2>Admin Contents</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>New content</h3>
+
+<% form_for @content, :url => admin_contents_path do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :token %><br />
+    <%= f.text_field :token %>
+  </p>
+  <p>
+    <%= f.label :domain %><br />
+    <%= f.text_field :domain %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :subname %><br />
+    <%= f.text_field :subname %>
+  </p>
+  <p>
+    <%= f.label :price %><br />
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :sales %><br />
+    <%= f.text_field :sales %>
+  </p>
+  <p>
+    <%= f.label :download_counts %><br />
+    <%= f.text_field :download_counts %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', admin_contents_path %>
+
+</div>
+
+<div id="contents_footer">
+</div>

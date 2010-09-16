@@ -1,0 +1,18 @@
+[submodule "vendor/plugins/restful_authentication"]
+	path = vendor/plugins/restful_authentication
+	url = git://github.com/technoweenie/restful-authentication.git
+[submodule "vendor/plugins/safe_erb"]
+	path = vendor/plugins/safe_erb
+	url = git://github.com/emk/safe_erb.git
+[submodule "vendor/plugins/safe_record"]
+	path = vendor/plugins/safe_record
+	url = git://github.com/authorNari/safe_record.git
+[submodule "vendor/plugins/sperical_warnings"]
+	path = vendor/plugins/sperical_warnings
+	url = git://github.com/authorNari/special_warning.git
+[submodule "vendor/plugins/speical_warnings"]
+	path = vendor/plugins/speical_warnings
+	url = git://github.com/authorNari/special_warning.git
+[submodule "vendor/plugins/speical_warning"]
+	path = vendor/plugins/speical_warning
+	url = git://github.com/authorNari/special_warning.git

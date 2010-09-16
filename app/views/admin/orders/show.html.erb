@@ -1,0 +1,30 @@
+<div id="contents_header">
+  <h2>Admin Orders</h2>
+</div>
+
+<div id="contents_main" class="admin_contents">
+<h3>Order Details</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Artist</th>
+    <th>Token</th>
+  </tr>
+
+<% @order.order_items.each do |item| %>
+  <tr>
+    <td><%=h item.id %></td>
+    <td><%= icon_for item.content.images[0] %></td>
+    <td><%=h item.content.name %></td>
+    <td><%=h item.content.artist.name %></td>
+    <td><%=h item.token %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>
+
+<div id="contents_footer">
+</div>

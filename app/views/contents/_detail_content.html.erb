@@ -1,0 +1,18 @@
+<div id="detail" class="content">
+
+  <h3><%=h content.name %></h3>
+  <h4><%=h content.subname %></h4>
+
+  <%= thumb_for content.images[0] %>
+  <dl class="artist"><dt>アーティスト</dt><dd><%=h content.artist.name %></dd></dl>
+  <dl class="label"><dt>レーベル</dt><dd><%=h content.label.name if content.label %></dd></dl>
+  <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(content.price) %>(税込)</dd></dl>
+  <dl class="description"><dt>説明</dt><dd><%=h content.description %></dd></dl>
+
+  <dl class="encoding"><dt>エンコーディング</dt> <dd><%#=h @info.file_encoding %></dd></dl>
+  <dl class="time"><dt>プレイ時間</dt> <dd><%#=h @info.time %></dd></dl>
+  <dl class="size"><dt>ファイルサイズ</dt> <dd><%#=h to_megabyte(@download.size) %></dd></dl>
+
+</div>
+
+
