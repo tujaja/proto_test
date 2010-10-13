@@ -124,14 +124,57 @@ table.normal_form td.lh {
   bnormal-top: 1px dotted #CCC;
 }
 
-table.normal_form td.input_area {
-  width: 500px;
+/*table.normal_form td.input_area {*/
+  /*width: 300px;*/
+  /*padding: 10px;*/
+  /*bnormal-top: 1px dotted #CCC;*/
+/*}*/
 
-  padding: 10px;
-  bnormal-top: 1px dotted #CCC;
+/*.input_area input {*/
+  /*bnormal: 4px solid #CCC;*/
+  /*padding: 5px;*/
+/*}*/
+
+/*table.normal_form td.input_textarea {*/
+  /*width: 500px;*/
+  /*height: 100px;*/
+  /*padding: 10px;*/
+  /*bnormal-top: 1px dotted #CCC;*/
+/*}*/
+
+#upload_iframe {
+  width: 0px;
+  height: 0px;
+  border: 0px;
 }
 
-.input_area input {
-  bnormal: 4px solid #CCC;
+#upload_form {
   padding: 5px;
 }
+
+/*================================================*/
+/* Images */
+/*================================================*/
+
+#image_thumb  {
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #CCC;
+  -moz-border-radius-topleft: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -moz-border-radius-bottomright: 3px;
+
+  width: 55x;
+  height: 75px;
+}
+
+/*================================================*/
+/* Images */
+/*================================================*/
+#form[new_label] {
+  width: 400px;
+}
+

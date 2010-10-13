@@ -41,3 +41,18 @@ dt, dd {
   font-family: helvetica, sans-serif;
 }
 
+/*================================================*/
+/* multipurpose class */
+/*================================================*/
+
+div.clear {
+  clear: both;
+}
+
+div.left {
+  float: left;
+}
+
+div.right {
+  float: right;
+}

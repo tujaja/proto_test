@@ -1,0 +1,20 @@
+<table class="items">
+<tbody>
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Name</th>
+  </tr>
+
+<% @labels.each do |label| %>
+  <tr>
+    <td><%=h label.id %></td>
+    <td><%= link_to ( (icon_for label.images[0]), admin_label_path(label.id) ) if label.images[0] != nil %></td>
+    <td><%=h label.name %></td>
+    <td><%= link_to 'Show', admin_label_path(label.id) %></td>
+    <td><%= link_to 'Edit', edit_admin_label_path(label) %></td>
+    <td><%= link_to 'Destroy', admin_label_path(label), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

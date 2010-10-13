@@ -24,6 +24,7 @@ role :db,  "tujaja2.co.cc", :primary => true
 
 
 
+after 'deploy:setup', 'deploy:setup_configs'
 after 'deploy:update_code', 'deploy:copy_configs'
 namespace :deploy do
 #   task :start {}
@@ -41,4 +42,28 @@ namespace :deploy do
       cp -af #{shared_path}/config/certs #{release_path}/config
     CMD
   end
+
+  task :setup_configs do
+    home_config_path = "/home/tujaja/3shimeji.co.cc.config"
+    run <<-CMD
+      mkdir -p #{shared_path}/config &&
+      cp -f #{home_config_path}/database.yml #{shared_path}/config/database.yml &&
+      cp -f #{home_config_path}/config.yml #{shared_path}/config/config.yml &&
+      cp -f #{home_config_path}/paypal.yml #{shared_path}/config/paypal.yml &&
+      cp -af #{home_config_path}/certs #{shared_path}/config
+    CMD
+  end
+
+  task :development_migration do
+    run <<-CMD
+      cd #{current_path} &&
+      rake db:migrate VERSION='0' &&
+      rake db:migrate
+    CMD
+  end
+
+
 end
+
+
+

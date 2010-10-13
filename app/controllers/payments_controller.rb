@@ -1,5 +1,6 @@
 class PaymentsController < ApplicationController
   layout 'store'
+  ssl_required :show, :create, :update
 
   # GET /payment
   def show

@@ -5,7 +5,7 @@
 <div id="contents_main" class="admin_contents">
 <h3>Label Details</h1>
 <p>
-<%= thumb_for @label.images[0] %>
+<%= thumb_for @label.images[0] if @label.images[0] != nil %>
 </p>
 
 <p>

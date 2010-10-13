@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
 
-  <%= stylesheet_link_tag "import_store.css" %>
+  <%= stylesheet_link_tag "import_admin.css" %>
   <%= javascript_include_tag :defaults %>
 
 
@@ -16,15 +16,9 @@
 
 <body>
 
-
 <div id="wrapper">
   <div id="header">
-
     <h1 id="logo"><a href="/">３本しめじ</a></h1>
-
-    <%= render :partial => 'store/navigation' %>
-    <%#= render :partial => 'store/utility' %>
-
   </div>
 
   <div id="contents">
@@ -33,19 +27,10 @@
 
 
   <div id="footer">
-    <p><%= link_to "Admin", admin_path %></p>
-    <!--p>2010 3shimeji all rights reserved</p-->
+    <p>2010 3shimeji all rights reserved</p>
   </div>
 
 </div>
-
-
-<div id="debug">
-<p>  <%h= flash[:notice] %></p>
-<p>  <%h= flash[:error] %></p>
-<p>  <%#= session[:cart] %></p>
-</div>
-
 
 </body>
 </html>

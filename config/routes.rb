@@ -1,11 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.store "/", :controller => 'store', :action => 'index'
-  map.admin "/admin", :controller => 'admin', :action => 'index'
-  map.logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'
-  map.login '/admin/login', :controller => 'admin/sessions', :action => 'new'
   map.download '/download/:id', :controller => 'download', :action => 'show'
   map.file '/file/:id', :controller => 'file', :action => 'download'
+
+  map.admin        '/admin',        :controller => 'admin', :action => 'index'
+  map.admin_logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'
+  map.admin_login  '/admin/login',  :controller => 'admin/sessions', :action => 'new'
 
   map.resources :contents
   map.resources :artists

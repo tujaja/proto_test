@@ -4,12 +4,7 @@
 
     <li>Hello <%=h current_user.login %></li>
     <%#= render :partial => "carts/cart_status" %>
-    <li><%= link_to "logout", logout_path %></li>
-  </ul>
-<% else %>
-  <ul>
-    <li>Hello Guest</li>
-    <li><%= link_to "login", login_path %></li>
+    <li><%= link_to "logout", admin_logout_path %></li>
   </ul>
 <% end %>
 

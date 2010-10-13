@@ -2,10 +2,11 @@
 class Admin::SessionsController < ApplicationController
   include AuthenticatedSystem
 
-  layout 'admin'
+  layout 'admin_login'
 
   # render new.erb.html
   def new
+    p 'C===Admin::Session#new'
   end
 
   def create

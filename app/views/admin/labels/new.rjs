@@ -1,0 +1,6 @@
+p 'hoge'
+
+page.insert_html :bottom, 'lightbox_contents', :partial => 'form'
+page << <<EOS
+lightbox.activate();
+EOS

@@ -2,29 +2,17 @@
   <h2>Admin Labels</h2>
 </div>
 
-<div id="contents_main">
+<div id="contents_main" class="admin_label">
 <h3>Index Labels</h3>
 
-<table class="items">
-<tbody>
-  <tr>
-    <th>ID</th>
-    <th>Image</th>
-    <th>Name</th>
-  </tr>
+  <%= javascript_include_tag "lightbox.js" %>
+  <%= link_to_remote 'New Label', :url => new_admin_label_path, :method => 'get' %>
 
-<% @labels.each do |label| %>
-  <tr>
-    <td><%=h label.id %></td>
-    <td><%= link_to (icon_for label.images[0]), admin_label_path(label.id)  %></td>
-    <td><%=h label.name %></td>
-    <td><%= link_to 'Show', admin_label_path(label.id) %></td>
-    <td><%= link_to 'Edit', edit_admin_label_path(label) %></td>
-    <td><%= link_to 'Destroy', admin_label_path(label), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+
+  <div id="listing_labels">
+    <%#= render :partial => 'thumbs' %>
+    <%= render :partial => 'records' %>
+  </div>
 
 <%= link_to 'New label', new_admin_label_path %>
 
@@ -32,3 +20,4 @@
 
 <div id="contents_footer">
 </div>
+

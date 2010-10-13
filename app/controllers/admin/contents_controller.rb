@@ -4,6 +4,9 @@ class Admin::ContentsController < AdminController
   # GET /contents
   # GET /contents.xml
   def index
+    p
+    p 'C===Admin::Contents#index'
+
     @contents = Content.all
 
     respond_to do |format|

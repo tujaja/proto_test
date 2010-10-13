@@ -4,30 +4,13 @@
 
 <div id="contents_main">
 <h3>Index Images</h3>
-<table class="items">
-<tbody>
-  <tr>
-    <th>ID</th>
-    <th>Image</th>
-    <th>FileName</th>
-    <th>Token</th>
-  </tr>
 
-<% @images.each do |image| %>
-  <tr>
-    <td><%=h image.id %></td>
-    <td><%= link_to (icon_for image), admin_image_path(image.id)  %></td>
-    <td><%=h image.filename %></td>
-    <td><%=h image.token %></td>
-    <td><%= link_to 'Show', admin_image_path(image) %></td>
-    <td><%= link_to 'Edit', edit_admin_image_path(image) %></td>
-    <td><%= link_to 'Destroy', admin_image_path(image), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
+  <%= render :partial => 'upload_button' %>
 
-<%= link_to 'New image', new_admin_image_path %>
+  <div id="listing_images">
+    <%= render :partial => 'thumbs' %>
+    <%#= render :partial => 'records' %>
+  </div>
 
 </div>
 

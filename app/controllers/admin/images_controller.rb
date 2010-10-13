@@ -3,6 +3,7 @@ class Admin::ImagesController < AdminController
 
   def index
     @images = Image.find(:all)
+    @image = Image.new(params[:image])
   end
 
   def show
@@ -11,6 +12,10 @@ class Admin::ImagesController < AdminController
 
   def new
     @image = Image.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.js   # new.rjs
+    end
   end
 
   def edit
@@ -24,7 +29,14 @@ class Admin::ImagesController < AdminController
 
     if @image.save
       flash[:notice] = 'Image was successfully created.'
-      redirect_to admin_image_path(@image)
+
+      responds_to_parent do
+        @images = Image.all
+        html = render_to_string :partial => 'thumbs'
+        render :update do |page|
+          page.replace_html 'listing_images', html
+        end
+      end
     else
       render :action => "new"
     end
@@ -49,7 +61,17 @@ class Admin::ImagesController < AdminController
     @image = Image.find(params[:id])
     @image.destroy
 
-    redirect_to admin_images_path
+    respond_to do |format|
+
+      format.html { redirect_to admin_images_path }
+      format.js {
+        @images = Image.all
+        render :update do |page|
+          page.replace_html 'listing_images', :partial => 'thumbs'
+        end
+      }
+    end
+
   end
 
 end

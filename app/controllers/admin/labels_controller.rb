@@ -30,7 +30,7 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @label }
+      format.js   # new.rjs
     end
   end
 
