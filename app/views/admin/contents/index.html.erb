@@ -4,40 +4,10 @@
 
 <div id="contents_main">
 <h3>Contents Index</h1>
-
-<p><%= link_to 'New content', new_admin_content_path %></p>
-
-<table class="items">
-<tbody>
-  <tr>
-    <th class="w25">ID</th>
-    <th class="w50">Image</th>
-    <th class="w100">Name</th>
-    <th class="w100">Artist</th>
-    <th class="w100">File</th>
-    <th class="w50">Sales</th>
-    <th class="w50"></th>
-    <th class="w50"></th>
-    <th class="w50"></th>
-  </tr>
-
-<% @contents.each do |content| %>
-  <tr>
-    <td class="w25"><%=h content.id %></td>
-    <td class="w50"><%= link_to (icon_for content.images[0]), admin_content_path(content.id)  %></td>
-    <td class="w100"><%=h content.name %></td>
-    <td class="w100"><%=h content.artist.name %></td>
-    <td class="w100"><%=h content.attachable_info.download.filename %></td>
-    <td class="w100"><%=h content.sales %></td>
-    <td class="w50"><%= link_to 'Show', admin_content_path(content.id) %></td>
-    <td class="w50"><%= link_to 'Edit', edit_admin_content_path(content) %></td>
-    <td class="w50"><%= link_to 'Destroy', admin_content_path(content), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</tbody>
-</table>
-
-
+  <div id="listing_contents">
+    <%#= render :partial => 'thumbs' %>
+    <%= render :partial => 'records' %>
+  </div>
 </div>
 
 <div id="contents_footer">

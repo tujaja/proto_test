@@ -3,15 +3,13 @@
 /*================================================*/
 
 #wrapper {
-  width: 740px;
+  width: 800px;
   margin:  0px auto;
   margin-top: 40px;
   padding: 0px auto;
   background-color: #FFF;
-  border: 1px solid #333;
-
+  border: 3px solid #333;
 }
-
 
 /*================================================*/
 /* Header*/
@@ -74,13 +72,13 @@
   text-align: center;
 
   color: #222;
-  background-color: #DDD;
+  background-color: #FFF;
 
   display: block;
   width: 55px;
   margin: 2px;
   padding: 5px 16px;
-  border: solid 1px #839679;
+  border: solid 3px #AAA;
 }
 
 #navigation li a:hover {

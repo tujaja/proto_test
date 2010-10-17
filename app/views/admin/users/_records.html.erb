@@ -1,0 +1,14 @@
+<table class="tableTypeRecord">
+<tbody>
+
+<% @users.each do |user| %>
+  <tr>
+    <td class="id"><%=h user.id %></td>
+    <td class="thumb"><%#= link_to ( (icon_for user.images[0]), admin_user_path(user.id) ) if user.images[0] != nil %></td>
+    <td class="desc"><%=h user.login %></td>
+    <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
+    <td><%= link_to 'Destroy', admin_user_path(user), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

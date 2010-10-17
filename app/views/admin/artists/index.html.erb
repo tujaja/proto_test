@@ -5,29 +5,10 @@
 <div id="contents_main" class="admin_artists">
 <h3>Artists Index</h1>
 
-<table class="items">
-<tbody>
-  <tr>
-    <th>ID</th>
-    <th>Image</th>
-    <th>Name</th>
-  </tr>
-
-<% @artists.each do |artist| %>
-  <tr>
-    <td><%=h artist.id %></td>
-    <td><%= link_to (icon_for artist.images[0]), admin_artist_path(artist.id)  %></td>
-    <td><%=h artist.name %></td>
-    <td><%= link_to 'Show', admin_artist_path(artist.id) %></td>
-    <td><%= link_to 'Edit', edit_admin_artist_path(artist) %></td>
-    <td><%= link_to 'Destroy', admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-
-</tbody>
-</table>
-
-<%= link_to 'New artist', new_admin_artist_path %>
+  <div id="listing_artists">
+    <%#= render :partial => 'thumbs' %>
+    <%= render :partial => 'records' %>
+  </div>
 
 </div>
 

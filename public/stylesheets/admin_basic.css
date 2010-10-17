@@ -1,58 +1,144 @@
 @charset "UTF-8";
 
-body {
-  background: #111;
-
-  font-family:
-      "Lucida Grande", "Verdana",
-      Meiryo,
-      "Hiragino Kaku Gothic Pro W3",
-      Osaka,
-      sans-serif;
-  font-size: 14px;
-
-  color: #111;
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, blockquote, p, th, td {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4em;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
 }
 
-/*================================================*/
-/* Basic Elements */
-/*================================================*/
-h1 {
-  font-size: 172.8%;
-  font-family: helvetica, sans-serif;
+body {
+  background:#e7e7de url(/images/bg_page2.gif);
+  font-size: 12px;
+  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+  line-height: 130%;
+  margin:0 auto;
+  color:#1e1e1e;
+}
+
+h1,h2,h3,h4,h5,h6 {font-size: 100%;}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  visibility: hidden;
+}
+
+
+ol, ul {
+  list-style: none;
+  list-style-image: none;
+  list-style-position: outside;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+caption, th {
+  text-align: left;
+}
+
+fieldset, img { 
+  border: 0;
+}
+
+table img {
+  display: inline;
+}
+
+em {
+  color: #CC0000;
+  font-style: normal;
   font-weight: bold;
 }
+
+/*- form -*/
+input, select, textarea {
+  letter-spacing: 0;
+}
+
+input {
+  font-size:14px;
+  padding: 2px;
+  /*-  line-height: 1.5em;-*/
+  /*-  vertical-align: top;-*/
+}
+  
+textarea {
+  padding: 0;
+  font-size: 1.0em;
+  line-height: 1.2em;
+}
+
+.clear{clear: both;}
+
+a {overflow:hidden;text-decoration: none;}
+a:link {text-decoration: none;color: #2786c2;}
+a:visited {text-decoration: none;color: #2786c2;}
+a:hover, a:active {text-decoration: none;color: #da4740;}
+
+ul li,ol li{list-style: none}
+
+pre {
+  white-space: pre;           /* CSS 2.0 */
+  white-space: pre-wrap;      /* CSS 2.1 */
+  white-space: pre-line;      /* CSS 3.0 */
+  white-space: -pre-wrap;     /* Opera 4-6 */
+  white-space: -o-pre-wrap;   /* Opera 7 */
+  white-space: -moz-pre-wrap; /* Mozilla */
+  white-space: -hp-pre-wrap;  /* HP Printers */
+  word-wrap: break-word;      /* IE 5+ */
+}
+
+address {font-style:normal;}
+
+
 h2 {
-  font-size: 20px;
-  font-family: helvetica, sans-serif;
+	/*margin:20px 0 2px 0;*/
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
+
 h3 {
-  font-size: 18px;
-  font-family: helvetica, sans-serif;
+	/*margin:20px 0 2px 0;*/
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
-p {
-  font-size: 12px;
-  font-family: helvetica, sans-serif;
+  h3.underline{
+    width:100%;
+    border-bottom:3px #333 solid;
+    padding:0 0 4px;
+    margin:0 0 15px;
+  }
+
+  h3.connect{
+    width:100%;
+    padding:0 0 4px;
+    margin:30px 0 10px;
+  }
+
+h4 {
+    font-size: 12px;
+    font-weight: bold;
+    color: #643F00;
+    margin:15px 0 5px;
 }
 
-dt, dd {
-  font-size: 12px;
-  font-family: helvetica, sans-serif;
+
+h5 {
+    font-size: 12px;
+    font-weight: normal;
+    color: #666;
+    margin: 5px 0 0;
+    padding: 5px 0;
 }
 
-/*================================================*/
-/* multipurpose class */
-/*================================================*/
-
-div.clear {
-  clear: both;
-}
-
-div.left {
-  float: left;
-}
-
-div.right {
-  float: right;
-}

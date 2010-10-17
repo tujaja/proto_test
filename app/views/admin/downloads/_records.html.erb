@@ -1,0 +1,14 @@
+<table class="tableTypeRecord">
+<tbody>
+
+<% @downloads.each do |download| %>
+  <tr>
+    <td class="id"><%=h download.id %></td>
+    <td class="thumb"><%#= link_to ( (icon_for download.images[0]), admin_download_path(download.id) ) if download.images[0] != nil %></td>
+    <td class="desc"><%=h download.filename %></td>
+    <td><%= link_to 'Edit', edit_admin_download_path(download) %></td>
+    <td><%= link_to 'Destroy', admin_download_path(download), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
