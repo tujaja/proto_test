@@ -1,0 +1,137 @@
+<% form_for @content, :url => url do |f| %>
+  <%#= f.error_messages %>
+
+  <p class="txt_ess">
+    * 必須項目
+  </p>
+  <h3>コンテンツ情報</h3>
+
+  <table class="tableTypeForm1" style="width: 775px;">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :domain, "ドメイン(固有名)" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :domain, :style => "width:150px; font-size: 14px;" %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :name, "コンテンツ名" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :name, :style => "width:150px; font-size: 14px;" %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>全角半角30文字以内</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :subname, "コンテンツ名(サブ)" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :subname, :style => "width:150px; font-size: 14px;" %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>全角半角30文字以内</span></li></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :price, "価格(税込)" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :price, :style => "width:100px; font-size: 14px;" %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角数字</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :description, "説明" %> </th>
+        <td style="width: 37%">
+          <%= f.text_area :description, :style => "width:300px; height:200px; font-size: 14px;" %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>200文字以内</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :url, "アーティスト" %> </th>
+        <td style="width: 37%">
+          <%= f.collection_select "artist_id", Artist.find(:all), :id, :name %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :image_id, "画像" %> </th>
+        <td style="width: 37%">
+          <%= f.collection_select "related_image", Image.find(:all), :token, :filename, {}, {:onchange => "ElementHelper.select_image('image_select', 'thumb_image_tag', 'thumb');", :id => "image_select"} %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <span id="image_wrapper">
+            <img id="thumb_image_tag" src="" />
+          </span>
+        </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+  <p class="txt_ess">
+    * 必須項目
+  </p>
+  <h3>ファイル情報</h3>
+  <table class="tableTypeForm1" style="width: 775px;">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :download_id, "コンテンツファイル" %> </th>
+        <td style="width: 37%">
+        <%= f.collection_select "related_download", Download.find(:all), :token, :filename %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <span id="download_wrapper">
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :file_encoding, "エンコーディング" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :file_encoding, :style => "width:150px; font-size: 14px;", :value => @info.file_encoding %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :time, "プレイ時間" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :time, :style => "width:150px; font-size: 14px;", :value => @info.time %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :lyric, "歌詞" %> </th>
+        <td style="width: 37%">
+          <%= f.text_area :lyric, :style => "width:300px; height:200px; font-size: 14px;", :value => @info.lyric %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>200文字以内</span></li> </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="buttons">
+  <%= f.submit action_name %>
+  </p>
+
+<% end %>

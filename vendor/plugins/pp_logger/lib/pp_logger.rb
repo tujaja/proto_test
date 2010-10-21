@@ -1,3 +1,5 @@
+# PpLogger
+
 require 'pp'
 
 module Kernel
@@ -28,3 +30,4 @@ module Kernel
   end
 
 end
+

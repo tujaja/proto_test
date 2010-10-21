@@ -1,4 +1,4 @@
-<% form_for @label, :url => url do |f| %>
+<% form_for @artist, :url => url do |f| %>
   <%#= f.error_messages %>
 
   <p class="txt_ess">
@@ -19,7 +19,7 @@
       </tr>
 
       <tr>
-        <th><span>*</span><%= f.label :name, "レーベル名" %> </th>
+        <th><span>*</span><%= f.label :name, "アーティスト名" %> </th>
         <td style="width: 37%">
           <%= f.text_field :name, :style => "width:300px; font-size: 14px;" %>
         </td>
@@ -29,7 +29,7 @@
       </tr>
 
       <tr>
-        <th><span>*</span><%= f.label :subname, "レーベル名(サブ)" %> </th>
+        <th><span>*</span><%= f.label :subname, "アーティスト名(サブ)" %> </th>
         <td style="width: 37%">
           <%= f.text_field :subname, :style => "width:300px; font-size: 14px;" %>
         </td>
@@ -37,7 +37,6 @@
           <ul class="list1"> <li><span>全角半角30文字以内</span></li></ul>
         </td>
       </tr>
-
 
 
       <tr>
@@ -50,7 +49,6 @@
         </td>
       </tr>
 
-
       <tr>
         <th><%= f.label :url, "ホームページ" %> </th>
         <td style="width: 37%">
@@ -62,37 +60,27 @@
       </tr>
 
       <tr>
-        <th><%= f.label :phone, "Phone" %> </th>
+        <th><%= f.label :url, "所属レーベル" %> </th>
         <td style="width: 37%">
-          <%= f.text_field :phone, :style => "width:150px; font-size: 14px;" %>
+          <%= f.collection_select "label_id", Label.find(:all), :id, :name %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>半角数字</span></li> </ul>
+          <ul class="list1"></ul>
         </td>
       </tr>
 
       <tr>
-        <th><%= f.label :address, "所在地" %> </th>
+        <th><%= f.label :description, "説明" %> </th>
         <td style="width: 37%">
-          <%= f.text_field :address, :style => "width:300px; font-size: 14px;" %>
+          <%= f.text_area :description, :style => "width:300px; height: 200px; font-size: 14px;" %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>全角</span></li> </ul>
+          <ul class="list1"></ul>
         </td>
       </tr>
 
       <tr>
-        <th><span>*</span><%= f.label :description, "説明" %> </th>
-        <td style="width: 37%">
-          <%= f.text_area :description, :style => "width:300px; height:200px; font-size: 14px;" %>
-        </td>
-        <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>200文字以内</span></li> </ul>
-        </td>
-      </tr>
-
-      <tr>
-        <th><%= f.label :image_id, "画像" %> </th>
+        <th><%= f.label :related_image, "関連画像" %> </th>
         <td style="width: 37%">
           <%= f.collection_select "related_image", Image.find(:all), :token, :filename, {}, {:onchange => "ElementHelper.select_image('image_select', 'thumb_image_tag', 'thumb');", :id => "image_select"} %>
         </td>

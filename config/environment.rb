@@ -49,12 +49,9 @@ Rails::Initializer.run do |config|
 end
 
 
-require '3shimeji/mydebug'
-
 $KCODE = 'u'
 require 'jcode'
 
-require 'digest/md5'
 
 # images
 require 'pathname'

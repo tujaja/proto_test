@@ -1,4 +1,11 @@
 class Image < ActiveRecord::Base
+  has_many :image_categorizations
+  has_many :owners, :through => :image_categorizations
+
+  #MAX_FILE_SIZE = 100.megabyte
+  #validates_presence_of :filename, :message => "select file"
+  #validates_inclusion_of :size, :in => (1..MAX_FILE_SIZE),
+    #:message => "Uploaded file's size is over the capacity."
 
   def uploaded_file=(file)
     return if file == ""
@@ -13,26 +20,27 @@ class Image < ActiveRecord::Base
     end
 
     self.filename = base_part_of(file.original_filename)
-    self.token = make_token
+    #self.token = make_token
+    self.token = make_unique_token self.filename
     self.content_type = file.content_type  if file.respond_to?(:content_type)
 
   end
 
   def after_save
-    save_icon_to_storage @image.clone
-    save_thumb_to_storage @image.clone
+    save_file_to_storage
   end
 
   def after_destroy
     delete_file_from_storage self.token
   end
 
-  def icon_file_path
-    "#{storage_path}/#{self.token}.icon.jpg"
-  end
-
-  def thumb_file_path
-    "#{storage_path}/#{self.token}.thumb.jpg"
+  # #{size}_file_path
+  %w(minicon icon thumb).each do |size|
+    class_eval <<-END
+      def #{size}_file_path
+        "\#{storage_path}/\#{self.token}.#{size}.jpg"
+      end
+    END
   end
 
   private
@@ -41,28 +49,21 @@ class Image < ActiveRecord::Base
   end
 
   def delete_file_from_storage token
-    File.delete "#{storage_path}/#{token}.icon.jpg"  if File.exist? "#{storage_path}/#{token}.icon.jpg"
-    File.delete "#{storage_path}/#{token}.thumb.jpg" if File.exist? "#{storage_path}/#{token}.thumb.jpg"
-
+    %w(minicon icon thumb).each do |size|
+      File.delete "#{storage_path}/#{token}.#{size}.jpg"  if File.exist? "#{storage_path}/#{token}.#{size}.jpg"
+    end
   end
 
-  def save_icon_to_storage image_object
-    # icon save
-    img = convert_image(image_object, 50)
-    File.open(icon_file_path, "wb") {|f|
-      #f.write img.to_blob { self.format='JPG'; self.quality = 60 }
-      f.write img
-    }
+  def save_file_to_storage
+    [ ['minicon',25], ['icon',50], ['thumb',100] ].each do |size, pixel|
+      img = convert_image(@image.clone, pixel)
+      path = eval("#{size}_file_path")
+      File.open(path, "wb") {|f|
+        f.write img
+      }
+    end
   end
 
-  def save_thumb_to_storage image_object
-    # thumb save
-    img = convert_image(image_object, 100)
-    File.open(thumb_file_path, "wb") {|f|
-      #f.write img.to_blob { self.format='JPG'; self.quality = 60 }
-      f.write img
-    }
-  end
 
   def make_token
     Digest::MD5.hexdigest("--#{Time.now}--#{self.filename}")

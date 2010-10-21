@@ -1,0 +1,18 @@
+<div>
+
+  <h3><%=h artist.name %></h3>
+  <h4><%=h artist.subname %></h4>
+
+  <%= thumb_for artist.images[0] %>
+
+  <dl><dt>ドメイン(固有名)</dt><dd><%=h artist.domain %></dd></dl>
+  <dl><dt>Label</dt><dd><%=h artist.label.name %></dd></dl>
+  <dl><dt>Description</dt><dd><%=h artist.description %></dd></dl>
+
+  <dl><dt>URL</dt> <dd><%=h artist.url %></dd></dl>
+  <dl><dt>email</dt> <dd><%=h artist.mail %></dd></dl>
+
+  <dl><dt>識別子</dt><dd><%=h artist.token %></dd></dl>
+</div>
+
+

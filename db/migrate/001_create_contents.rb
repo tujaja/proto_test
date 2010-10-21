@@ -1,12 +1,12 @@
 class CreateContents < ActiveRecord::Migration
   def self.up
     create_table :contents do |t|
-      t.string  :token,        :null => false, :limit => 100
-      t.string  :domain,       :null => false, :limit => 50
-      t.string  :name,         :null => false, :limit => 50
-      t.string  :subname,      :limit => 50
+      t.string  :token,        :null => false, :limit => 50
+      t.string  :domain,       :null => false, :limit => 30
+      t.string  :name,         :null => false, :limit => 30
+      t.string  :subname,      :limit => 30
       t.integer :price,        :default => 0, :null => false, :limit => 20
-      t.text    :description,  :limit => 1000
+      t.text    :description,  :limit => 500
       t.integer :sales,        :default => 0, :null => false, :limit => 20
       t.integer :download_counts, :default => 0, :null => false, :limit => 20
 

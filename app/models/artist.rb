@@ -5,6 +5,12 @@ class Artist < ActiveRecord::Base
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
 
+  attr_accessor :related_image
+
+  def related_image=(image_token)
+    image = Image.find_by_token(image_token)
+    self.images << image
+  end
 
   def sorted_images
     categories = self.image_categorizations.collect
@@ -14,13 +20,6 @@ class Artist < ActiveRecord::Base
   end
 
   def before_save
-    self.token = make_token
+    self.token = make_unique_token self.domain
   end
-
-  private
-
-  def make_token
-    Digest::MD5.hexdigest("--#{Time.now}--#{self.id}")
-  end
-
 end

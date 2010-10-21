@@ -3,6 +3,7 @@ class Admin::DownloadsController < AdminController
 
   def index
     @downloads = Download.find(:all)
+    @download = Download.new(params[:download])
   end
 
   def show
@@ -25,7 +26,13 @@ class Admin::DownloadsController < AdminController
 
     if @download.save
       flash[:notice] = 'Download was successfully created.'
-      redirect_to admin_download_path(@download)
+      responds_to_parent do
+        @downloads = Download.all
+        html = render_to_string :partial => 'records'
+        render :update do |page|
+          page.replace_html 'listing_downloads', html
+        end
+      end
     else
       render :action => "new"
     end

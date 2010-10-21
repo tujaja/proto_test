@@ -10,7 +10,7 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 }
 
 body {
-  background:#e7e7de url(/images/bg_page2.gif);
+  /*background:#e7e7de url(/images/bg_page2.gif);*/
   font-size: 12px;
   font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
   line-height: 130%;
@@ -99,46 +99,4 @@ pre {
 address {font-style:normal;}
 
 
-h2 {
-	/*margin:20px 0 2px 0;*/
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-h3 {
-	/*margin:20px 0 2px 0;*/
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-  h3.underline{
-    width:100%;
-    border-bottom:3px #333 solid;
-    padding:0 0 4px;
-    margin:0 0 15px;
-  }
-
-  h3.connect{
-    width:100%;
-    padding:0 0 4px;
-    margin:30px 0 10px;
-  }
-
-h4 {
-    font-size: 12px;
-    font-weight: bold;
-    color: #643F00;
-    margin:15px 0 5px;
-}
-
-
-h5 {
-    font-size: 12px;
-    font-weight: normal;
-    color: #666;
-    margin: 5px 0 0;
-    padding: 5px 0;
-}
 

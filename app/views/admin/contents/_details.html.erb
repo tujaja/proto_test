@@ -1,0 +1,25 @@
+<div>
+
+  <h3><%=h content.name %></h3>
+  <h4><%=h content.subname %></h4>
+
+  <%= thumb_for content.images[0] %>
+  <dl><dt>ドメイン(固有名)</dt><dd><%=h content.domain %></dd></dl>
+  <dl><dt>アーティスト</dt><dd><%=h content.artist.name %></dd></dl>
+  <dl<dt>レーベル</dt><dd><%=h content.label.name if content.label %></dd></dl>
+  <dl><dt>ダウンロード価格</dt><dd><%=h to_yen(content.price) %>(税込)</dd></dl>
+  <dl><dt>説明</dt><dd><%=h content.description %></dd></dl>
+
+  <dl><dt>エンコーディング</dt> <dd><%=h @info.file_encoding %></dd></dl>
+  <dl><dt>プレイ時間</dt> <dd><%=h @info.time %></dd></dl>
+  <dl><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(@download.size) %></dd></dl>
+  <dl><dt>歌詞</dt><dd><%=h @info.lyric %></dd></dl>
+
+
+  <dl><dt>セールス</dt><dd><%=h content.sales %></dd></dl>
+  <dl><dt>ダウンロード数</dt><dd><%=h content.download_counts %></dd></dl>
+  <dl><dt>識別子</dt><dd><%=h content.token %></dd></dl>
+
+</div>
+
+

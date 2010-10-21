@@ -19,6 +19,8 @@ class Admin::ContentsController < AdminController
   # GET /contents/1.xml
   def show
     @content = Content.find(params[:id])
+    @info = @content.attachable_info
+    @download = @info.download
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,11 +42,14 @@ class Admin::ContentsController < AdminController
   # GET /contents/1/edit
   def edit
     @content = Content.find(params[:id])
+    @info = @content.attachable_info
+    @download = @info.download
   end
 
   # POST /contents
   # POST /contents.xml
   def create
+    p params[:content]
     @content = Content.new(params[:content])
 
     respond_to do |format|
@@ -67,7 +72,7 @@ class Admin::ContentsController < AdminController
     respond_to do |format|
       if @content.update_attributes(params[:content])
         flash[:notice] = 'Content was successfully updated.'
-        format.html { redirect_to admin_label_path(@content) }
+        format.html { redirect_to admin_content_path(@content) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

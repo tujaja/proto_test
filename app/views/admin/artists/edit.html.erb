@@ -2,44 +2,11 @@
   <h2>Admin Artists</h2>
 </div>
 
-<div id="contents_main" class="admin_artistsk">
-<h3>Editing Artist</h1>
+<div id="contents_main">
+  <%= render :partial => "form", :locals => {:url => admin_artist_path(@artist) , :action_name => 'update' } %>
+  <%= link_to 'Back', admin_artists_path %>
 
-<% form_for @artist, :url => { :action => "update" } do |f| %>
-  <%= f.error_messages %>
+</div>
 
-  <p>
-    <%= f.label :token %><br />
-    <%= f.text_field :token %>
-  </p>
-  <p>
-    <%= f.label :domain %><br />
-    <%= f.text_field :domain %>
-  </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :subname %><br />
-    <%= f.text_field :subname %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :url %><br />
-    <%= f.text_field :url %>
-  </p>
-  <p>
-    <%= f.label :mail %><br />
-    <%= f.text_field :mail %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', admin_artist_path(@artist) %> |
-<%= link_to 'Back', admin_artists_path %>
+<div id="contents_footer">
+</div>

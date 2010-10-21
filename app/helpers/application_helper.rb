@@ -2,15 +2,16 @@
 module ApplicationHelper
 
   # Image
-  def icon_for image
-    url = "up/#{image.token}.icon.jpg"
-    image_html = image_tag(url, :size => "50x50", :class => "icon", :alt => "#{image.filename}")
+  [ ['minicon', 25], ['icon', 50], ['thumb', 100] ].each do |size, pixel|
+    class_eval <<-EOS
+      def #{size}_for image
+        url = "up/\#{image.token}.#{size}.jpg"
+        image_html = image_tag(url, :size => "#{pixel}x#{pixel}", :class => "#{size}",
+          :alt => "\#{image.filename}")
+      end
+    EOS
   end
 
-  def thumb_for image
-    url = "up/#{image.token}.thumb.jpg"
-    image_html = image_tag(url, :size => "100x100", :class => "thumb", :alt => "")
-  end
 
   # Download
   def download_url_for order

@@ -16,7 +16,7 @@ class Download < ActiveRecord::Base
     self.filename = file.original_filename if file.respond_to?(:original_filename)
     self.content_type = file.content_type  if file.respond_to?(:content_type)
     self.size = file.size                  if file.respond_to?(:size)
-    self.token = make_token
+    self.token = make_unique_token self.filename
     @tmp = file
   end
 
@@ -41,10 +41,6 @@ class Download < ActiveRecord::Base
 
   def delete_file_from_storage token
     File.delete "#{storage_path}/#{token}" if File.exist? "#{storage_path}/#{token}"
-  end
-
-  def make_token
-    Digest::MD5.hexdigest("--#{Time.now}--#{self.filename}")
   end
 
 end

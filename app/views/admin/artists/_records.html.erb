@@ -4,7 +4,7 @@
 <% @artists.each do |artist| %>
   <tr>
     <td class="id"><%=h artist.id %></td>
-    <td class="thumb"><%= link_to ( (icon_for artist.images[0]), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
+    <td class="thumb"><%= link_to ( (minicon_for artist.images[0]), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
     <td class="desc"><%=h artist.name %></td>
     <td><%= link_to 'Edit', edit_admin_artist_path(artist) %></td>
     <td><%= link_to 'Destroy', admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %></td>

@@ -8,6 +8,9 @@ h2 {
     font-weight: bold;
     color: #333;
 }
+  h2.title{
+    padding: 0 0 15px 0;
+  }
 
 h3 {
 	/*margin:20px 0 2px 0;*/
@@ -29,6 +32,7 @@ h3 {
     margin:30px 0 10px;
   }
 
+
 h4 {
     font-size: 12px;
     font-weight: bold;
@@ -44,6 +48,10 @@ h5 {
     margin: 5px 0 0;
     padding: 5px 0;
 }
+
+dl { padding: 5px 0px; }
+dt { font-weight: bold; }
+dd { padding-left: 10px; }
 
 /*----------------------------------------
 	button
@@ -69,6 +77,10 @@ p.buttons,div.buttons{text-align:center;}
   -moz-border-radius:5px;
 }
 
+#contents_header .buttons a {
+  background:#FFF;
+  color:#333;
+}
 
 /*----------------------------------------
   form
@@ -168,7 +180,7 @@ table.tableTypeRecord th, table.tableRecord thead td {
 }
 
 table.tableTypeRecord td {
-    padding: 10px;
+    padding: 5px 10px;
     border-bottom: 1px solid #CCC;
 }
 
@@ -189,6 +201,8 @@ table.tableTypeRecord td.desc {width:630px;}
 /*-----------------------------------
  * Others
  *----------------------------------*/
+
+p.txt_ess { float:right; line-height: 1.9em; }
 
 /* *の赤色 */
 p.txt_ess span, p.txt_ess2 span, th span {
@@ -242,6 +256,7 @@ p.txt_ess span, p.txt_ess2 span, th span {
 /*#contents_main #detail dd {*/
   /*padding-left: 10px;*/
 /*}*/
+/* detail */
 
 /*----------------------------------------
 	list
@@ -272,13 +287,12 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
   background-color: #EEE;
   margin: 5px;
   padding: 10px;
-  border: 1px solid #CCC;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 3px;
+  border: 3px solid #CCC;
+  /*-moz-border-radius-topleft: 3px;*/
+  /*-moz-border-radius-topright: 3px;*/
+  /*-moz-border-radius-bottomleft: 3px;*/
+  /*-moz-border-radius-bottomright: 3px;*/
 
-  width: 55x;
   height: 75px;
 }
 

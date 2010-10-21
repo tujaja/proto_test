@@ -48,6 +48,7 @@ class SampleContents < ActiveRecord::Migration
       music_info.file_encoding = 'mp3/128kbps'
       music_info.time = time[n]
       music_info.save
+      content.attachable_info = music_info
 
       (0...3).each do |m|
         # n (1 2 3 4 5 6)
