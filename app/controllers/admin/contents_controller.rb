@@ -32,6 +32,8 @@ class Admin::ContentsController < AdminController
   # GET /contents/new.xml
   def new
     @content = Content.new
+    @info = MusicInfo.new
+    @download = Download.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -51,6 +53,7 @@ class Admin::ContentsController < AdminController
   def create
     p params[:content]
     @content = Content.new(params[:content])
+
 
     respond_to do |format|
       if @content.save
