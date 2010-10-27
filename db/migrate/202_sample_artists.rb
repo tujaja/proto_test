@@ -50,6 +50,39 @@ class SampleArtists < ActiveRecord::Migration
     lh.label = Label.find_by_domain('3shimeji')
     lh.save
 
+    # Others
+    first = %w(Jacob Micael Ethan Joshua Daniel Alexander Anthony William Chiristopher Matthew)
+    last = %w(Emma Isabella Emily Madison Ava Olivia Sophia Abigail Elizabeth Chloe)
+    key_when = ['おととし', '去年', 'おととい', '昨日', 'さっき']
+    key_where = ['家で', '公園で', '海で', '山で', 'デパートで']
+    key_what = ['遊んだ', '寝た', '歌った', '走った', 'けんかした']
+
+    (1...30).each do |n|
+      f = first[rand(10)];
+      l = last[rand(10)];
+
+      domain = "#{f.downcase}-#{l.downcase}-#{n}"
+      name = "#{f} #{l}"
+      subname = "#{f.downcase} #{l.downcase}"
+      desc = key_when[rand(5)] + key_where[rand(5)] + key_what[rand(5)]
+      url = "info@#{f.downcase}.#{l.downcase}.com"
+      mail = "#{f.downcase}.#{l.downcase}@gmail.com"
+
+
+      artist = Artist.create(:domain => domain, :name => name, :subname => subname, :description => desc, :url => url, :mail => mail)
+
+      image = Image.find_by_id(rand(10)+1)
+      artist.images << image
+
+
+      #images = Image.find(:all, :conditions => ["filename LIKE ?", "lh%"])
+      #images.each do |image|
+        #artist.images << image
+      #end
+      artist.label = Label.find_by_domain('3shimeji')
+      artist.save
+    end
+
   end
 
   def self.down

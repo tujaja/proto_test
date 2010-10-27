@@ -12,7 +12,9 @@ class ContentsController < ApplicationController
     p; p "C===Content#show domain=#{params[:id]}"
     @content = Content.find_by_domain(params[:id])
     @info = @content.attachable_info
+    p @info
     @download = @info.download
+    p @download
   end
 
 end

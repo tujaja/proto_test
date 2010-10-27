@@ -1,10 +1,12 @@
 <table class="tableTypeRecord">
 <tbody>
 
+<%= will_paginate @contents, :prev_label => 'prev', :next_label => 'next' %>
+
 <% @contents.each do |content| %>
   <tr>
     <td class="id"><%=h content.id %></td>
-    <td class="thumb"><%= link_to((minicon_for content.images[0]), admin_content_path(content.id)) if content.images[0] != nil %></td>
+    <td class="thumb"><%= link_to((minicon_for content.images[0]), admin_content_path(content.domain)) if content.images[0] != nil %></td>
     <td class="desc"><%=h content.name %></td>
     <td><%= link_to 'Edit', edit_admin_content_path(content) %></td>
     <td><%= link_to 'Destroy', admin_content_path(content), :confirm => 'Are you sure?', :method => :delete %></td>

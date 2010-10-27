@@ -1,6 +1,5 @@
 class Artist < ActiveRecord::Base
   belongs_to :label
-
   has_many :contents
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations

@@ -9,9 +9,14 @@
   <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(content.price) %>(税込)</dd></dl>
   <dl class="description"><dt>説明</dt><dd><%=h content.description %></dd></dl>
 
-  <dl class="encoding"><dt>エンコーディング</dt> <dd><%=h @info.file_encoding %></dd></dl>
-  <dl class="time"><dt>プレイ時間</dt> <dd><%=h @info.time %></dd></dl>
-  <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(@download.size) %></dd></dl>
+  <% if @info -%>
+    <dl class="encoding"><dt>エンコーディング</dt> <dd><%=h @info.file_encoding %></dd></dl>
+    <dl class="time"><dt>プレイ時間</dt> <dd><%=h @info.time %></dd></dl>
+  <% end -%>
+
+  <% if @download -%>
+    <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(@download.size) %></dd></dl>
+  <% end -%>
 
 </div>
 

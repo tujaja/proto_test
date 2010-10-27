@@ -7,7 +7,10 @@ class Admin::ContentsController < AdminController
     p
     p 'C===Admin::Contents#index'
 
-    @contents = Content.all
+    #@contents = Content.all
+    @contents = Content.paginate(:page => params[:page],
+                                 :order => 'contents.id asc',
+                                 :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,9 +21,13 @@ class Admin::ContentsController < AdminController
   # GET /contents/1
   # GET /contents/1.xml
   def show
-    @content = Content.find(params[:id])
+    p 'C===Admin::Contents#show'
+
+    @content = Content.find_by_domain(params[:id])
     @info = @content.attachable_info
     @download = @info.download
+    p @download
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -52,8 +59,10 @@ class Admin::ContentsController < AdminController
   # POST /contents.xml
   def create
     p params[:content]
+    p params[:music_info]
     @content = Content.new(params[:content])
-
+    @info = MusicInfo.new(params[:music_info])
+    @content.attachable_info = @info
 
     respond_to do |format|
       if @content.save

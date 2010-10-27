@@ -1,6 +1,10 @@
 class Order < ActiveRecord::Base
   has_many :order_items
 
+  def before_save
+    self.token = make_unique_token self.email
+  end
+
   def total_price
     total = 0
     self.order_items.each do |item|
@@ -15,8 +19,6 @@ class Order < ActiveRecord::Base
 
   def issue payment, cart
     p 'M===Order#issue'
-    self.token = make_token
-    self.email = payment.email
     self.first_name = first_name
     self.last_name = last_name
     self.payment_type = payment.payment_type
@@ -26,12 +28,6 @@ class Order < ActiveRecord::Base
                             :quantity => cart_item.quantity)
       self.order_items << item
     end
-  end
-
-
-  private
-  def make_token
-    Digest::MD5.hexdigest("--#{Time.now}--#{self.email}")
   end
 
 end

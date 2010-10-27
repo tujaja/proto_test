@@ -28,7 +28,6 @@ class Admin::ArtistsController < AdminController
   # GET /artists/new.xml
   def new
     @artist = Artist.new
-    p @artist.respond_to? :tag_string=
 
     respond_to do |format|
       format.html # new.html.erb

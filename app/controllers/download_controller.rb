@@ -4,14 +4,10 @@ class DownloadController < ApplicationController
   # GET
   def show
     p
-    p "C===Download#show :token=#{params[:id]}"
+    p "C===Download#show :token=#{params[:token]}"
 
-    token = params[:id]
-    @order = Order.find_by_token(token)
-
-    if @order == nil
-      render "invalid_url" and return
-    end
+    @order = Order.find_by_token(params[:token])
+    render "invalid_url" and return unless @order
   end
 
 end

@@ -4,6 +4,7 @@ class Label < ActiveRecord::Base
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
 
+  validates_presence_of :domain
   #validates_presence_of :token, :domain, :name
   #validates_uniqueness_of :token, :domain
 

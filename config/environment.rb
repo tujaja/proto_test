@@ -60,6 +60,10 @@ require 'RMagick'
 require 'base64'
 
 
+require 'will_paginate'
+
+
+
 p '==============================================='
 p 'RAILS BOOTING'
 p '==============================================='

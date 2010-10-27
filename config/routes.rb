@@ -1,8 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.store "/", :controller => 'store', :action => 'index'
-  map.download '/download/:id', :controller => 'download', :action => 'show'
-  map.file '/file/:id', :controller => 'file', :action => 'download'
+  map.download '/download/:token', :controller => 'download', :action => 'show'
+  map.file '/file/:token', :controller => 'file', :action => 'download'
 
   map.admin        '/admin',        :controller => 'admin', :action => 'index'
   map.admin_logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'

@@ -35,10 +35,16 @@ class PaymentsController < ApplicationController
   def create
     p
     p "C===Payments#create"
-    redirect_to cart_path and return if prepare_cart
+    redirect_to cart_path and return unless prepare_cart
 
     p '[Reset Payment Session]'
     @payment = Payment.new( params[:payment] )
+
+    unless @payment.valid?
+      p '---> form item is empty'
+      redirect_to cart_path and return
+    end
+
     @payment.amount = @cart.total_price
     session[:payment] = @payment
 
@@ -46,12 +52,12 @@ class PaymentsController < ApplicationController
     case @payment.payment_type
     when 'paypal'
       p '---> paypal_credential'
-      paypal_credential and return
+      paypal_credential or return
     when 'free'
       p '---> free_confirm'
-      free_confirm and return
+      free_confirm or return
     else
-      invalid_payment and return
+      invalid_payment or return
     end
   end
 
@@ -59,7 +65,7 @@ class PaymentsController < ApplicationController
   def update
     p
     p "C===Payment#update"
-    redirect_to cart_path and return if prepare_cart
+    redirect_to cart_path or return unless prepare_cart
 
     p '[Routing]'
     @method = params[:payment_method]
@@ -72,26 +78,26 @@ class PaymentsController < ApplicationController
     # 意図しないメソッド送信
     if  @payment == nil || @method == nil
       p 'Exception occured. (session[:payment] or method is nil.)'
-      invalid_payment and return
+      invalid_payment or return
     end
     if @payment.status != 'created' && @method != @payment.status
       p 'Exception occured. (methods missmatched payment status.)'
       p @method
       p @payment.status
-      invalid_payment and return
+      invalid_payment or return
     end
     p '---> Succeed Routing'
 
     ## checking order_status
     case @method
     when 'free_confirm'
-      finish_order and return
+      finish_order or return
     when 'paypal_credential'
-      paypal_confirm and return
+      paypal_confirm or return
     when 'paypal_confirm'
-      paypal_purchase and return
+      paypal_purchase or return
     else
-      invalid_payment and return
+      invalid_payment or return
     end
   end
 
@@ -120,9 +126,9 @@ class PaymentsController < ApplicationController
       p '@payment.status --> {{paypal_credential}}'
       @payment.status = 'paypal_credential'
       p '===> [redirect_to Paypal.express_checkout_redirect_url(res.token)]'
-      redirect_to Paypal.express_checkout_redirect_url(@payment.paypal_token) and return
+      redirect_to Paypal.express_checkout_redirect_url(@payment.paypal_token) or return
     else
-      invalid_payment and return
+      invalid_payment or return
     end
   end
 
@@ -134,9 +140,9 @@ class PaymentsController < ApplicationController
       p '@payment.status --> {{paypal_confirm}}'
       @payment.status = 'paypal_confirm'
       p '---> render paypal_confirm'
-      render :action => 'paypal_confirm' and return
+      render :action => 'paypal_confirm' or return
     else
-      invalid_payment and return
+      invalid_payment or return
     end
   end
 
@@ -147,7 +153,7 @@ class PaymentsController < ApplicationController
     if @payment.step_to_paypal_purchase
       finish_order
     else
-      invalid_payment and return
+      invalid_payment or return
     end
   end
 
@@ -157,7 +163,7 @@ class PaymentsController < ApplicationController
     clear_session
 
     p '===> redirect cart'
-    redirect_to cart_path and return
+    redirect_to cart_path or return
   end
 
   def finish_order
@@ -194,16 +200,16 @@ class PaymentsController < ApplicationController
     p "[Prepare Cart]"
     @cart = session[:cart]
 
-    p "---> cart is nil" and return false if @cart == nil
-    p "---> cart is empty" and return false if @cart.is_empty
-    p "---> cart is exist" and return true
+    p "---> cart is nil" or return false if @cart == nil
+    p "---> cart is empty" or return false if @cart.is_empty
+    p "---> cart is exist" or return true
   end
 
   def prepare_session
     p "[Prepare Payment Session]"
     @payment = session[:payment]
 
-    p "---> payment is nil" and return false if @payment == nil
-    p "---> payment is exist" and return true
+    p "---> payment is nil" or return false if @payment == nil
+    p "---> payment is exist" or return true
   end
 end
