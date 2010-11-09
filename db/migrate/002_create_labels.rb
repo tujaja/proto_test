@@ -5,11 +5,11 @@ class CreateLabels < ActiveRecord::Migration
       t.string  :domain,       :null => false, :limit => 30
       t.string  :name,         :null => false, :limit => 30
       t.string  :subname,      :limit => 30
-      t.text    :description,  :limit => 500
-      t.text    :url,          :limit => 50
-      t.text    :mail,         :limit => 50
-      t.text    :address,      :limit => 50
-      t.text    :phone,        :limit => 15
+      t.text    :description,  :limit => 200
+      t.string  :url,          :limit => 50
+      t.string  :mail,         :limit => 50
+      t.string  :address,      :limit => 50
+      t.string  :phone,        :limit => 15
 
       t.timestamps
     end

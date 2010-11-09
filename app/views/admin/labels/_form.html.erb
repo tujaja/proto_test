@@ -12,6 +12,8 @@
         <th><span>*</span><%= f.label :domain, "ドメイン(固有名)" %> </th>
         <td style="width: 37%">
           <%= f.text_field :domain, :style => "width:300px; font-size: 14px;" %>
+          <span id="domain"></span>
+
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
           <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
@@ -41,12 +43,12 @@
 
 
       <tr>
-        <th><span>*</span><%= f.label :mail, "メールアドレス" %> </th>
+        <th><%= f.label :mail, "メールアドレス" %> </th>
         <td style="width: 37%">
           <%= f.text_field :mail, :style => "width:300px; font-size: 14px;" %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>(例) 3shimeji@gmail.com</span></li> </ul>
+          <ul class="list1"> </ul>
         </td>
       </tr>
 
@@ -57,7 +59,7 @@
           <%= f.text_field :url, :style => "width:300px; font-size: 14px;" %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>(例) http://3shimeji.com</span></li> </ul>
+          <ul class="list1"> </ul>
         </td>
       </tr>
 
@@ -77,17 +79,17 @@
           <%= f.text_field :address, :style => "width:300px; font-size: 14px;" %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>全角</span></li> </ul>
+          <ul class="list1"> <li><span>全角文字</span></li> </ul>
         </td>
       </tr>
 
       <tr>
-        <th><span>*</span><%= f.label :description, "説明" %> </th>
+        <th><%= f.label :description, "説明" %> </th>
         <td style="width: 37%">
           <%= f.text_area :description, :style => "width:300px; height:200px; font-size: 14px;" %>
         </td>
         <td class="tableTypeForm1End" style="width: 38%">
-          <ul class="list1"> <li><span>200文字以内</span></li> </ul>
+          <ul class="list1"> <li><span>全角半角200文字以内</span></li> </ul>
         </td>
       </tr>
 
@@ -108,5 +110,33 @@
   <p class="buttons">
   <%= f.submit action_name %>
   </p>
-
 <% end %>
+
+<div id="error"></div>
+
+<%= javascript_include_tag "form_validation" %>
+<script type="text/javascript">
+<!-- <![CDATA[
+
+  var fields = {
+    'label[domain]':{
+      convert: function(val){ return val.cnvKana('aV').trim() },
+      validation: function(val){ return val.isNotEmpty() && val.isShorterThan(16) },
+      feedback: function(ok, elm){
+        var sp = $('domain');
+        //insertOKImage(ok, sp);
+        insertMessage(ok, sp, 'だめです');
+      }
+    },
+  };
+  var feedback = function(ok){
+    if (!ok) {
+      $('error').update("フォームの内容に不備があるようです。再度の確認をお願いいたします。");
+    }
+    return ok;
+  };
+  new formValidation('new_label', feedback, fields);
+// ]]> -->
+</script>
+
+

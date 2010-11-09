@@ -30,4 +30,8 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'
+
+  # Catch 404s
+  map.connect '*path', :controller => 'four_oh_fours'
 end
+
