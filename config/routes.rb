@@ -1,6 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.store "/", :controller => 'store', :action => 'index'
+  map.info "/info", :controller => 'store', :action => 'info'
+  map.about "/about", :controller => 'store', :action => 'about'
+  map.term "/term", :controller => 'store', :action => 'term'
+  map.help "/help", :controller => 'store', :action => 'help'
+  map.company "/company", :controller => 'store', :action => 'company'
+  map.privacy "/privacy", :controller => 'store', :action => 'privacy'
+
+
+
   map.download '/download/:token', :controller => 'download', :action => 'show'
   map.file '/file/:token', :controller => 'file', :action => 'download'
 

@@ -1,21 +1,32 @@
-<div id="detail" class="content">
+<div id="details">
 
-  <h3><%=h content.name %></h3>
-  <h4><%=h content.subname %></h4>
+  <%= thumb_for @content.images[0] %>
+  <p><%=h @content.description %></p>
+  <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(@content.price) %>(税込)</dd></dl>
 
-  <%= thumb_for content.images[0] %>
-  <dl class="artist"><dt>アーティスト</dt><dd><%=h content.artist.name %></dd></dl>
-  <dl class="label"><dt>レーベル</dt><dd><%=h content.label.name if content.label %></dd></dl>
-  <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(content.price) %>(税込)</dd></dl>
-  <dl class="description"><dt>説明</dt><dd><%=h content.description %></dd></dl>
+  <dl><dt>アーティスト</dt>
+    <dd>
+      <%= link_to((icon_for @content.artist.images[0]), artist_path(@content.artist.domain)) if @content.artist.images[0] %>
+      <%= link_to h(@content.artist.name), artist_path(@content.artist.domain) %>
+    </dd>
+  </dl>
+  <dl><dt>レーベル</dt>
+    <dd>
+      <%= link_to((icon_for @content.label.images[0]), label_path(@content.label.domain)) if @content.label.images[0] %>
+      <%= link_to h(@content.label.name), label_path(@content.label.domain) %>
+    </dd>
+  </dl>
 
-  <% if @info -%>
-    <dl class="encoding"><dt>エンコーディング</dt> <dd><%=h @info.file_encoding %></dd></dl>
-    <dl class="time"><dt>プレイ時間</dt> <dd><%=h @info.time %></dd></dl>
+  <% if @content.info -%>
+    <% info = @content.info -%>
+    <dl><dt>エンコーディング</dt> <dd><%=h info.file_encoding %></dd></dl>
+    <dl><dt>プレイ時間</dt> <dd><%=h info.time %></dd></dl>
+    <!--dl><dt>歌詞</dt> <dd><%=h info.lyric %></dd></dl-->
   <% end -%>
 
-  <% if @download -%>
-    <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(@download.size) %></dd></dl>
+  <% if @content.download -%>
+    <% download = @content.download -%>
+    <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(download.size) %></dd></dl>
   <% end -%>
 
 </div>

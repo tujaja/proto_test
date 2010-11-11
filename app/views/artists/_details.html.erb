@@ -1,0 +1,21 @@
+<div id="details">
+
+  <%= thumb_for @artist.images[0] %>
+  <p><%=h @artist.description %></p>
+  <dl><dt>レーベル</dt>
+    <dd>
+      <%= link_to((icon_for @artist.label.images[0]), label_path(@artist.label.domain)) if @artist.label.images[0] %>
+      <%= link_to h(@artist.label.name), label_path(@artist.label.domain) %>
+    </dd>
+  </dl>
+  <% if @artist.url %>
+    <dl><dt>URL</dt> <dd><%=h @artist.url %></dd></dl>
+  <% end %>
+  <% if @artist.mail %>
+    <dl><dt>email</dt> <dd><%=h @artist.mail %></dd></dl>
+  <% end %>
+
+
+</div>
+
+

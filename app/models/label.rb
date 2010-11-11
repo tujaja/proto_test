@@ -1,9 +1,11 @@
 class Label < ActiveRecord::Base
+  extend EmailValidation
 
   has_many :artists
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
 
+  validates_format_of :mail, :with => EmailValidation::EMAIL_PATTERN
   validates_presence_of :domain
   #validates_presence_of :token, :domain, :name
   #validates_uniqueness_of :token, :domain

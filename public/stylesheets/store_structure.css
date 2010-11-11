@@ -3,6 +3,7 @@
 /*================================================*/
 
 #wrapper {
+  position: relative;
   width: 740px;
   margin:  0px auto;
   margin-top: 40px;
@@ -80,23 +81,12 @@
   width: 75px;
   margin-left: 10px;
   padding: 6px 20px;
-  border: solid 1px #CCC;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 3px;
+  /*border: solid 1px #CCC;*/
 }
 
 #navigation li a:hover {
-  /*text-decoration: underline;*/
-
   color: #D5B006;
   background-color: #78576A;
-
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 3px;
 }
 
 /*================================================*/
@@ -107,6 +97,8 @@
   position: relative;
   background-color: #FFF;
   /*border: 1px solid #333;*/
+
+  padding-bottom: 50px;
 }
 
 
@@ -115,9 +107,31 @@
 /*================================================*/
 
 #footer {
-  background-color: #FFF;
-  height: 30px;
-  padding: 10px;
-  /*border: 1px solid #333;*/
+  position: absolute;
+  bottom: -10px;
+  width: 720px;
+
+  padding: 5px 10px;
+  border-top: 1px solid #DDDDDD;
+  color: #999;
 }
 
+#footer ul {
+  display: block;
+  padding: 5px 0 0 30px;
+  text-align: left;
+  /*float: left;*/
+}
+
+#footer li {
+  display: inline;
+  padding-right: 15px;
+
+}
+
+#footer ul li a {
+  color: #999;
+}
+
+#footer address {
+}

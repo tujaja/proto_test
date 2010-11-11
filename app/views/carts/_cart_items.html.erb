@@ -1,23 +1,44 @@
+<h3>カート</h3>
 <table class="items">
-  <tbody>
-<% if @cart.length > 0 -%>
+<tbody>
+<% unless @cart.empty? %>
 
-    <tr>
+    <!--tr>
       <th class="icon">Image</th>
       <th class="name">Name</th>
       <th class="artist">Artist</th>
       <th class="price">Price(taxin)</th>
       <th class="delete">Delete</th>
-    </tr>
+    </tr-->
 
 
-    <% @cart.cart_items.each do |item| -%>
-    <tr>
-      <td class="icon"><%= icon_for item.content.images[0] %></td>
-      <td class="name"><%= h item.content.name %></td>
-      <td class="artist"><%= h item.content.artist.name %></td>
-      <td class="price"><%= to_yen item.content.price %></td>
-      <td class="delete">
+  <% @cart.cart_items.each do |item| -%>
+  <% content = item.content -%>
+  <tr>
+    <td class="thumb"><%= icon_for content.images[0] %></td>
+    <td class="desc">
+      <div class="desc_title">
+        <h4><%= h(content.name) %></h4>
+      </div>
+      <div class="desc_mini">
+        <%= h(content.artist.name) %>
+        /
+        <%= h(content.label.name) %>
+      </div>
+      <div class="desc_file">
+        <% if content.info %>
+          <span class="btn format"><%=h content.info.file_encoding %></span>
+          <span class="btn time"><%=h content.info.time %></span>
+        <% end %>
+        <% if content.download %>
+          <span class="btn size"><%=h to_megabyte(content.download.size) %></span>
+        <% end -%>
+      </div>
+    </td>
+    <td class="price">
+      <%= h(to_yen(content.price)) %>
+    </td>
+    <td class="delete">
       <%#PUTメソッドで送信%>
       <%# form_tag cart_path do -%>
       <% form_tag( {:controller => "carts", :action => "update",
@@ -25,28 +46,28 @@
         <input name="_method" type="hidden" value="put" />
         <%= hidden_field_tag("cart_item[content_id]", "#{item.content.id}") %>
         <%= hidden_field_tag("cart_item[quantity]", "0") %>
-        <%= submit_tag "Delete" %>
+        <%= submit_tag "削除" %>
       <% end -%>
-      </td>
-    </tr>
-    <% end %>
+    </td>
+  </tr>
+  <% end %>
 
-    <tr>
-      <td colspan="5" class="total_price">
-        <span style="font-size: small;">Total Price(taxin)</span>
-        <%= to_yen @cart.total_price %>
-      </td>
-    </tr>
+  <tr>
+    <td colspan="5" class="total_price">
+      <span style="font-size: small;">合計価格(税込)</span>
+      <%= h(to_yen(@cart.total_price)) %>
+    </td>
+  </tr>
 
 <% else %>
-    <tr>
-      <td colspan="5" class="total_price">
-        <p>カートの中身はありません。</p>
-      </td>
-    </tr>
+  <tr>
+    <td class="empty">
+      カートの中身はありません。
+    </td>
+  </tr>
 <% end %>
 
-  </tbody>
+</tbody>
 </table>
 
 

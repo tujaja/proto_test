@@ -51,9 +51,16 @@ class Content < ActiveRecord::Base
   end
 
   def label
-    return  self.artist.label
+    return self.artist.label
   end
 
+  def info
+    return self.attachable_info ? self.attachable_info : nil
+  end
 
+  def download
+    return nil unless self.attachable_info
+    return self.attachable_info.download ? self.attachable_info.download : nil
+  end
 
 end

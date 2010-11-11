@@ -33,7 +33,7 @@ class Cart
     @cart_items.length
   end
 
-  def is_empty
+  def empty?
     @cart_items.length == 0
   end
 

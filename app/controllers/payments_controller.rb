@@ -38,6 +38,7 @@ class PaymentsController < ApplicationController
     redirect_to cart_path and return unless prepare_cart
 
     p '[Reset Payment Session]'
+    p params[:payment]
     @payment = Payment.new( params[:payment] )
 
     unless @payment.valid?
@@ -201,7 +202,7 @@ class PaymentsController < ApplicationController
     @cart = session[:cart]
 
     p "---> cart is nil" or return false if @cart == nil
-    p "---> cart is empty" or return false if @cart.is_empty
+    p "---> cart is empty" or return false if @cart.empty?
     p "---> cart is exist" or return true
   end
 

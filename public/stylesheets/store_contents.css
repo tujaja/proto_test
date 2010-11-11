@@ -6,21 +6,19 @@
  * contents_header
  *----------------------------------*/
 #contents_header {
-  margin: 5px;
   padding: 10px;
   color: #111;
-  background-color: #EEE;
-
-  border: 1px solid #CCC;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 3px
-
+  border-bottom: 1px solid #DDD;
 }
 
 #contents_header h2 {
   color: #333;
+}
+
+#contents_header h3 {
+  padding-left: 15px;
+  color: #444;
+  font-size: 14px;
 }
 
 #contents_header p {
@@ -35,70 +33,92 @@
 #contents_main {
   padding: 10px;
 }
-
-#contents_main h3 {
-  color: #111;
-  border-bottom: 2px solid #CCC;
-  padding: 5px 0px;
-  margin: 5px 0 5px 0;
+#contents_main a { color: #111; }
+#contents_main a:hover,
+#contents_main a:active {
+  color: #DA4740;
 }
 
-#contents_main h4 {
-  margin: 0 0 5px 0;
-}
-
-/*================================================*/
-/* Contents */
-/*================================================*/
-
-/* thumb */
-#contents_main #thumb {
+#thumb {
   float: left;
-  background-color: #EEE;
+  background-color: #FFF;
   margin: 5px;
   padding: 10px;
-  border: 1px solid #CCC;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  -moz-border-radius-bottomright: 3px;
+  text-align: center;
+  cursor: pointer;
 }
 
-#contents_main #thumb p {
-  padding: 2px 0;
-}
+#thumb p { padding: 3px 0; }
 
-#contents_main #thumb.content {
-  width: 100px;
-  height: 185px;
-}
+#thumb a { color: #333; }
+#thumb a img { border:2px #fff solid;cursor:pointer; }
+#thumb a:hover img { border:2px #333 solid;cursor:pointer; }
 
-#contents_main #thumb.artist {
-  width: 100px;
-  height: 155px;
-}
+#thumb.content { width: 150px; height: 185px; }
+#thumb.artist,
+#thumb.label { width: 150px; height: 150px; }
 
-#contents_main #thumb.label {
-  width: 100px;
-  height: 145px;
-}
+/* details */
 
-/* detail */
-#contents_main #detail dl {
-  padding: 5px 0px;
-}
-
-#contents_main #detail dt {
+#details p { padding: 10px; }
+#details dl { padding: 10px 0px; }
+#details dt {
+  padding: 0 0 5px 0;
   font-weight: bold;
+  font-size: 14px;
+}
+#details dd { padding-left: 10px; }
+
+/* record */
+
+table.table_record {
+    /*border: 1px #CCC solid;*/
+    /*border-top: 1px #1e1e1e solid;*/
+    /*border-bottom: 1px #1e1e1e solid;*/
+    /*border-top: 1px #ddd solid;*/
+    /*border-bottom: 1px #ccc solid;*/
+    border-collapse: collapse;
+    border-spacing: 0;
+    display:block;
+    margin-bottom:20px;
 }
 
-#contents_main #detail dd {
-  padding-left: 10px;
+table.table_record th, table.table_record thead td {
+    padding:10px 10px 10px 20px;
+    background-color:#f0f0e0;
+    /*border-bottom: 1px solid #ddd;*/
+    text-align: left;
+    font-weight: normal;
+    white-space: nowrap;
+}
+table.table_record tr { height: 90px; }
+
+table.table_record td {
+    padding: 5px 10px;
+    /*border-bottom: 1px solid #CCC;*/
 }
 
-/*================================================*/
-/* Table */
-/*================================================*/
+table.table_record td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
+  table.table_record td.thumb a img{border:2px #fff solid;cursor:pointer; }
+  table.table_record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
+
+table.table_record td.desc {width:500px;}
+  table.table_record td.desc div.desc_title {font-size:12px;font-weight:bold;margin:0 0 5px;}
+  table.table_record td.desc div.desc_title h4{font-size:16px;margin:0 0 4px;}
+  table.table_record td.desc div.desc_mini {color:#333;font-size:12px;margin:0 0 5px;}
+  table.table_record td.desc div.desc_file span.btn {
+    background: none repeat scroll 0 0 #FBE3E4;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+
+table.table_record td.price {width:100px;font-size: 14px;text-align: center;}
+table.table_record td.buy {width:100px;font-size: 14px;text-align: center;}
+
+
+/* items */
 
 table.items {
   width: 100%;
@@ -116,32 +136,52 @@ table.items th, td {
   width: 150px;
   padding-left: 10px;
 }
-
-table.items th {
-  border-bottom: 1px solid;
-  height: 30px;
-}
+table.items tr { height: 90px; }
 
 table.items td {
   border-bottom: 1px solid #CCC;
-  height: 70px;
 }
 
-table.items th.icon, td.icon {
-  width: 80px;
-}
+table.items td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
+  table.items td.thumb a img{border:2px #fff solid;cursor:pointer; }
+  table.items td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
 
-table.items th.name, th.name {
-  width: 150;
-}
+table.items td.desc {width:500px;}
+  table.items td.desc div.desc_title {font-size:12px;font-weight:bold;margin:0 0 5px;}
+  table.items td.desc div.desc_title h4{font-size:16px;margin:0 0 4px;}
+  table.items td.desc div.desc_mini {color:#333;font-size:12px;margin:0 0 5px;}
+  table.items td.desc div.desc_file span.btn {
+    background: none repeat scroll 0 0 #FBE3E4;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+
+table.items td.price {width:100px;font-size: 14px;text-align: center;}
+table.items td.delete {width:100px;font-size: 14px;text-align: center;}
+table.items td.empty { width:720px; font-size: 16px; text-align: center; }
 
 table.items td.total_price {
-  font-size: large;
-  padding: 10px 100px 10px 0;
+  font-size: 20px;
+  padding: 10px 50px 10px 0;
   text-align: right;
 }
 
-/* form */
+/* order_form */
+
+input, form select, form textarea,textarea {
+    font-size:14px;
+    letter-spacing: 0;
+    font-family:Arial,'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','ＭＳ Ｐゴシック';
+    border: 3px solid #CCC;
+    padding: 5px;
+}
+
+input:focus, form select:focus, form textarea:focus {
+    border:2px solid #4ea6cc;
+}
+
 table.order_form {
   width: 100%;
   border-collapse: collapse;
@@ -153,24 +193,25 @@ table.order_form {
   margin-bottom: 20px;
 }
 
-table.order_form td.lh {
-  width: 200px;
-  text-align: right;
-  vertical-align: top;
+table.order_form tr { height: 60px; }
 
-  padding: 10px;
-  border-right: 1px dotted #CCC;
-  border-top: 1px dotted #CCC;
+table.order_form th {
+    padding:10px 10px 10px 20px;
+    width: 25%;
+    background-color: #f0f0e0;
+    border-bottom: 1px dotted #333;
+    text-align: left;
+    font-size:13px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-table.order_form td.input_area {
-  width: 500px;
-
-  padding: 10px;
-  border-top: 1px dotted #CCC;
+table.order_form td {
+    padding: 10px 20px;
+    border-bottom: 1px dotted #333;
 }
+
 
 .input_area input {
-  border: 4px solid #CCC;
-  padding: 5px;
+
 }

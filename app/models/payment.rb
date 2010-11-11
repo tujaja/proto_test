@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :payment_type
-  validates_presence_of :first_name, :last_name, :email, :payment_type
+  #validates_presence_of :first_name, :last_name, :email, :payment_type
+  validates_presence_of :email, :payment_type
 
 
   def step_to_confirm

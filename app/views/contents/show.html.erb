@@ -1,13 +1,8 @@
 <div id="contents_header">
-  <h2>商品詳細</h2>
-  <%#= render :partial => "store/search_form" %>
-  <%#= render :partial => "store/breadcrumbs" %>
+  <h2><%= h(@content.name) %></h2>
+  <h3><%= h(@content.subname) %></h3>
 </div>
 
-<div id="contents_main" class="products">
-  <%= render :partial => "details", :locals => { :content => @content } %>
+<div id="contents_main">
+  <%= render :partial => "details" %>
 </div>
-
-<div id="contents_footer">
-</div>
-
