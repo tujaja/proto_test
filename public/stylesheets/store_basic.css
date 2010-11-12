@@ -1,8 +1,17 @@
 @charset "UTF-8";
 
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, blockquote, p, th, td {
+  margin: 0;
+  padding: 0;
+  line-height: 1.4em;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+}
+
 body {
   /*background: #556666 url(/images/bg.jpg) repeat-x scroll 0 0;*/
-  background: #FFF;
+  background: #FFFFFF repeat scroll 0 0;
 
   font-family:
       helvetica,
@@ -12,58 +21,55 @@ body {
       Osaka,
       sans-serif;
   font-size: 12px;
-
   color: #111;
 }
 
-/*================================================*/
 /* Basic Elements */
-/*================================================*/
-h1 {
-  font-size: 172.8%;
-  font-weight: bold;
-}
-h2 {
-  font-size: 20px;
-}
-h3 {
-  font-size: 18px;
-}
-h4 {
-  font-size: 16px;
-}
-p {
-  font-size: 12px;
+h1,h2,h3,h4,h5,h6 {font-size: 100%;}
+p { font-size: 12px; }
+li { font-size: 12px; }
+dt, dd { font-size: 12px; }
+img { border: 1px solid #AAA; }
+
+
+a, a:link, a:visited, a:hover, a:active { overflow: hidden; text-decoration: none; }
+
+/* form */
+input, select, textarea {
+  letter-spacing: 0;
 }
 
-dt, dd {
-  font-size: 12px;
+input, form select, form textarea,textarea {
+    font-size:14px;
+    letter-spacing: 0;
+    border: 3px solid #CCC;
+    padding: 5px;
 }
 
-a {
-  text-decoration: none;
+input:focus, form select:focus, form textarea:focus {
+    border:3px solid #D5B006;
 }
 
-a:visited {
-  text-decoration: none;
+textarea {
+  padding: 0;
+  font-size: 1.0em;
+  line-height: 1.2em;
 }
 
-img {
-  border: 1px solid #AAA;
+/* table */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display:block;
+    margin-bottom:20px;
 }
 
-/*================================================*/
+table th, table thead td {
+  white-space: nowrap;
+}
+
 /* multipurpose class */
-/*================================================*/
-
-div.clear {
-  clear: both;
-}
-
-div.left {
-  float: left;
-}
-
-div.right {
-  float: right;
-}
+div.clear { clear: both; }
+div.left { float: left; }
+div.right { float: right; }

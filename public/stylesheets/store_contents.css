@@ -1,42 +1,44 @@
-/*================================================*/
-/* Contents Common */
-/*================================================*/
+
+/* generic parts */
+
+span.btn {
+  background: none repeat scroll 0 0 #FBE3E4;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 7px;
+  white-space: nowrap;
+}
 
 /*-----------------------------------
  * contents_header
  *----------------------------------*/
 #contents_header {
   padding: 10px;
-  color: #111;
   border-bottom: 1px solid #DDD;
 }
 
 #contents_header h2 {
+  font-size: 20px;
   color: #333;
 }
 
 #contents_header h3 {
-  padding-left: 15px;
-  color: #444;
+  color: #333;
   font-size: 14px;
 }
-
-#contents_header p {
-  font-size: 14px;
-  color: #000;
-}
-
 
 /*-----------------------------------
  * contents_main
  *----------------------------------*/
 #contents_main {
-  padding: 10px;
+  padding: 20px 10px;
+  color: #333;
 }
-#contents_main a { color: #111; }
-#contents_main a:hover,
-#contents_main a:active {
-  color: #DA4740;
+
+#contents_main h4 {
+  color: #333;
+  font-size: 16px;
+  padding: 0 0 5px;
 }
 
 #thumb {
@@ -51,12 +53,12 @@
 #thumb p { padding: 3px 0; }
 
 #thumb a { color: #333; }
-#thumb a img { border:2px #fff solid;cursor:pointer; }
+#thumb a:hover { color: #D5B006; background-color: #78576A; }
+#thumb a img { border:2px #eee solid;cursor:pointer; }
 #thumb a:hover img { border:2px #333 solid;cursor:pointer; }
 
 #thumb.content { width: 150px; height: 185px; }
-#thumb.artist,
-#thumb.label { width: 150px; height: 150px; }
+#thumb.artist, #thumb.label { width: 150px; height: 150px; }
 
 /* details */
 
@@ -68,150 +70,112 @@
   font-size: 14px;
 }
 #details dd { padding-left: 10px; }
+#details a { color: #333; }
+#details a:hover { color: #D5B006; background-color: #78576A; }
+#details a img { border:2px #eee solid;cursor:pointer; }
+#details a:hover img { border:2px #333 solid;cursor:pointer; }
+
 
 /* record */
 
-table.table_record {
-    /*border: 1px #CCC solid;*/
-    /*border-top: 1px #1e1e1e solid;*/
-    /*border-bottom: 1px #1e1e1e solid;*/
-    /*border-top: 1px #ddd solid;*/
-    /*border-bottom: 1px #ccc solid;*/
-    border-collapse: collapse;
-    border-spacing: 0;
-    display:block;
-    margin-bottom:20px;
-}
-
-table.table_record th, table.table_record thead td {
-    padding:10px 10px 10px 20px;
-    background-color:#f0f0e0;
-    /*border-bottom: 1px solid #ddd;*/
-    text-align: left;
-    font-weight: normal;
-    white-space: nowrap;
-}
 table.table_record tr { height: 90px; }
-
-table.table_record td {
-    padding: 5px 10px;
-    /*border-bottom: 1px solid #CCC;*/
-}
+table.table_record td { padding: 5px 10px; }
 
 table.table_record td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
   table.table_record td.thumb a img{border:2px #fff solid;cursor:pointer; }
   table.table_record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
 
 table.table_record td.desc {width:500px;}
-  table.table_record td.desc div.desc_title {font-size:12px;font-weight:bold;margin:0 0 5px;}
-  table.table_record td.desc div.desc_title h4{font-size:16px;margin:0 0 4px;}
-  table.table_record td.desc div.desc_mini {color:#333;font-size:12px;margin:0 0 5px;}
-  table.table_record td.desc div.desc_file span.btn {
-    background: none repeat scroll 0 0 #FBE3E4;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 7px;
-    white-space: nowrap;
-  }
+  table.table_record td.desc a { color: #333; }
+  table.table_record td.desc a:hover { color: #D5B006; background-color: #78576A; }
+  table.table_record td.desc div.desc_title h4 { font-size:16px; }
+  table.table_record td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
-table.table_record td.price {width:100px;font-size: 14px;text-align: center;}
+table.table_record td.price {width:100px;font-size: 20px;text-align: center;}
 table.table_record td.buy {width:100px;font-size: 14px;text-align: center;}
 
 
-/* items */
+/* cart_items */
 
-table.items {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
+table.cart_items {
   border-style: solid;
-  border-width: 3px 1px;
-  /*border-width: 1px;*/
-  display: block;
-  margin-bottom: 20px;
+  border-width: 2px 1px;
 }
 
-table.items th, td {
-  text-align: left;
-  width: 150px;
-  padding-left: 10px;
-}
-table.items tr { height: 90px; }
+table.cart_items tr { height: 90px; }
+table.cart_items td { border-bottom: 1px dotted #333; }
 
-table.items td {
-  border-bottom: 1px solid #CCC;
-}
+table.cart_items td.thumb { width:70px; text-align:center; background:#efffef; }
 
-table.items td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
-  table.items td.thumb a img{border:2px #fff solid;cursor:pointer; }
-  table.items td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
+table.cart_items td.desc {width:500px;}
+  table.cart_items td.desc div.desc_title h4 { font-size:16px; }
+  table.cart_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
-table.items td.desc {width:500px;}
-  table.items td.desc div.desc_title {font-size:12px;font-weight:bold;margin:0 0 5px;}
-  table.items td.desc div.desc_title h4{font-size:16px;margin:0 0 4px;}
-  table.items td.desc div.desc_mini {color:#333;font-size:12px;margin:0 0 5px;}
-  table.items td.desc div.desc_file span.btn {
-    background: none repeat scroll 0 0 #FBE3E4;
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 7px;
-    white-space: nowrap;
-  }
+table.cart_items td.price {width:100px;font-size: 20px;text-align: center;}
+table.cart_items td.delete {width:100px;font-size: 14px;text-align: center;}
+table.cart_items td.empty { width:720px; font-size: 16px; text-align: center; }
 
-table.items td.price {width:100px;font-size: 14px;text-align: center;}
-table.items td.delete {width:100px;font-size: 14px;text-align: center;}
-table.items td.empty { width:720px; font-size: 16px; text-align: center; }
-
-table.items td.total_price {
+table.cart_items td.total_price {
   font-size: 20px;
   padding: 10px 50px 10px 0;
   text-align: right;
 }
 
 /* order_form */
-
-input, form select, form textarea,textarea {
-    font-size:14px;
-    letter-spacing: 0;
-    font-family:Arial,'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','ＭＳ Ｐゴシック';
-    border: 3px solid #CCC;
-    padding: 5px;
-}
-
-input:focus, form select:focus, form textarea:focus {
-    border:2px solid #4ea6cc;
-}
-
 table.order_form {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0;
   border-style: solid;
   border-width: 3px 1px;
-  /*border-width: 1px;*/
-  display: block;
-  margin-bottom: 20px;
 }
 
 table.order_form tr { height: 60px; }
 
 table.order_form th {
-    padding:10px 10px 10px 20px;
+    padding: 10px 10px 10px 30px;
     width: 25%;
     background-color: #f0f0e0;
     border-bottom: 1px dotted #333;
     text-align: left;
-    font-size:13px;
+    font-size: 14px;
     font-weight: bold;
-    white-space: nowrap;
 }
 
-table.order_form td {
-    padding: 10px 20px;
-    border-bottom: 1px dotted #333;
+table.order_form td { padding: 10px 20px; border-bottom: 1px dotted #333; }
+
+/* order */
+#order {
+  border-style: solid;
+  border-width: 2px 1px;
 }
 
+#order dl dt { font-size: 16px; font-weight: bold; }
+#order dl dd { font-size: 16px; }
+#order p { font-size: 16px; }
 
-.input_area input {
+p.order { padding-top: 20px; font-size: 16px; text-align: center; }
 
+
+/* order_items */
+table.order_items {
+  margin: 0px auto;
+  width: 600px;
 }
+
+table.order_items tr { height: 90px; }
+table.order_items td { border-bottom: 1px dotted #333; }
+table.order_items td.thumb { width:70px; text-align:center; background:#efffef; }
+table.order_items td.desc {width:500px;}
+  table.order_items td.desc div.desc_title h4 { font-size:16px; }
+  table.order_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
+
+table.order_items td.price {width:100px;font-size: 20px;text-align: center;}
+table.order_items td.total_price {
+  font-size: 20px;
+  padding: 10px 20px 10px 0;
+  text-align: right;
+}
+
+/* thankyou */
+div#thankyou { text-align: center; }
+div#thankyou p { font-size: 16px; padding: 5px; }
+div#thankyou p.down { padding-top: 10px; }
+div#thankyou p.down a { color: #333; font-size: 18px; padding: 5px; }

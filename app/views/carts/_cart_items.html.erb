@@ -1,16 +1,7 @@
-<h3>カート</h3>
-<table class="items">
+<h4>カート</h4>
+<table class="cart_items">
 <tbody>
 <% unless @cart.empty? %>
-
-    <!--tr>
-      <th class="icon">Image</th>
-      <th class="name">Name</th>
-      <th class="artist">Artist</th>
-      <th class="price">Price(taxin)</th>
-      <th class="delete">Delete</th>
-    </tr-->
-
 
   <% @cart.cart_items.each do |item| -%>
   <% content = item.content -%>

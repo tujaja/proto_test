@@ -1,0 +1,40 @@
+<table class="order_items">
+  <tbody>
+
+    <% @cart.cart_items.each do |item| -%>
+      <% content = item.content -%>
+      <tr>
+        <td class="thumb"><%= icon_for content.images[0] %></td>
+        <td class="desc">
+          <div class="desc_title">
+            <h4><%= h(content.name) %></h4>
+          </div>
+          <div class="desc_mini">
+            <%= h(content.artist.name) %>
+            /
+            <%= h(content.label.name) %>
+          </div>
+          <div class="desc_file">
+            <% if content.info %>
+              <span class="btn format"><%=h content.info.file_encoding %></span>
+              <span class="btn time"><%=h content.info.time %></span>
+            <% end %>
+            <% if content.download %>
+              <span class="btn size"><%=h to_megabyte(content.download.size) %></span>
+            <% end -%>
+          </div>
+        </td>
+        <td class="price">
+          <%= h(to_yen(content.price)) %>
+        </td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="5" class="total_price">
+        <span style="font-size: small;">合計価格(税込)</span>
+        <%= h(to_yen(@cart.total_price)) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
