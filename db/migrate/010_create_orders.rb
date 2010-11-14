@@ -2,14 +2,12 @@ class CreateOrders < ActiveRecord::Migration
   def self.up
     create_table :orders do |t|
 
-      t.string  :token,  :limit => 50, :null => false
-
-      t.string  :email
-      t.string  :first_name
-      t.string  :last_name
-      t.string  :payment_type
+      t.string  :token,   :null => false, :limit => 50
+      t.string  :email,   :null => false, :limit => 50
+      t.string  :payment_type,   :null => false, :limit => 20
 
       t.datetime :order_time
+      t.datetime :expire_time
 
       t.timestamps
     end

@@ -3,10 +3,11 @@
 </div>
 
 <div id="contents_main">
-  <div id="thankyou">
+  <div class="thankyou">
+    <p class="large">Thank you!</p>
     <p>ありがとうございます。</p>
     <p>ご購入手続きが完了しました。</p>
     <p>コンテンツはメールに記載されたURLか下記リンクよりダウンロードが可能です。</p>
-    <p class="down"><span class="btn download"><%= link_to "ダウンロードページ", download_url_for(@order) %></span></p>
+    <div style="padding-top:30px; text-align:center;"><span class="btn"><%= link_to "ダウンロードページ", download_url_for(@order) %></span></div>
   </div>
 </div>

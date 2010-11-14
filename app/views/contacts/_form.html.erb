@@ -1,0 +1,40 @@
+<p class="head">3本しめじへのお問い合わせ</p>
+<% form_for @contact, :url => contact_path do |f| %>
+<%= f.error_messages %>
+
+<table class="contact_form">
+  <tbody>
+    <tr>
+      <th><span>*</span><%= f.label :name, "お名前" %> </th>
+      <td style="width: 37%">
+        <%= f.text_field :name, :value => 'しらとさんぺい', :style => "width:300px; font-size: 14px;" %>
+      </td>
+    </tr>
+    <tr>
+      <th><span>*</span><%= f.label :mail, "メールアドレス" %></th>
+      <td style="width: 37%">
+        <%= f.text_field :mail, :value => 'tujaja3@gmail.com', :style => "width:300px; font-size: 14px;" %>
+      </td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :about, "ご用件" %> </th>
+      <td style="width: 37%">
+        <%= f.text_field :about, :value => 'ご利用方法について', :style => "width:300px; font-size: 14px;" %>
+      </td>
+    </tr>
+
+    <tr>
+      <th><span>*</span><%= f.label :message, "お問い合わせ内容" %> </th>
+      <td style="width: 37%">
+        <%= f.text_area :message, :value => 'Fuck you!', :style => "width:400px; height:200px; font-size: 14px;" %>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+
+<div class="form_button"><%= f.submit '問い合わせを送信する' %></div>
+
+<% end %>
+

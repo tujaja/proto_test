@@ -1,14 +1,6 @@
-<h4>ご注文</h4>
+<p class="order">ご注文内容</p>
 
 <div id="order">
-  <%= render :partial => "order_items" %>
   <%= render :partial => "order_info" %>
+  <%= render :partial => "order_items" %>
 </div>
-
-<p class="order">以上のご注文で間違いないでしょうか？</p>
-<%#PUTメソッドで送信%>
-<% form_tag payment_path do -%>
-  <input name="_method" type="hidden" value="put" />
-  <%= hidden_field_tag("payment_method", "free_confirm") %>
-  <p class="order"><%= submit_tag "ご注文を確定する" %></p>
-<% end -%>

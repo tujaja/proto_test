@@ -1,8 +1,8 @@
-<h4>お客様情報</h4>
+<p class="head_form">お客様情報</p>
 <% form_for @payment, :url => payment_path do |f| %>
 <%= f.error_messages %>
 
-<table class="order_form">
+<table class="payment_form">
   <tbody>
     <tr>
       <th><%= f.label :email, "メールアドレス" %></th>
@@ -14,7 +14,7 @@
       </td>
     </tr>
 
-    <tr>
+    <tr class="foot">
       <th><%= f.label :payment_type, "お支払い方法" %></th>
       <td>
         <%= f.radio_button(:payment_type, "free", {:checked => true} ) %>Free
@@ -25,7 +25,7 @@
   </tbody>
 </table>
 
-<div style="text-align: center;"><%= f.submit 'お支払い手続きへ' %></div>
+<div class="form_button"><%= f.submit '支払い手続きへ' %></div>
 
 <% end %>
 

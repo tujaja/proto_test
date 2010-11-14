@@ -1,4 +1,4 @@
-<h4>カート</h4>
+<p class="head">カート</p>
 <table class="cart_items">
 <tbody>
 <% unless @cart.empty? %>
@@ -18,11 +18,11 @@
       </div>
       <div class="desc_file">
         <% if content.info %>
-          <span class="btn format"><%=h content.info.file_encoding %></span>
-          <span class="btn time"><%=h content.info.time %></span>
+          <span class="mark"><%=h content.info.file_encoding %></span>
+          <span class="mark"><%=h content.info.time %></span>
         <% end %>
         <% if content.download %>
-          <span class="btn size"><%=h to_megabyte(content.download.size) %></span>
+          <span class="mark"><%=h to_megabyte(content.download.size) %></span>
         <% end -%>
       </div>
     </td>
@@ -60,6 +60,3 @@
 
 </tbody>
 </table>
-
-
-

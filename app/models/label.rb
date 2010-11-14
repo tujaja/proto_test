@@ -5,7 +5,7 @@ class Label < ActiveRecord::Base
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
 
-  validates_format_of :mail, :with => EmailValidation::EMAIL_PATTERN
+  validates_format_of :email, :with => EmailValidation::EMAIL_PATTERN
   validates_presence_of :domain
   #validates_presence_of :token, :domain, :name
   #validates_uniqueness_of :token, :domain
@@ -14,7 +14,7 @@ class Label < ActiveRecord::Base
   #validates_length_of :name, :within => (1..30)
   #validates_length_of :subname, :within => (1..30)
   #validates_length_of :url, :maximum => 50
-  #validates_length_of :mail, :maximum => 50
+  #validates_length_of :email, :maximum => 50
   #validates_length_of :address, :maximum => 50
   #validates_length_of :phone, :maximum => 15
 

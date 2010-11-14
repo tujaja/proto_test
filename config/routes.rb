@@ -8,8 +8,6 @@ ActionController::Routing::Routes.draw do |map|
   map.company "/company", :controller => 'store', :action => 'company'
   map.privacy "/privacy", :controller => 'store', :action => 'privacy'
 
-
-
   map.download '/download/:token', :controller => 'download', :action => 'show'
   map.file '/file/:token', :controller => 'file', :action => 'download'
 
@@ -21,6 +19,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :artists
   map.resources :labels
 
+  map.resource :contact
   map.resource :cart
   map.resource :order
   map.resource :payment

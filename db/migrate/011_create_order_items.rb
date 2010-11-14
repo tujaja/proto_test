@@ -5,6 +5,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.integer :order_id,    :default => 0, :null => false
       t.integer :content_id,  :default => 0, :null => false
       t.integer :quantity,    :default => 0, :null => false
+      t.integer :download_count,    :default => 3
 
       t.timestamps
     end

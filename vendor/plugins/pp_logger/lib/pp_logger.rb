@@ -13,7 +13,7 @@ module Kernel
     objs.each { |obj| PP.pp(obj) }
 
     STDOUT.reopen(stdout_sv)
-    nil
+    true
   end
 
   def p(*objs)
@@ -26,7 +26,7 @@ module Kernel
     print "\n"
 
     STDOUT.reopen(stdout_sv)
-    nil
+    true
   end
 
 end

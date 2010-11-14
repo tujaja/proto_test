@@ -63,4 +63,9 @@ class Content < ActiveRecord::Base
     return self.attachable_info.download ? self.attachable_info.download : nil
   end
 
+  def increment_sales
+    self.sales = self.sales + 1
+    save
+  end
+
 end

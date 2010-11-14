@@ -1,17 +1,38 @@
 
 /* generic parts */
-
-span.btn {
-  background: none repeat scroll 0 0 #FBE3E4;
-  font-size: 11px;
+span.mark  {
+  color: #333;
+  background:#DDD;
+  font-size: 12px;
   font-weight: bold;
-  padding: 3px 7px;
+  padding: 3px;
   white-space: nowrap;
 }
 
-/*-----------------------------------
- * contents_header
- *----------------------------------*/
+span.btn a {
+  color: #FFF;
+  background:#4ea6cc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px 20px;
+  white-space: nowrap;
+}
+
+
+p.head { font-size: 16px; padding: 5px 0;}
+p.error { text-align: center; font-size: 14px; font-weight: bold; }
+p.notice { text-align: center; font-size: 14px; font-weight: bold; }
+p.head_form { font-size: 16px; padding: 20px 0 5px;}
+
+p.order { font-size: 16px; padding: 5px 0 5px;}
+p.order_notice { padding-top: 20px; font-size: 16px; text-align: center; }
+div.thankyou p { font-size: 14px; padding: 3px; text-align: center; }
+div.thankyou p.large { font-size: 36px; color: #888; text-align: center; padding: 0 0 10px;}
+
+
+div.form_button { padding: 30px 0 0; text-align: center; }
+
+/* contents_header */
 #contents_header {
   padding: 10px;
   border-bottom: 1px solid #DDD;
@@ -27,9 +48,8 @@ span.btn {
   font-size: 14px;
 }
 
-/*-----------------------------------
- * contents_main
- *----------------------------------*/
+/* contents_main */
+
 #contents_main {
   padding: 20px 10px;
   color: #333;
@@ -49,6 +69,8 @@ span.btn {
   text-align: center;
   cursor: pointer;
 }
+
+/* thumb */
 
 #thumb p { padding: 3px 0; }
 
@@ -95,7 +117,9 @@ table.table_record td.price {width:100px;font-size: 20px;text-align: center;}
 table.table_record td.buy {width:100px;font-size: 14px;text-align: center;}
 
 
-/* cart_items */
+
+/* cart items */
+
 
 table.cart_items {
   border-style: solid;
@@ -105,13 +129,13 @@ table.cart_items {
 table.cart_items tr { height: 90px; }
 table.cart_items td { border-bottom: 1px dotted #333; }
 
-table.cart_items td.thumb { width:70px; text-align:center; background:#efffef; }
+table.cart_items td.thumb { width:100px; text-align:center; background:#efffef; }
 
-table.cart_items td.desc {width:500px;}
+table.cart_items td.desc {width:420px;}
   table.cart_items td.desc div.desc_title h4 { font-size:16px; }
   table.cart_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
-table.cart_items td.price {width:100px;font-size: 20px;text-align: center;}
+table.cart_items td.price {width:100px;font-size: 20px;text-align: center; }
 table.cart_items td.delete {width:100px;font-size: 14px;text-align: center;}
 table.cart_items td.empty { width:720px; font-size: 16px; text-align: center; }
 
@@ -119,17 +143,17 @@ table.cart_items td.total_price {
   font-size: 20px;
   padding: 10px 50px 10px 0;
   text-align: right;
+  border: none;
 }
 
-/* order_form */
-table.order_form {
+/* payment_form */
+table.payment_form {
   border-style: solid;
-  border-width: 3px 1px;
+  border-width: 2px 1px;
 }
 
-table.order_form tr { height: 60px; }
-
-table.order_form th {
+table.payment_form tr { height: 60px; }
+table.payment_form th {
     padding: 10px 10px 10px 30px;
     width: 25%;
     background-color: #f0f0e0;
@@ -138,8 +162,10 @@ table.order_form th {
     font-size: 14px;
     font-weight: bold;
 }
+table.payment_form td { padding: 10px 20px; border-bottom: 1px dotted #333; }
+table.payment_form tr.foot td, table.payment_form tr.foot th { border: none; }
 
-table.order_form td { padding: 10px 20px; border-bottom: 1px dotted #333; }
+
 
 /* order */
 #order {
@@ -151,8 +177,15 @@ table.order_form td { padding: 10px 20px; border-bottom: 1px dotted #333; }
 #order dl dd { font-size: 16px; }
 #order p { font-size: 16px; }
 
-p.order { padding-top: 20px; font-size: 16px; text-align: center; }
 
+/* order_info */
+table.order_info {
+  margin: 0px auto;
+  width: 600px;
+}
+table.order_info tr { height: 50px; }
+table.order_info th { width: 25%; font-size: 14px; font-weight: bold; }
+table.order_info td { font-size: 14px; padding-left: 50px; }
 
 /* order_items */
 table.order_items {
@@ -160,22 +193,59 @@ table.order_items {
   width: 600px;
 }
 
+table.order_items thead tr { height: 30px; }
+table.order_items thead tr td { padding-top: 15px; font-size: 14px; font-weight: bold; border: none; }
 table.order_items tr { height: 90px; }
 table.order_items td { border-bottom: 1px dotted #333; }
-table.order_items td.thumb { width:70px; text-align:center; background:#efffef; }
-table.order_items td.desc {width:500px;}
+table.order_items td.thumb { width:100px; text-align:center; background:#efffef; }
+table.order_items td.desc {width:400px;}
   table.order_items td.desc div.desc_title h4 { font-size:16px; }
   table.order_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
-table.order_items td.price {width:100px;font-size: 20px;text-align: center;}
+table.order_items td.price {width:100px;font-size:20px;text-align:right;padding-right:20px;}
 table.order_items td.total_price {
   font-size: 20px;
   padding: 10px 20px 10px 0;
   text-align: right;
+  border: none;
 }
 
-/* thankyou */
-div#thankyou { text-align: center; }
-div#thankyou p { font-size: 16px; padding: 5px; }
-div#thankyou p.down { padding-top: 10px; }
-div#thankyou p.down a { color: #333; font-size: 18px; padding: 5px; }
+/* download_items */
+table.download_items {
+  border-style: solid;
+  border-width: 2px 1px;
+}
+
+table.download_items thead tr { height: 15px; }
+table.download_items thead tr td { font-size: 10px; border-bottom: 1px solid #333; }
+table.download_items tr { height: 90px; }
+table.download_items td { border-bottom: 1px dotted #333; }
+table.download_items td.thumb { padding-left: 10px; width:70px; text-align:center; background:#efffef; }
+table.download_items td.desc { padding-left: 20px; width:500px;}
+  table.download_items td.desc div.desc_title h4 { font-size:16px; }
+  table.download_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
+
+table.download_items td.last {width:100px;font-size: 14px;text-align: center;}
+table.download_items td.down {width:150px;font-size: 14px;text-align: center;}
+table.download_items td.expire {width:100px;font-size: 14px;text-align: center; border: none; }
+
+/* contact_form */
+table.contact_form {
+  border-style: solid;
+  border-width: 3px 1px;
+}
+
+table.contact_form tr { height: 60px; }
+
+table.contact_form th {
+    padding: 10px 10px 10px 30px;
+    width: 25%;
+    background-color: #f0f0e0;
+    border-bottom: 1px dotted #333;
+    text-align: left;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+table.contact_form td { padding: 10px 20px; border-bottom: 1px dotted #333; }
+

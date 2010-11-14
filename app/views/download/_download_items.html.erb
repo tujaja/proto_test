@@ -1,34 +1,46 @@
-<table class="items">
-  <tbody>
-
+<table class="download_items">
+  <thead>
     <tr>
-      <th class="icon">Image</th>
-      <th class="name">Name</th>
-      <th class="artist">Artist</th>
-      <th class="last">残りダウンロード回数</th>
-      <th class="download">Download</th>
+      <td class="thumb"></td>
+      <td class="desc"></td>
+      <td class="last">残りダウンロード回数</td>
+      <td class="download"></td>
     </tr>
-
-
+  </thead>
+  <tbody>
     <% @order.order_items.each do |item| -%>
+    <% content = item.content -%>
     <tr>
-      <td class="icon"><%= icon_for item.content.images[0] %></td>
-      <td class="name"><%= h item.content.name %></td>
-      <td class="artist"><%= h item.content.artist.name %></td>
-      <td class="last">残り 10 回</td>
-      <td class="download">
-        <%= link_to "DL", file_path(item.token) %>
+      <td class="thumb"><%= icon_for content.images[0] %></td>
+      <td class="desc">
+        <div class="desc_title">
+          <h4><%= h(content.name) %></h4>
+        </div>
+        <div class="desc_mini">
+          <%= h(content.artist.name) %>
+          /
+          <%= h(content.label.name) %>
+        </div>
+        <div class="desc_file">
+          <% if content.info %>
+            <span class="mark"><%=h content.info.file_encoding %></span>
+            <span class="mark"><%=h content.info.time %></span>
+          <% end %>
+          <% if content.download %>
+            <span class="mark"><%=h to_megabyte(content.download.size) %></span>
+          <% end -%>
+        </div>
+      </td>
+      <td class="last">残り<%= item.download_count  %> 回</td>
+      <td class="down">
+        <span class="btn"> <%= link_to "ダウンロード", file_path(item.token) %> </span>
       </td>
     </tr>
     <% end %>
 
     <tr>
-      <td colspan="5" class="expire">ダウンロード有効期限は200X年12月31日です</td>
+      <td colspan="5" class="expire">ダウンロードの有効期限は<%= h(to_japan_time(@order.expire_time)) %>です</td>
     </tr>
 
   </tbody>
 </table>
-
-
-
-

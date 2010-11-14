@@ -6,8 +6,8 @@ class PaymentsController < ApplicationController
   def show
     p
     p "C===Payment#show"
-    redirect_to cart_path and return if prepare_cart
-    redirect_to invalid_payment and return if prepare_session
+    redirect_to cart_path or return unless prepare_cart
+    redirect_to invalid_payment or return unless prepare_session
 
     p '[Routing]'
     @payment = session[:payment]
@@ -20,9 +20,9 @@ class PaymentsController < ApplicationController
     # paypal confirm
     if @payment.status == 'paypal_credential'
       if @payment.paypal_payer_id != nil
-        paypal_confirm and return
+        paypal_confirm or return
       else
-        paypal_cancel and return
+        paypal_cancel or return
       end
     else
       invalid_payment
@@ -35,7 +35,7 @@ class PaymentsController < ApplicationController
   def create
     p
     p "C===Payments#create"
-    redirect_to cart_path and return unless prepare_cart
+    redirect_to cart_path or return unless prepare_cart
 
     p '[Reset Payment Session]'
     p params[:payment]
@@ -43,7 +43,7 @@ class PaymentsController < ApplicationController
 
     unless @payment.valid?
       p '---> form item is empty'
-      redirect_to cart_path and return
+      redirect_to cart_path or return
     end
 
     @payment.amount = @cart.total_price

@@ -29,4 +29,8 @@ module ApplicationHelper
     number_to_currency( number, :unit => "￥", :precision => 0 )
   end
 
+  def to_japan_time time
+    "#{time.year}年#{time.month}月#{time.day}日 #{time.hour}時 #{time.min}分"
+  end
+
 end

@@ -5,7 +5,7 @@ class CreateContents < ActiveRecord::Migration
       t.string  :domain,       :null => false, :limit => 30
       t.string  :name,         :null => false, :limit => 30
       t.string  :subname,      :limit => 30
-      t.integer :price,        :default => 0, :null => false, :limit => 20
+      t.integer :price,        :default => 0, :null => false, :limit => 10
       t.text    :description,  :limit => 500
       t.integer :sales,        :default => 0, :null => false, :limit => 20
       t.integer :download_counts, :default => 0, :null => false, :limit => 20

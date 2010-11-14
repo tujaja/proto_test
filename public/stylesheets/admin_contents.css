@@ -1,6 +1,53 @@
-/*================================================*/
-/* Contents */
-/*================================================*/
+
+/* generic parts */
+
+p.txt_ess { float:right; line-height: 1.9em; }
+
+/* *の赤色 */
+p.txt_ess span, p.txt_ess2 span, th span {
+    margin:0 3px 0 0;
+    font-size:130%;
+    font-weight:bold;
+    color:#da4740;
+}
+
+.buttonArea{margin:15px 0 20px;}
+
+p.buttons,div.buttons{text-align:center;}
+
+.buttons a,.buttons button{
+  margin:0;
+  border: none;
+  background:#4ea6cc;
+  color:#fff;
+  line-height:130%;
+  font-family:Arial, Verdana;
+  font-size:14px;
+  font-weight:normal;
+  cursor:pointer;
+  padding:10px 20px;
+  border-radius:5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+}
+
+/* contents_header */
+#contents_header {
+  padding: 10px;
+  color: #FFF;
+  /*background-color: #2786C2;*/
+  background-color: #4EA6CC;
+}
+
+#contents_header .buttons a {
+  background:#FFF;
+  color:#333;
+}
+
+/* contents_main */
+#contents_main {
+  padding: 10px;
+}
 
 h2 {
 	/*margin:20px 0 2px 0;*/
@@ -49,88 +96,32 @@ h5 {
     padding: 5px 0;
 }
 
+
+
+
+/* thumb */
+
+#image_thumb  {
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  padding: 10px;
+  border: 3px solid #CCC;
+  /*-moz-border-radius-topleft: 3px;*/
+  /*-moz-border-radius-topright: 3px;*/
+  /*-moz-border-radius-bottomleft: 3px;*/
+  /*-moz-border-radius-bottomright: 3px;*/
+
+  height: 75px;
+}
+
+/* details */
+
 dl { padding: 5px 0px; }
 dt { font-weight: bold; }
 dd { padding-left: 10px; }
 
-/*----------------------------------------
-	button
-----------------------------------------*/
-
-.buttonArea{margin:15px 0 20px;}
-
-p.buttons,div.buttons{text-align:center;}
-
-.buttons a,.buttons button{
-  margin:0;
-  border: none;
-  background:#4ea6cc;
-  color:#fff;
-  line-height:130%;
-  font-family:Arial, Verdana;
-  font-size:14px;
-  font-weight:normal;
-  cursor:pointer;
-  padding:10px 20px;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-}
-
-#contents_header .buttons a {
-  background:#FFF;
-  color:#333;
-}
-
-/*----------------------------------------
-  form
-----------------------------------------*/
-input, form select, form textarea,textarea {
-    font-size:14px;
-    letter-spacing: 0;
-    border:2px solid #656565;
-    font-family:Arial,'Hiragino Kaku Gothic Pro','ヒラギノ角ゴ Pro W3','ＭＳ Ｐゴシック';
-    padding:3px;
-}
-
-input:focus, form select:focus, form textarea:focus {
-    border:2px solid #4ea6cc;
-}
-
-input.headersearch {
-    padding:3px 4px;
-    width: 230px;
-}
-
-input.inputtext {
-    padding:5px 4px;
-    width: 100%;
-  line-height:1em;
-}
-
-input.inputtext:focus {
-}
-
-.inputarea {
-  width:100%;
-  height:120px;
-}
-
-.inputselect {margin:0 2px 0 0;}
-
-div.category_add_form { margin:5px 0px 0px 70px; }
-
-.inputedittext {
-  font-size:12px;
-  border-width:1px;
-  width:130px;
-}
-
-
-
-/*----------------------------------------
-  table
-----------------------------------------*/
+/* form */
 
 table.tableTypeForm1 {
 	margin:5px 0 35px;
@@ -160,113 +151,35 @@ table.tableTypeForm1 td.tableTypeForm1End,table.tableTypeForm4 td.tableTypeForm1
 }
 
 
-table.tableTypeRecord {
+/* record */
+
+table.table_record {
     border: 1px #CCC solid;
     border-top: 3px #1e1e1e solid;
     border-bottom: 3px #1e1e1e solid;
-    border-collapse: collapse;
-    border-spacing: 0;
-    display:block;
     margin-bottom:20px;
 }
 
-table.tableTypeRecord th, table.tableRecord thead td {
-    padding:10px 10px 10px 20px;
-    background-color:#f0f0e0;
-    border-bottom: 1px solid #ccc;
-    text-align: left;
-    font-weight: normal;
-    white-space: nowrap;
-}
+table.table_record tr { height: 50px; }
+table.table_record td { padding: 5px 10px; border-bottom: 1px solid #CCC; }
 
-table.tableTypeRecord td {
-    padding: 5px 10px;
-    border-bottom: 1px solid #CCC;
-}
+table.table_record td.id { text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
 
-table.tableTypeRecord td.id {
-  text-align:center;font-weight:bold;color:#fff;background:#4ea6cc;
-}
+table.table_record td.thumb {width:70px;text-align:center;background:#e3e3e3;cursor:pointer;}
+  table.table_record td.thumb a img{border:2px #fff solid;cursor:pointer; }
+  table.table_record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
 
-table.tableTypeRecord td.thumb {width:70px;text-align:center;background:#e3e3e3;cursor:pointer;}
-  table.tableTypeRecord td.thumb a img{border:2px #fff solid;cursor:pointer; }
-  table.tableTypeRecord td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
-
-table.tableTypeRecord td.desc {width:630px;}
-  /*table.tableTypeRecord td.desc div.descTitle {font-size:12px;font-weight:bold;margin:0 0 5px;}*/
-  /*table.tableTypeRecord td.desc div.descTitle h3{font-size:14px;margin:0 0 4px;}*/
-  /*table.tableTypeRecord td.desc div.descMini,div.descMini {color:#333;font-size:12px;}*/
+table.table_record td.desc {width:630px;}
 
 
-/*-----------------------------------
- * Others
- *----------------------------------*/
-
-p.txt_ess { float:right; line-height: 1.9em; }
-
-/* *の赤色 */
-p.txt_ess span, p.txt_ess2 span, th span {
-    margin:0 3px 0 0;
-    font-size:130%;
-    font-weight:bold;
-    color:#da4740;
-}
-
-
-/*-----------------------------------
- * contents_header
- *----------------------------------*/
-#contents_header {
-  padding: 10px;
-  color: #FFF;
-  /*background-color: #2786C2;*/
-  background-color: #4EA6CC;
-}
-
-
-/*-----------------------------------
- * contents_main
- *----------------------------------*/
-#contents_main {
-  padding: 10px;
-}
-
-/*#contents_main h3 {*/
-  /*color: #111;*/
-  /*border-left: 5px solid #CCC;*/
-  /*padding: 4px 10px;*/
-  /*margin: 10px 0;*/
-
-/*}*/
-
-/*#contents_main p {*/
-  /*padding: 5px;*/
-/*}*/
-
-
-/* detail */
-/*#contents_main #detail dl {*/
-  /*padding: 5px 0px;*/
-/*}*/
-
-/*#contents_main #detail dt {*/
-  /*font-weight: bold;*/
-/*}*/
-
-/*#contents_main #detail dd {*/
-  /*padding-left: 10px;*/
-/*}*/
-/* detail */
-
-/*----------------------------------------
-	list
-----------------------------------------*/
+/* list */
 
 ul.list1 {margin: 5px 10px 0 20px;}
 ul.list1 li {list-style: circle;font-size: 11px;color: #333;}
 ul.list1 li span {font-size: 11px;color:#da4740;}
 
 
+/* upload */
 
 #upload_iframe {
   width: 0px;
@@ -277,23 +190,4 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
 #upload_form {
   padding: 5px;
 }
-
-/*================================================*/
-/* Images */
-/*================================================*/
-
-#image_thumb  {
-  float: left;
-  background-color: #EEE;
-  margin: 5px;
-  padding: 10px;
-  border: 3px solid #CCC;
-  /*-moz-border-radius-topleft: 3px;*/
-  /*-moz-border-radius-topright: 3px;*/
-  /*-moz-border-radius-bottomleft: 3px;*/
-  /*-moz-border-radius-bottomright: 3px;*/
-
-  height: 75px;
-}
-
 
