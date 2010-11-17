@@ -6,6 +6,7 @@ class CreateMusicInfos < ActiveRecord::Migration
       t.text   :lyric
 
       t.integer :download_id # belongs_to :download
+      t.integer :album_info_id # belongs_to :album_info
 
       t.timestamps
     end

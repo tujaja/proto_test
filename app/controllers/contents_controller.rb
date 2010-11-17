@@ -13,4 +13,17 @@ class ContentsController < ApplicationController
     @content = Content.find_by_domain(params[:id])
   end
 
+  # GET /contents/singles
+  def singles
+    p; p 'C===Contents#singles'
+    @contents = Content.find(:all, :conditions => { :attachable_info_type => "MusicInfo" })
+    render :action => :index
+  end
+
+  # GET /contents/albums
+  def albums
+    p; p 'C===Contents#albums'
+    @contents = Content.find(:all, :conditions => { :attachable_info_type => "AlbumInfo" })
+    render :action => :index
+  end
 end

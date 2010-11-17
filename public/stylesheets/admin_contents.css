@@ -1,6 +1,15 @@
 
 /* generic parts */
+span.mark  {
+  color: #333;
+  background:#DDD;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px;
+  white-space: nowrap;
+}
 
+p.name { font-size: 12px; }
 p.txt_ess { float:right; line-height: 1.9em; }
 
 /* *の赤色 */
@@ -35,7 +44,6 @@ p.buttons,div.buttons{text-align:center;}
 #contents_header {
   padding: 10px;
   color: #FFF;
-  /*background-color: #2786C2;*/
   background-color: #4EA6CC;
 }
 
@@ -44,60 +52,22 @@ p.buttons,div.buttons{text-align:center;}
   color:#333;
 }
 
+#contents_header h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+
+
 /* contents_main */
 #contents_main {
   padding: 10px;
 }
 
-h2 {
-	/*margin:20px 0 2px 0;*/
+#contents_main h3 {
     font-size: 16px;
-    font-weight: bold;
     color: #333;
 }
-  h2.title{
-    padding: 0 0 15px 0;
-  }
-
-h3 {
-	/*margin:20px 0 2px 0;*/
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-}
-
-  h3.underline{
-    width:100%;
-    border-bottom:3px #333 solid;
-    padding:0 0 4px;
-    margin:0 0 15px;
-  }
-
-  h3.connect{
-    width:100%;
-    padding:0 0 4px;
-    margin:30px 0 10px;
-  }
-
-
-h4 {
-    font-size: 12px;
-    font-weight: bold;
-    color: #643F00;
-    margin:15px 0 5px;
-}
-
-
-h5 {
-    font-size: 12px;
-    font-weight: normal;
-    color: #666;
-    margin: 5px 0 0;
-    padding: 5px 0;
-}
-
-
-
 
 /* thumb */
 
@@ -118,6 +88,7 @@ h5 {
 /* details */
 
 dl { padding: 5px 0px; }
+dl.left { float: left; }
 dt { font-weight: bold; }
 dd { padding-left: 10px; }
 
@@ -153,23 +124,38 @@ table.tableTypeForm1 td.tableTypeForm1End,table.tableTypeForm4 td.tableTypeForm1
 
 /* record */
 
-table.table_record {
-    border: 1px #CCC solid;
-    border-top: 3px #1e1e1e solid;
-    border-bottom: 3px #1e1e1e solid;
-    margin-bottom:20px;
+table.record {
+  width: 780px;
+  border-top: 3px #1e1e1e solid;
+  border-bottom: 3px #1e1e1e solid;
+  margin-bottom:20px;
 }
 
-table.table_record tr { height: 50px; }
-table.table_record td { padding: 5px 10px; border-bottom: 1px solid #CCC; }
+/*780*/
+/*40 40 200 (280) 180 40*/
 
-table.table_record td.id { text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
+table.record tr { height: 30px; }
+table.record td { padding: 5px 5px; border-bottom: 1px solid #CCC; }
+table.record td.id { width: 40px; text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
+table.record td.thumb {width:40px;text-align:center;background:#efffef;cursor:pointer;}
+  table.record td.thumb a img{border:2px #fff solid;cursor:pointer; }
+  table.record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
+table.record td.name { width:200px; }
+  table.record td.name a { color: #333; }
+  table.record td.name a:hover { color: #D5B006; background-color: #78576A; }
+table.record td.desc {width:230px; }
+table.record td.date { width: 180px; text-align: right; }
+table.record td.gadget {text-align: right; }
 
-table.table_record td.thumb {width:70px;text-align:center;background:#e3e3e3;cursor:pointer;}
-  table.table_record td.thumb a img{border:2px #fff solid;cursor:pointer; }
-  table.table_record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
+/* content record */
 
-table.table_record td.desc {width:630px;}
+/* artist record */
+
+/* label record */
+
+/* download record*/
+table.download td.desc {width:240px;}
+/*table.download td.gadget {text-align: right; width:50px;}*/
 
 
 /* list */

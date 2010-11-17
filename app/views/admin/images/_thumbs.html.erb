@@ -4,7 +4,7 @@
 <div id="image_thumb">
 <ul>
   <li>
-    <p><%= link_to (icon_for image), admin_image_path(image.id)  %></p>
+    <p><%= link_to (s50_for image), admin_image_path(image.id)  %></p>
     <p><%= link_to h(image.filename), admin_image_path(image.id) %></p>
     <p><%= link_to_remote (image_tag "delete.png", :alt => "delete"),
       :url => admin_image_path(image.id), :method => :delete %></p>

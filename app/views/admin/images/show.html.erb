@@ -1,48 +1,16 @@
 <div id="contents_header">
-  <h2>Admin Images</h2>
+  <h2>画像管理</h2>
 </div>
 
-<div id="contents_main" class="admin_contents">
-<h3>Image Details</h1>
-<p>
-<%= thumb_for @image %>
-</p>
-
-<p>
-  <b>Token:</b>
-  <%=h @image.token %>
-</p>
-
-<p>
-  <b>File Name:</b>
-  <%=h @image.filename %>
-</p>
-
-<p>
-  <b>Width:</b>
-  <%=h @image.width %>
-</p>
-
-<p>
-  <b>Height:</b>
-  <%=h @image.height %>
-</p>
-
-<p>
-  <b>Content Type:</b>
-  <%=h @image.content_type %>
-</p>
-
-<p>
-  <b>Comment:</b>
-  <%=h @image.comment %>
-</p>
-
-
-<%= link_to 'Edit', edit_admin_image_path(@image) %> |
-<%= link_to 'Back', admin_images_path %>
-
-</div>
-
-<div id="contents_footer">
+<div id="contents_main">
+<h3>画像詳細</h3>
+  <dl class="left"><dt>300 x 300</dt> <dd><%= s300_for @image %></dd></dl>
+  <dl class="left"><dt>100 x 100</dt> <dd><%= s100_for @image %></dd></dl>
+  <dl class="left"><dt>50 x 50</dt> <dd><%= s50_for @image %></dd></dl>
+  <dl class="left"><dt>25 x 25</dt> <dd><%= s25_for @image %></dd></dl>
+  <div class="clear"></div>
+  <dl><dt>オリジナルファイル名</dt> <dd><%=h @image.filename %></dd></dl>
+  <dl><dt>オリジナルサイズ</dt> <dd><%=h @image.width %> x <%=h @image.height %></dd></dl>
+  <dl><dt>コメント</dt> <dd><%=h @image.comment %></dd></dl>
+  <dl><dt>識別子</dt> <dd><%=h @image.token %></dd></dl>
 </div>

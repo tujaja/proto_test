@@ -1,13 +1,22 @@
-<table class="table_record">
+<table class="record download">
 <tbody>
 
 <% @downloads.each do |download| %>
   <tr>
     <td class="id"><%=h download.id %></td>
-    <td class="thumb"><%#= link_to ( (icon_for download.images[0]), admin_download_path(download.id) ) if download.images[0] != nil %></td>
-    <td class="desc"><%=h download.filename %></td>
-    <td><%= link_to 'Edit', edit_admin_download_path(download) %></td>
-    <td><%= link_to 'Destroy', admin_download_path(download), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="name"><p class="name"><%= link_to download.filename, admin_download_path(download) %></p></td>
+    <td class="desc">
+      <span class="mark"><%=h download.content_type %></span>
+      <span class="mark"><%=h to_megabyte(download.size) %></span>
+    </td>
+    <td class"date">
+      <span class="mark"><%=h to_japan_time(download.created_at) %></span>
+    </td>
+    <td class="gadget">
+      <%= link_to (image_tag "download.png", :alt => "download"), dl_admin_download_path(download.id) %>
+
+      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_download_path(download), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </tbody>

@@ -1,19 +1,15 @@
 <div id="contents_header">
-  <h2 class="title">Admin Artists</h2>
+  <h2>アーティスト管理</h2>
   <span class="buttons">
-    <%= link_to 'New Artist', new_admin_artist_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+    <%= link_to '作成', new_admin_artist_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
   </span>
 </div>
 
-<div id="contents_main" class="admin_artists">
-<h3>Artists Index</h1>
+<div id="contents_main">
+<h3>アーティスト一覧</h3>
 
   <div id="listing_artists">
-    <%#= render :partial => 'thumbs' %>
     <%= render :partial => 'records' %>
   </div>
 
-</div>
-
-<div id="contents_footer">
 </div>

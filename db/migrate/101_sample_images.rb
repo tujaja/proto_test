@@ -57,5 +57,3 @@ class SampleImages < ActiveRecord::Migration
   end
 
 end
-
-

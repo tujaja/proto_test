@@ -3,6 +3,10 @@
 </div>
 
 <div id="contents_main">
-  <%#= render :partial => "thumbs" %>
+  <div id="submenu">
+    <span class="btn"><%= link_to "すべて", :action => 'index' %></span>
+    <span class="btn"><%= link_to "シングル", :action => 'singles' %></span>
+    <span class="btn"><%= link_to "アルバム", :action => 'albums' %></span>
+  </div>
   <%= render :partial => "records" %>
 </div>

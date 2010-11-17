@@ -20,10 +20,12 @@ class Image < ActiveRecord::Base
     end
 
     self.filename = base_part_of(file.original_filename)
-    #self.token = make_token
-    self.token = make_unique_token self.filename
     self.content_type = file.content_type  if file.respond_to?(:content_type)
 
+  end
+
+  def before_create
+    self.token = make_unique_token self.filename
   end
 
   def after_save
@@ -35,7 +37,7 @@ class Image < ActiveRecord::Base
   end
 
   # #{size}_file_path
-  %w(minicon icon thumb).each do |size|
+  %w(s25 s50 s100 s300).each do |size|
     class_eval <<-END
       def #{size}_file_path
         "\#{storage_path}/\#{self.token}.#{size}.jpg"
@@ -49,13 +51,13 @@ class Image < ActiveRecord::Base
   end
 
   def delete_file_from_storage token
-    %w(minicon icon thumb).each do |size|
+    %w(s25 s50 s100 s300).each do |size|
       File.delete "#{storage_path}/#{token}.#{size}.jpg"  if File.exist? "#{storage_path}/#{token}.#{size}.jpg"
     end
   end
 
   def save_file_to_storage
-    [ ['minicon',25], ['icon',50], ['thumb',100] ].each do |size, pixel|
+    [ ['s25',25], ['s50',50], ['s100',100], ['s300',300] ].each do |size, pixel|
       img = convert_image(@image.clone, pixel)
       path = eval("#{size}_file_path")
       File.open(path, "wb") {|f|
@@ -64,10 +66,6 @@ class Image < ActiveRecord::Base
     end
   end
 
-
-  def make_token
-    Digest::MD5.hexdigest("--#{Time.now}--#{self.filename}")
-  end
 
   def base_part_of(filename)
     File.basename(filename).gsub(/[^\w._-]/, '')

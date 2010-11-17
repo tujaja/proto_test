@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.admin_logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'
   map.admin_login  '/admin/login',  :controller => 'admin/sessions', :action => 'new'
 
-  map.resources :contents
+  map.resources(:contents, :collection => { :albums => :get, :singles => :get })
   map.resources :artists
   map.resources :labels
 
@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :artists
     admin.resources :labels
     admin.resources :images
-    admin.resources :downloads
+    admin.resources(:downloads, :member => [:dl] )
     admin.resource  :session
     admin.resources :users
     admin.resources :orders

@@ -18,7 +18,7 @@ class Artist < ActiveRecord::Base
     return imgs
   end
 
-  def before_save
+  def before_create
     self.token = make_unique_token self.domain
   end
 end

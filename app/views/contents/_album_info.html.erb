@@ -1,0 +1,7 @@
+<% album_info = @content.album_info -%>
+<% music_infos = album_info.music_infos -%>
+<dl>
+<dt>収録曲</dt>
+<%= render :partial => "album_musics", :locals => { :music_infos => music_infos } %>
+
+</dl>

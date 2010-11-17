@@ -15,38 +15,31 @@
 </head>
 
 <body>
+  <div id="wrapper">
+    <div id="header">
+
+      <h1 id="logo"><a href="/">３本しめじ</a></h1>
+
+      <%= render :partial => 'admin/utility' %>
+      <%= render :partial => 'admin/navigation' %>
+
+    </div>
+
+    <div id="debug">
+      <p><%=h flash[:notice] %></p>
+      <p><%=h flash[:error] %></p>
+    </div>
+
+    <div id="contents">
+      <%= yield %>
+    </div>
 
 
-<div id="wrapper">
-  <div id="header">
-
-    <h1 id="logo"><a href="/">３本しめじ</a></h1>
-
-    <%= render :partial => 'admin/utility' %>
-    <%= render :partial => 'admin/navigation' %>
+    <div id="footer">
+      <p>2010 3shimeji all rights reserved</p>
+    </div>
 
   </div>
-
-  <div id="debug">
-    <p><%=h flash[:notice] %></p>
-    <p><%=h flash[:error] %></p>
-  </div>
-
-  <div id="contents">
-    <%= yield %>
-  </div>
-
-
-  <div id="footer">
-    <p>2010 3shimeji all rights reserved</p>
-  </div>
-
-</div>
-
-
-
-
-
 </body>
 </html>
 

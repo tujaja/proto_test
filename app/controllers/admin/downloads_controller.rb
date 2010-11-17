@@ -6,6 +6,11 @@ class Admin::DownloadsController < AdminController
     @download = Download.new(params[:download])
   end
 
+  def dl
+    @download = Download.find_by_id(params[:id])
+    send_file(@download.file_path, :filename => @download.filename, :type => @download.content_type)
+  end
+
   def show
     @download = Download.find(params[:id])
   end

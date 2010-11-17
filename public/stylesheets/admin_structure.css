@@ -18,7 +18,7 @@
 #header {
   border: 1px solid #333;
   position: relative;
-  height: 84px;
+  height: 100px;
 }
 
 #logo {
@@ -67,7 +67,7 @@
   color: #222;
   background-color: #FFF;
   display: block;
-  width: 55px;
+  width: 70px;
   margin: 2px;
   padding: 5px 16px;
   border: solid 3px #AAA;

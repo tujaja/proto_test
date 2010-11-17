@@ -23,11 +23,7 @@ class Admin::ContentsController < AdminController
   def show
     p 'C===Admin::Contents#show'
 
-    @content = Content.find_by_domain(params[:id])
-    @info = @content.attachable_info
-    @download = @info.download
-    p @download
-
+    @content = Content.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

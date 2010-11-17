@@ -29,33 +29,20 @@ class Content < ActiveRecord::Base
   end
 
 
-  def before_save
+  def before_create
     self.token = make_unique_token self.domain
-
-    # ここでこれをやっちまうと
-    # content.attahchable_info = music_info
-    # music_info.content = content
-    # が上書きされてしまう
-
-    return if self.attachable_info
-
-    #music_info = MusicInfo.new
-    ##music_info.content = self
-    #music_info.download = @download
-    #music_info.file_encoding = @file_encoding
-    #music_info.lyric = @lyric
-    #music_info.time = @time
-    #music_info.save
-    #self.attachable_info = music_info
-
   end
 
   def label
     return self.artist.label
   end
 
-  def info
-    return self.attachable_info ? self.attachable_info : nil
+  def music_info
+    return self.attachable_info_type == "MusicInfo" ? self.attachable_info : nil
+  end
+
+  def album_info
+    return self.attachable_info_type == "AlbumInfo" ? self.attachable_info : nil
   end
 
   def download

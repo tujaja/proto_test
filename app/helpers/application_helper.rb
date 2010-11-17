@@ -2,7 +2,7 @@
 module ApplicationHelper
 
   # Image
-  [ ['minicon', 25], ['icon', 50], ['thumb', 100] ].each do |size, pixel|
+  [ ['s25', 25], ['s50', 50], ['s100', 100], ['s300', 300 ]].each do |size, pixel|
     class_eval <<-EOS
       def #{size}_for image
         url = "up/\#{image.token}.#{size}.jpg"
@@ -32,5 +32,4 @@ module ApplicationHelper
   def to_japan_time time
     "#{time.year}年#{time.month}月#{time.day}日 #{time.hour}時 #{time.min}分"
   end
-
 end

@@ -1,13 +1,20 @@
-<table class="table_record">
+<table class="record artist">
 <tbody>
 
 <% @artists.each do |artist| %>
   <tr>
     <td class="id"><%=h artist.id %></td>
-    <td class="thumb"><%= link_to ( (minicon_for (artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
-    <td class="desc"><%=h artist.name %></td>
-    <td><%= link_to 'Edit', edit_admin_artist_path(artist) %></td>
-    <td><%= link_to 'Destroy', admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td class="thumb"><%= link_to ( (s25_for (artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
+    <td class="name"><%= link_to artist.name, admin_artist_path(artist) %></td>
+    <td class="desc">
+      <span class="mark"><%=h (artist.label.name) %></span>
+    </td>
+    <td class="date">
+      <span class="mark"><%=h to_japan_time(artist.created_at) %></span>
+    </td>
+    <td class="gadget">
+      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %>
+    </td>
   </tr>
 <% end %>
 </tbody>

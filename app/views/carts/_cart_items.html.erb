@@ -6,7 +6,7 @@
   <% @cart.cart_items.each do |item| -%>
   <% content = item.content -%>
   <tr>
-    <td class="thumb"><%= icon_for content.images[0] %></td>
+    <td class="thumb"><%= s50_for content.images[0] %></td>
     <td class="desc">
       <div class="desc_title">
         <h4><%= h(content.name) %></h4>
@@ -17,9 +17,12 @@
         <%= h(content.label.name) %>
       </div>
       <div class="desc_file">
-        <% if content.info %>
-          <span class="mark"><%=h content.info.file_encoding %></span>
-          <span class="mark"><%=h content.info.time %></span>
+        <% if content.music_info %>
+          <span class="mark">シングル</span>
+          <span class="mark"><%=h content.music_info.file_encoding %></span>
+          <span class="mark"><%=h content.music_info.time %></span>
+        <% elsif content.album_info %>
+          <span class="mark">アルバム</span>
         <% end %>
         <% if content.download %>
           <span class="mark"><%=h to_megabyte(content.download.size) %></span>

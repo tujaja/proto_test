@@ -1,19 +1,22 @@
 <div>
+  <dl><dt>レーベル名</dt> <dd><%=h(@label.name) %></dd></dl>
+  <dl><dt>レーベル名(サブ)</dt> <dd><%=h(@label.subname) %></dd></dl>
 
-  <h3><%=h label.name %></h3>
-  <h4><%=h label.subname %></h4>
+  <dl><dt>画像</dt> <dd><%= s100_for @label.images[0] %></dd></dl>
 
-  <%= thumb_for label.images[0] %>
+  <dl><dt>説明</dt> <dd><%=h @label.description %></dd></dl>
+  <dl><dt>URL</dt> <dd><%=h @label.url %></dd></dl>
+  <dl><dt>email</dt> <dd><%=h @label.email %></dd></dl>
 
+  <% if @label.address %>
+    <dl><dt>Address</dt> <dd><%=h @label.address %></dd></dl>
+  <% end %>
+
+  <% if @label.phone %>
+    <dl><dt>Phone</dt> <dd><%=h @label.phone %></dd></dl>
+  <% end %>
+
+  <dl><dt>作成日時</dt><dd><%=h to_japan_time(label.created_at) %></dd></dl>
   <dl><dt>ドメイン(固有名)</dt><dd><%=h label.domain %></dd></dl>
-  <dl><dt>Description</dt><dd><%=h label.description %></dd></dl>
-  <dl><dt>URL</dt> <dd><%=h label.url %></dd></dl>
-  <dl><dt>email</dt> <dd><%=h label.mail %></dd></dl>
-  <dl><dt>Address</dt> <dd><%=h label.address %></dd></dl>
-  <dl><dt>Phone</dt> <dd><%=h label.phone %></dd></dl>
-
   <dl><dt>識別子</dt> <dd><%=h label.token %></dd></dl>
-
 </div>
-
-

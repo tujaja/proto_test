@@ -3,7 +3,7 @@
 
 <% @contents.each do |content| %>
   <tr>
-    <td class="thumb"><%= link_to((icon_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
+    <td class="thumb"><%= link_to((s50_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
     <td class="desc">
       <div class="desc_title">
         <h4><%= link_to h(content.name), content_path(content.domain) %></h4>
@@ -14,12 +14,17 @@
         <%= link_to h(content.label.name), label_path(content.label.domain) %>
       </div>
       <div class="desc_file">
-        <% if content.info %>
-          <span class="mark"><%=h content.info.file_encoding %></span>
-          <span class="mark"><%=h content.info.time %></span>
+        <% if content.music_info %>
+          <span class="mark">シングル</span>
+          <span class="mark"><%=h content.music_info.file_encoding %></span>
+          <span class="mark"><%=h content.music_info.time %></span>
+        <% elsif content.album_info %>
+          <span class="mark">アルバム</span>
         <% end %>
+
+
         <% if content.download %>
-          <span class="mark"><%=h to_megabyte(content.download.size) %></span>
+          <span class="mark"><%#=h to_megabyte(content.download.size) %></span>
         <% end -%>
       </div>
 
