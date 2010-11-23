@@ -1,13 +1,19 @@
-<table class="table_record">
+<table class="record">
 <tbody>
 
 <% @orders.each do |order| %>
   <tr>
     <td class="id"><%=h order.id %></td>
-    <td class="thumb"><%#= link_to ( (icon_for order.images[0]), admin_order_path(order.id) ) if order.images[0] != nil %></td>
-    <td class="desc"><%=h order.token %></td>
-    <td><%= link_to 'Edit', edit_admin_order_path(order) %></td>
-    <td><%= link_to 'Destroy', admin_order_path(order), :confirm => 'Are you sure?', :method => :delete %></td>
+
+    <td class="name"><%= link_to h(order.email), admin_order_path(order)  %></td>
+    <td class="desc">
+      <span class="mark"><%=h order.first_ordered_content.name %> etc</span>
+      <span class="mark"><%=h order.payment_type %></span>
+      <span class="mark"><%=h to_yen(order.total_price) %></span>
+    </td>
+    <td class"date">
+      <span class="mark"><%=h to_japan_time(order.order_time) %></span>
+    </td>
   </tr>
 <% end %>
 </tbody>

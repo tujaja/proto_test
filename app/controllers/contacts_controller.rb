@@ -1,5 +1,4 @@
-class ContactsController < ApplicationController
-  layout 'store'
+class ContactsController < StoreController
 
   def show
     p 'C===Contact#show'

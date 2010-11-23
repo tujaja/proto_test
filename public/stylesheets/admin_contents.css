@@ -94,32 +94,26 @@ dd { padding-left: 10px; }
 
 /* form */
 
-table.tableTypeForm1 {
-	margin:5px 0 35px;
-    border-top: 3px #333 solid;
-    border-collapse: collapse;
-    border-spacing: 0;
+table.form {
+  width: 780px;
+  border-top: 3px #333 solid;
+  margin:5px 0 35px;
 }
-table.tableTypeForm1 th {
-    padding:10px 10px 10px 20px;
+
+table.form th {
+    padding:5px 5px 5px 20px;
     width: 25%;
     background-color: #f0f0e0;
     border-bottom: 1px dotted #333;
     text-align: left;
     font-size:13px;
     font-weight: bold;
-    white-space: nowrap;
-}
-table.tableTypeForm1 td {
-    padding: 10px 20px;
-    border-bottom: 1px dotted #333;
 }
 
-table.tableTypeForm1 td.tableTypeForm1End,table.tableTypeForm4 td.tableTypeForm1End{
-  width:38%;
-  padding:5px;
-  background:#eee;
-}
+/*table.form tr { height: 38px; }*/
+table.form td { padding: 2px 10px; border-bottom: 1px dotted #333; }
+table.form td.field { width:40%; }
+table.form td.desc { width:30%; padding:5px; background:#eee; }
 
 
 /* record */
@@ -134,7 +128,7 @@ table.record {
 /*780*/
 /*40 40 200 (280) 180 40*/
 
-table.record tr { height: 30px; }
+table.record tr { height: 40px; }
 table.record td { padding: 5px 5px; border-bottom: 1px solid #CCC; }
 table.record td.id { width: 40px; text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
 table.record td.thumb {width:40px;text-align:center;background:#efffef;cursor:pointer;}
@@ -145,18 +139,30 @@ table.record td.name { width:200px; }
   table.record td.name a:hover { color: #D5B006; background-color: #78576A; }
 table.record td.desc {width:230px; }
 table.record td.date { width: 180px; text-align: right; }
-table.record td.gadget {text-align: right; }
+table.record td.gadget { width: 40px; text-align: right; }
 
-/* content record */
-
-/* artist record */
-
-/* label record */
-
-/* download record*/
-table.download td.desc {width:240px;}
+/*table.download td.desc {width:240px;}*/
 /*table.download td.gadget {text-align: right; width:50px;}*/
 
+table.order_items {
+  /*margin: 0px auto;*/
+  width: 600px;
+}
+
+table.order_items tr { height: 40px; }
+table.order_items td { border-bottom: 1px dotted #333; }
+table.order_items td.thumb { width:50px; text-align:center; background:#efffef; }
+table.order_items td.name {width:200px;}
+  /*table.order_items td.name div.desc_title h4 { font-size:16px; }*/
+  /*table.order_items td.name div.desc_mini { font-size:12px; padding: 0 0 5px;}*/
+
+table.order_items td.price {width:100px;font-size:14px;text-align:right;padding-right:20px;}
+table.order_items td.total_price {
+  font-size: 14px;
+  padding: 10px 20px 10px 0;
+  text-align: right;
+  border: none;
+}
 
 /* list */
 

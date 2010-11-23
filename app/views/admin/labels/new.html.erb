@@ -3,5 +3,6 @@
 </div>
 
 <div id="contents_main">
-  <%= render :partial => "form", :locals => {:url => admin_labels_path , :action_name => 'create' } %>
+  <h3>レーベル作成</h3>
+  <%= render :partial => "form", :locals => { :url => admin_labels_path, :action_name => "作成する"} %>
 </div>

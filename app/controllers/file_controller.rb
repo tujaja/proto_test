@@ -1,5 +1,4 @@
 class FileController < ApplicationController
-  layout 'store'
 
   def download
     p

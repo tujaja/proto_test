@@ -1,39 +1,39 @@
 <% form_for @artist, :url => url do |f| %>
-  <%#= f.error_messages %>
+  <%= f.error_messages %>
 
   <p class="txt_ess">
     * 必須項目
   </p>
-  <h3>レーベル情報</h3>
+  <p>アーティスト情報</p>
 
-  <table class="tableTypeForm1" style="width:775px">
+  <table class="form">
     <tbody>
       <tr>
         <th><span>*</span><%= f.label :domain, "ドメイン(固有名)" %> </th>
-        <td style="width: 37%">
-          <%= f.text_field :domain, :style => "width:300px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_field :domain, :value => 'yomoya', :style => "width:300px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
         </td>
       </tr>
 
       <tr>
         <th><span>*</span><%= f.label :name, "アーティスト名" %> </th>
-        <td style="width: 37%">
-          <%= f.text_field :name, :style => "width:300px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_field :name, :value => 'yomoya', :style => "width:300px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"> <li><span>全角半角30文字以内</span></li> </ul>
         </td>
       </tr>
 
       <tr>
         <th><span>*</span><%= f.label :subname, "アーティスト名(サブ)" %> </th>
-        <td style="width: 37%">
-          <%= f.text_field :subname, :style => "width:300px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_field :subname, :value => 'よもや', :style => "width:300px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"> <li><span>全角半角30文字以内</span></li></ul>
         </td>
       </tr>
@@ -41,50 +41,50 @@
 
       <tr>
         <th><span>*</span><%= f.label :mail, "メールアドレス" %> </th>
-        <td style="width: 37%">
-          <%= f.text_field :mail, :style => "width:300px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_field :mail, :value => 'yomoya@gmail.com',  :style => "width:300px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"> <li><span>(例) 3shimeji@gmail.com</span></li> </ul>
         </td>
       </tr>
 
       <tr>
         <th><%= f.label :url, "ホームページ" %> </th>
-        <td style="width: 37%">
-          <%= f.text_field :url, :style => "width:300px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_field :url, :value => 'http://yomoya.com',  :style => "width:300px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"> <li><span>(例) http://3shimeji.com</span></li> </ul>
         </td>
       </tr>
 
       <tr>
         <th><%= f.label :url, "所属レーベル" %> </th>
-        <td style="width: 37%">
+        <td class="field">
           <%= f.collection_select "label_id", Label.find(:all), :id, :name %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"></ul>
         </td>
       </tr>
 
       <tr>
         <th><%= f.label :description, "説明" %> </th>
-        <td style="width: 37%">
-          <%= f.text_area :description, :style => "width:300px; height: 200px; font-size: 14px;" %>
+        <td class="field">
+          <%= f.text_area :description, :value => 'bass 岡崎英太',  :style => "width:300px; height: 200px; font-size: 14px;" %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <ul class="list1"></ul>
         </td>
       </tr>
 
       <tr>
         <th><%= f.label :related_image, "関連画像" %> </th>
-        <td style="width: 37%">
-          <%= f.collection_select "related_image", Image.find(:all), :token, :filename, {}, {:onchange => "ElementHelper.select_image('image_select', 'thumb_image_tag', 'thumb');", :id => "image_select"} %>
+        <td class="field">
+          <%= f.collection_select "related_image", Image.find(:all), :token, :filename, {}, {:onchange => "ElementHelper.select_image('image_select', 'thumb_image_tag', 's100');", :id => "image_select"} %>
         </td>
-        <td class="tableTypeForm1End" style="width: 38%">
+        <td class="desc">
           <span id="image_wrapper">
             <img id="thumb_image_tag" src="" />
           </span>

@@ -1,5 +1,4 @@
-class DownloadController < ApplicationController
-  layout 'store'
+class DownloadController < StoreController
 
   # GET
   def show

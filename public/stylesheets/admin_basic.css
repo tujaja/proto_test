@@ -52,14 +52,14 @@ input, select, textarea {
 }
 
 input, form select, form textarea,textarea {
-    font-size:14px;
+    font-size:12px;
     letter-spacing: 0;
-    border: 3px solid #CCC;
-    padding: 5px;
+    border: 2px solid #CCC;
+    padding: 3px;
 }
 
 input:focus, form select:focus, form textarea:focus {
-    border:3px solid #D5B006;
+    border:2px solid #D5B006;
 }
 
 textarea {

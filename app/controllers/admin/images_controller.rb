@@ -4,6 +4,12 @@ class Admin::ImagesController < AdminController
   def index
     @images = Image.find(:all)
     @image = Image.new(params[:image])
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @images.to_json
+      }
+    end
   end
 
   def show

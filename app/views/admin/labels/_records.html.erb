@@ -1,4 +1,4 @@
-<table class="record label">
+<div id="records"><table class="record label">
 <tbody>
 
 <% @labels.each do |label| %>
@@ -12,9 +12,13 @@
       <span class="mark"><%=h to_japan_time(label.created_at) %></span>
     </td>
     <td class="gadget">
-      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_label_path(label), :confirm => 'Are you sure?', :method => :delete %>
+      <%#= link_to (image_tag "update.png", :alt => "update"), edit_admin_label_path(label) %>
+      <%= link_to_function (image_tag "update.png", :alt => "update"), "label_edit(#{label.id});" %>
+      <%#= link_to (image_tag "delete.png", :alt => "delete"), admin_label_path(label), :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
+        :url => admin_label_path(label.id), :method => :delete %>
     </td>
   </tr>
 <% end %>
 </tbody>
-</table>
+</table></div>

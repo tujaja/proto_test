@@ -4,7 +4,7 @@
 <% @downloads.each do |download| %>
   <tr>
     <td class="id"><%=h download.id %></td>
-    <td class="name"><p class="name"><%= link_to download.filename, admin_download_path(download) %></p></td>
+    <td class="name"><%= link_to h(download.filename), admin_download_path(download) %></td>
     <td class="desc">
       <span class="mark"><%=h download.content_type %></span>
       <span class="mark"><%=h to_megabyte(download.size) %></span>

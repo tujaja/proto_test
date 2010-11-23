@@ -1,0 +1,2 @@
+page.insert_html :bottom, 'lightbox_contents', :partial => 'remote_form',
+  :locals => { :url => admin_label_path(@label), :action_name => "更新する"}

@@ -1,6 +1,2 @@
-p 'hoge'
-
-page.insert_html :bottom, 'lightbox_contents', :partial => 'form'
-page << <<EOS
-lightbox.activate();
-EOS
+page.insert_html :bottom, 'lightbox_contents', :partial => 'remote_form',
+  :locals => { :url => admin_labels_path, :action_name => "作成する"}

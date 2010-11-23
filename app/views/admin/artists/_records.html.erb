@@ -13,6 +13,7 @@
       <span class="mark"><%=h to_japan_time(artist.created_at) %></span>
     </td>
     <td class="gadget">
+      <%= link_to (image_tag "update.png", :alt => "update"), edit_admin_artist_path(artist) %>
       <%= link_to (image_tag "delete.png", :alt => "delete"), admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %>
     </td>
   </tr>

@@ -10,3 +10,24 @@ var ElementHelper = {
   }
 }
 
+
+var ArtistSelector = Class.create();
+
+ArtistSelector.prototype = {
+  initialize: function() {
+    var resources = getArtistResources();
+  //  var element = build();
+  },
+
+  activate: function() {
+    lightbox.appear();
+  },
+
+  getArtistResources: function() {
+  }
+
+}
+
+document.observe('dom:loaded', function () {
+  artist_selector = new ArtistSelector();
+});

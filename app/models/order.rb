@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
+    # やはりこれは無駄だろう
     total = 0
     self.order_items.each do |item|
       total = total + item.unit_price
@@ -19,6 +20,10 @@ class Order < ActiveRecord::Base
 
   def length
     order_items.length
+  end
+
+  def first_ordered_content
+    self.order_items[0].content
   end
 
   def issue payment, cart

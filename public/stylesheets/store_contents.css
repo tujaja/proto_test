@@ -48,6 +48,8 @@ div.form_button { padding: 30px 0 0; text-align: center; }
   font-size: 14px;
 }
 
+
+
 /* contents_main */
 
 #contents_main {
@@ -106,21 +108,21 @@ div.form_button { padding: 30px 0 0; text-align: center; }
 
 /* record */
 
-table.table_record tr { height: 90px; }
-table.table_record td { padding: 5px 10px; }
+table.record tr { height: 90px; }
+table.record td { padding: 5px 10px; border-bottom: 1px dotted #aaa; }
 
-table.table_record td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
-  table.table_record td.thumb a img{border:2px #fff solid;cursor:pointer; }
-  table.table_record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
+table.record td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
+  table.record td.thumb a img{border:2px #fff solid;cursor:pointer; }
+  table.record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
 
-table.table_record td.desc {width:500px;}
-  table.table_record td.desc a { color: #333; }
-  table.table_record td.desc a:hover { color: #D5B006; background-color: #78576A; }
-  table.table_record td.desc div.desc_title h4 { font-size:16px; }
-  table.table_record td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
+table.record td.desc {width:500px;}
+  table.record td.desc a { color: #333; }
+  table.record td.desc a:hover { color: #D5B006; background-color: #78576A; }
+  table.record td.desc div.desc_title h4 { font-size:16px; }
+  table.record td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
-table.table_record td.price {width:100px;font-size: 20px;text-align: center;}
-table.table_record td.buy {width:100px;font-size: 14px;text-align: center;}
+table.record td.price {width:100px;font-size: 20px;text-align: center;}
+table.record td.buy {width:100px;font-size: 14px;text-align: center;}
 
 /* album_musics */
 

@@ -1,5 +1,4 @@
-class ContentsController < ApplicationController
-  layout 'store'
+class ContentsController < StoreController
 
   # GET /contents
   def index

@@ -1,5 +1,4 @@
-class LabelsController < ApplicationController
-  layout 'store'
+class LabelsController < StoreController
 
   # GET /labels
   def index

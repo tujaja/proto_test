@@ -1,0 +1,35 @@
+<table class="order_items">
+  <tbody>
+    <% @order.order_items.each do |item| -%>
+      <% content = item.content -%>
+      <tr>
+
+        <td class="thumb"><%= s25_for content.images[0] %></td>
+        <td class="name"> <%= h content.name %> </td>
+        <td class="info">
+          <% if content.music_info %>
+            <span class="mark">曲</span>
+            <span class="mark"><%=h content.music_info.file_encoding %></span>
+            <span class="mark"><%=h content.music_info.time %></span>
+          <% elsif content.album_info %>
+            <span class="mark">アルバム</span>
+          <% end %>
+          <% if content.download %>
+            <span class="mark"><%=h to_megabyte(content.download.size) %></span>
+          <% end -%>
+
+        </td>
+        <td class="price">
+          <%= h(to_yen(content.price)) %>
+        </td>
+      </tr>
+    <% end %>
+
+    <tr>
+      <td colspan="5" class="total_price">
+        合計価格(税込)
+        <%= h(to_yen(@order.total_price)) %>
+      </td>
+    </tr>
+  </tbody>
+</table>

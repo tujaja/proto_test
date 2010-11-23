@@ -1,11 +1,8 @@
 <div id="contents_header">
-  <h2>Admin Artists</h2>
+  <h2>アーティスト管理</h2>
 </div>
 
 <div id="contents_main" class="admin_contents">
+  <h3>アーティスト作成</h3>
   <%= render :partial => "form", :locals => {:url => admin_artists_path , :action_name => 'create' } %>
-  <%= link_to 'Back', admin_artists_path %>
-</div>
-
-<div id="contents_footer">
 </div>

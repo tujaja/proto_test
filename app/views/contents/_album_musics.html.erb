@@ -6,7 +6,7 @@
   <tr>
     <td class="thumb"><%= link_to((s25_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
     <td class="name">
-      <h4><%= link_to h(content.name), content_path(content.domain) %></h4>
+      <h4><%= h content.name %></h4>
     </td>
     <td class="info">
       <% if content.music_info %>

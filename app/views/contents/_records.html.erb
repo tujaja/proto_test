@@ -1,4 +1,4 @@
-<table class="table_record">
+<table class="record">
 <tbody>
 
 <% @contents.each do |content| %>
@@ -15,7 +15,7 @@
       </div>
       <div class="desc_file">
         <% if content.music_info %>
-          <span class="mark">シングル</span>
+          <span class="mark">曲</span>
           <span class="mark"><%=h content.music_info.file_encoding %></span>
           <span class="mark"><%=h content.music_info.time %></span>
         <% elsif content.album_info %>
@@ -35,13 +35,16 @@
 
     <td class="buy">
     <%#PUTメソッドで送信%>
-    <% form_tag( {:controller => "carts", :action => "update",
+    <%# form_tag( {:controller => "carts", :action => "update",
                   :protocol => 'https://', :only_path => false}) do -%>
+    <%# form_remote_tag :url => url_for(:controller => "carts", :action => "update", :protocol => 'https://', :only_path => false) do -%>
+    <% form_remote_tag :url => url_for(:controller => "carts", :action => "update") do -%>
       <input name="_method" type="hidden" value="put" />
       <%= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>
       <%= hidden_field_tag("cart_item[quantity]", "1") %>
       <%= submit_tag "カートに入れる" %>
     <% end -%>
+
     </td>
   </tr>
 <% end %>

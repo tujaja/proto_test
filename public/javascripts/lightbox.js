@@ -22,8 +22,9 @@ tt.lb_style = {
 tt.lb_frame_style = {
   position: 'relative',
   margin: '0px auto',
-  padding: '5px',
-  backgroundColor: '#DDD'
+  padding: '20px',
+  border: '5px solid #333',
+  backgroundColor: '#FFF'
 }
 
 
@@ -67,15 +68,21 @@ Lightbox.prototype = {
     if ($('lightbox_contents').firstDescendant()) {
       $('lightbox_contents').firstDescendant().remove();
     }
+    //if ($('lightbox_contents').descendants()) {
+     //$('lightbox_contents').descendants().invoke('remove')
+    //}
     $('lightbox').hide();
     $('overlay').fade( { duration: this.overlayDuration });
   },
 
   getContentsSize: function() {
     var contents = $('lightbox_contents').firstDescendant();
-    var contentsWidth = contents.getWidth();
-    var contentsHeight = contents.getHeight();
-
+    var contentsWidth = 0;
+    var contentsHeight = 0;
+    if(contents != null) {
+      contentsWidth = contents.getWidth();
+      contentsHeight = contents.getHeight();
+    }
     return [contentsWidth, contentsHeight];
   },
 
@@ -89,7 +96,7 @@ Lightbox.prototype = {
     windowHeight = document.documentElement.clientHeight;
 
     // for small pages with total height less than height of the viewport
-    if (yScroll < windowHeight) {
+   if (yScroll < windowHeight) {
       pageWidth = windowHeight;
     } else {
       pageHeight = yScroll;
@@ -133,7 +140,6 @@ Lightbox.prototype = {
 
 var lightbox = null;
 
-document.observe('dom:loaded', function () { 
+document.observe('dom:loaded', function () {
   lightbox = new Lightbox();
-}
-);
+});

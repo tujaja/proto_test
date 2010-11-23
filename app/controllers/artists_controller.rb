@@ -1,5 +1,4 @@
-class ArtistsController < ApplicationController
-  layout 'store'
+class ArtistsController < StoreController
 
   # GET /artists
   def index

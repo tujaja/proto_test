@@ -2,18 +2,18 @@
   <h2 class="title">レーベル管理</h2>
   <span class="buttons">
     <%= link_to '作成', new_admin_label_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+    <%= link_to_function '作成(ajax)', "label_new();" %>
+    <%= link_to_function 'images', "image_selector();" %>
   </span>
 </div>
 
 <div id="contents_main">
 <h3>レーベル一覧</h3>
 
-  <%#= javascript_include_tag "lightbox.js" %>
   <%#= link_to_remote 'New Label', :url => new_admin_label_path, :method => 'get' %>
 
-  <div id="listing_labels">
-    <%#= render :partial => 'thumbs' %>
-    <%= render :partial => 'records' %>
-  </div>
-
+  <%#= render :partial => 'thumbs' %>
+  <%= render :partial => 'records' %>
 </div>
+
+<%= javascript_include_tag "lightbox.js" %>

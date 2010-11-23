@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
   map.admin        '/admin',        :controller => 'admin', :action => 'index'
   map.admin_logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'
   map.admin_login  '/admin/login',  :controller => 'admin/sessions', :action => 'new'
+  map.admin_mails  '/admin/mail',  :controller => 'admin/mails', :action => 'index'
+  map.admin_mails_send  '/admin/mail/send_mail',  :controller => 'admin/mails', :action => 'send_mail'
 
   map.resources(:contents, :collection => { :albums => :get, :singles => :get })
   map.resources :artists
@@ -33,6 +35,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resource  :session
     admin.resources :users
     admin.resources :orders
+    admin.resources :infos
   end
 
 
@@ -41,5 +44,6 @@ ActionController::Routing::Routes.draw do |map|
 
   # Catch 404s
   map.connect '*path', :controller => 'four_oh_fours'
-end
+  map.connect ':controller/:action/:id', :controller  => 'four_oh_fours'
 
+end

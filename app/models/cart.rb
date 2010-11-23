@@ -51,7 +51,7 @@ class Cart
     item = find_item_by_content_id content_id
 
     if item
-      return
+      return nil
     else
       @cart_items.push Cart::CartItem.new(content_id)
     end

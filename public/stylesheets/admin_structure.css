@@ -98,6 +98,14 @@
   border: 1px solid #333;
 }
 
+#remote_form {
+  width: 800px;
+  margin:  0px auto;
+  padding: 0px auto;
+  /*background-color: #FFF;*/
+  /*border: 3px solid #333;*/
+}
+
 
 /*================================================*/
 /* Footer */

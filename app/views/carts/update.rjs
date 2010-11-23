@@ -1,0 +1,6 @@
+p 'update.rjs'
+quantity = params[:cart_item][:quantity].to_i
+page[:cart_items].replace :partial => "cart_items" if quantity == 0
+page[:cart_status].replace :partial => "store/cart_status"
+page[:cart_info].replace :partial => "store/cart_info"
+page[:cart_info].visual_effect :appear

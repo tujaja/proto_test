@@ -1,3 +1,4 @@
+<div id="cart_items">
 <p class="head">カート</p>
 <table class="cart_items">
 <tbody>
@@ -34,9 +35,10 @@
     </td>
     <td class="delete">
       <%#PUTメソッドで送信%>
-      <%# form_tag cart_path do -%>
-      <% form_tag( {:controller => "carts", :action => "update",
+      <%# form_tag( {:controller => "carts", :action => "update",
                   :protocol => 'https://', :only_path => false}) do -%>
+    <% form_remote_tag :url => url_for(:controller => "carts", :action => "update", :protocol => 'https://', :only_path => false) do -%>
+
         <input name="_method" type="hidden" value="put" />
         <%= hidden_field_tag("cart_item[content_id]", "#{item.content.id}") %>
         <%= hidden_field_tag("cart_item[quantity]", "0") %>
@@ -63,3 +65,4 @@
 
 </tbody>
 </table>
+</div>
