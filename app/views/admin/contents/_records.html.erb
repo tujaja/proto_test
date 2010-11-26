@@ -1,3 +1,4 @@
+<div id="records">
 <table class="record content">
 <tbody>
 
@@ -15,9 +16,14 @@
       <span class="mark"><%=h to_japan_time(content.created_at) %></span>
     </td>
     <td class="gadget">
-      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_content_path(content), :confirm => 'Are you sure?', :method => :delete %>
+      <%#= link_to (image_tag "delete.png", :alt => "delete"), admin_content_path(content), :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to_function (image_tag "update.png", :alt => "update"),
+        "resource_edit('contents', #{content.id});" %>
+      <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
+        :url => admin_content_path(content.id), :method => :delete %>
     </td>
   </tr>
 <% end %>
 </tbody>
 </table>
+</div>

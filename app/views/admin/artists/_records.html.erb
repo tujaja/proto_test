@@ -1,3 +1,4 @@
+<div id="records">
 <table class="record artist">
 <tbody>
 
@@ -13,10 +14,17 @@
       <span class="mark"><%=h to_japan_time(artist.created_at) %></span>
     </td>
     <td class="gadget">
-      <%= link_to (image_tag "update.png", :alt => "update"), edit_admin_artist_path(artist) %>
-      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %>
+      <%#= link_to (image_tag "update.png", :alt => "update"), edit_admin_artist_path(artist) %>
+      <%#= link_to (image_tag "delete.png", :alt => "delete"), admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %>
+
+      <%= link_to_function (image_tag "update.png", :alt => "update"),
+        "resource_edit('artists', #{artist.id});" %>
+      <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
+        :url => admin_artist_path(artist.id), :method => :delete %>
+
     </td>
   </tr>
 <% end %>
 </tbody>
 </table>
+</div>

@@ -1,6 +1,0 @@
-p 'update'
-page << <<EOS
-lightbox.deactivate();
-EOS
-
-page.replace 'records', :partial => 'records'

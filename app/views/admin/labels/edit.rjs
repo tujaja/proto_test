@@ -1,2 +1,6 @@
-page.insert_html :bottom, 'lightbox_contents', :partial => 'remote_form',
-  :locals => { :url => admin_label_path(@label), :action_name => "更新する"}
+html =  render(:partial => 'remote_form', :locals => { :url => admin_label_path(@label), :action_name => "更新する"})
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.lb_contents(0).update( #{html} );
+EOS

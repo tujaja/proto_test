@@ -3,9 +3,8 @@
 //
 
 var ElementHelper = {
-  select_image: function(control, elm, size) {
-    var image_token = $(control).getValue();
-    var url = '/images/up/' + image_token + '.' + size + '.jpg';
+  update_image: function(token, elm, size) {
+    var url = '/images/up/' + token + '.' + size + '.jpg';
     $(elm).src = url;
   }
 }

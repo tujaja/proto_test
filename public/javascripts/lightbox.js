@@ -1,3 +1,156 @@
+var Lightbox = Class.create();
+
+Lightbox.prototype = {
+  initialize: function() {
+
+    this.overlay_duration = 0.1;
+    this.overlay_opacity = 0.8;
+    this.overlay_zindex = tt.overlay_style.zIndex;
+
+    this.create_overlay_element();
+  },
+
+  setup : function(_layer) {
+    var layer = _layer || 0;
+    this.create_lightbox_element(layer);
+  },
+
+  create_overlay_element: function() {
+    $(document.body)
+    .insert( new Element('div', { id : 'overlay' }).setStyle( tt.overlay_style ).hide() );
+  },
+
+  create_lightbox_element: function(_layer) {
+    var layer = _layer || 0;
+
+    var lb = new Element('div', {id: this.id(layer)}).setStyle( tt.lb_style );
+
+    // 指定した位置に出せた方が良いのである
+    var array_pagescroll = document.viewport.getScrollOffsets();
+    var lb_top = array_pagescroll[1] + (document.viewport.getHeight() / 10) + layer*10;
+    var lb_left = array_pagescroll[0];
+    lb.setStyle({ top: lb_top + 'px', left: lb_left + 'px', zIndex: this.lb_zindex(layer) })
+      .show();
+
+    var lb_frame = new Element('div', {className: 'lb-frame'}).setStyle( tt.lb_frame_style );
+    var lb_contents = new Element('div', {className : 'lb-contents'}); // 目印として
+    var lb_close = new Element('a', {href: "#"}).update('close');
+    Event.observe( lb_close, 'click',
+      (function(self, l) {
+        return function() { self.deactivate(l); };
+      })(this, layer)
+    );
+
+    lb_frame.insert(lb_close);
+    lb_frame.insert(lb_contents);
+    lb.insert(lb_frame);
+
+    $(document.body).insert(lb);
+    lb.hide();
+  },
+
+  // dispay overlay and lightbox
+  activate: function(_layer) {
+    var layer = _layer || 0;
+
+    // overlay setting
+    if (layer == 0) {
+      var doc_sizes = this.document_pagesize();
+      $('overlay').setStyle({ width: doc_sizes[0] + 'px', height: doc_sizes[1] + 'px' });
+      $('overlay').appear({ duration: this.overlay_duration, from: 0.0, to: this.overlay_opacity });
+    } else {
+      $('overlay').setStyle({ zIndex: this.lb_zindex(layer)-1 });
+    }
+
+    var w =  this.lb_contents(layer).firstDescendant().getStyle('width');
+    this.lb_frame(layer).setStyle({ width: w, height: '100%' });
+    this.lb(layer).show();
+  },
+
+  deactivate: function(_layer) {
+    var layer = _layer || 0;
+    var contents = this.lb_contents(layer);
+    if (contents) { contents.remove(); }
+    this.lb(layer).remove();
+    if (layer == 0) {
+      $('overlay').fade( { duration: this.overlay_duration });
+    } else {
+      $('overlay').setStyle({ zIndex: this.lb_zindex(layer-1)-1 });
+    }
+  },
+
+  document_pagesize: function() {
+    var x_scroll, y_scroll;
+    x_scroll = window.innerWidth + window.scrollMaxX;
+    y_scroll = window.innerHeight + window.scrollMaxY;
+
+    var window_width, window_height;
+    window_width = document.documentElement.clientWidth;
+    window_height = document.documentElement.clientHeight;
+
+    var page_width, page_height;
+    // for small pages with total height less than height of the viewport
+    if (y_scroll < window_height) {
+      page_width = window_height;
+    } else {
+      page_height = y_scroll;
+    }
+
+    // for small pages with total width less than width of the viewport
+    if (x_scroll < window_width) {
+      page_width = x_scroll;
+    } else {
+      page_width = window_width;
+    }
+    return [page_width,page_height];
+  },
+
+  id : function(_layer) {
+    var layer = _layer || 0;
+    return 'lightbox-' + layer.toString();
+  },
+  lb : function(_layer) {
+    var layer = _layer || 0;
+    return $(this.id(layer));
+  },
+  lb_frame : function(_layer) {
+    var layer = _layer || 0;
+    return this.lb(layer).select('div.lb-frame')[0];
+  },
+
+  lb_contents : function(_layer) {
+    var layer = _layer || 0;
+    var l = this.lb(layer);
+    var s = l.select('div.lb-contents');
+    return this.lb(layer).select('div.lb-contents')[0];
+  },
+
+  lb_contents_size : function(_layer) {
+    var layer = _layer || 0;
+
+    var width = 0;
+    var height = 0;
+    var contents = this.lb_contents(layer);
+    if(contents != null) {
+      width = contents.getStyleWidth();
+      height = contents.getHeight();
+    }
+    return [width, height];
+  },
+
+  lb_zindex : function(_layer) {
+    var layer = _layer || 0;
+    return eval(tt.lb_style.zIndex) + (layer*10);
+  }
+
+}
+
+var lightbox = null;
+
+document.observe('dom:loaded', function () {
+  lightbox = new Lightbox();
+});
+
 var tt = {}
 
 tt.overlay_style = {
@@ -15,131 +168,13 @@ tt.lb_style = {
   top: '0',
   left: '0',
   width: '100%',
-  textAlign: 'left',
-  zIndex:'1001'
+  zIndex:'2000'
 }
 
 tt.lb_frame_style = {
   position: 'relative',
-  margin: '0px auto',
+  margin: '0px auto', // necessery
   padding: '20px',
   border: '5px solid #333',
   backgroundColor: '#FFF'
 }
-
-
-////////////////////////////////////////////////////
-
-var Lightbox = Class.create();
-
-Lightbox.prototype = {
-  initialize: function() {
-
-    this.overlayDuration = 0.2;
-    this.overlayOpacity = 0.8;
-
-    this.createOverlayElement();
-    this.createLightBoxElement();
-
-  },
-
-  // dispay overlay and lightbox
-  activate: function() {
-
-    var arrayPageSize = this.getPageSize();
-    $('overlay').setStyle({ width: arrayPageSize[0] + 'px', height: arrayPageSize[1] + 'px' });
-    $('overlay').appear({ duration: this.overlayDuration, from: 0.0, to: this.overlayOpacity });
-
-    // calculate top and left offset for the lightbox
-    var arrayPageScroll = document.viewport.getScrollOffsets();
-    var lightBoxTop = arrayPageScroll[1] + (document.viewport.getHeight() / 10);
-    var lightBoxLeft = arrayPageScroll[0];
-    $('lightbox').setStyle({ top: lightBoxTop + 'px', left: lightBoxLeft + 'px' }).show();
-
-    // calculate lightbox contents size
-    var contentsSize = this.getContentsSize();
-    $('lightbox_frame').setStyle({ width: contentsSize[0]  + 'px', Height: contentsSize[1]  + 'px'} );
-
-    $('lightbox').appear();
-
-  },
-
-  deactivate: function() {
-    if ($('lightbox_contents').firstDescendant()) {
-      $('lightbox_contents').firstDescendant().remove();
-    }
-    //if ($('lightbox_contents').descendants()) {
-     //$('lightbox_contents').descendants().invoke('remove')
-    //}
-    $('lightbox').hide();
-    $('overlay').fade( { duration: this.overlayDuration });
-  },
-
-  getContentsSize: function() {
-    var contents = $('lightbox_contents').firstDescendant();
-    var contentsWidth = 0;
-    var contentsHeight = 0;
-    if(contents != null) {
-      contentsWidth = contents.getWidth();
-      contentsHeight = contents.getHeight();
-    }
-    return [contentsWidth, contentsHeight];
-  },
-
-  getPageSize: function() {
-    var xScroll, yScroll;
-    xScroll = window.innerWidth + window.scrollMaxX;
-    yScroll = window.innerHeight + window.scrollMaxY;
-
-    var windowWidth, windowHeight;
-    windowWidth = document.documentElement.clientWidth;
-    windowHeight = document.documentElement.clientHeight;
-
-    // for small pages with total height less than height of the viewport
-   if (yScroll < windowHeight) {
-      pageWidth = windowHeight;
-    } else {
-      pageHeight = yScroll;
-    }
-
-    // for small pages with total width less than width of the viewport
-    if (xScroll < windowWidth) {
-      pageWidth = xScroll;
-    } else {
-      pageWidth = windowWidth;
-    }
-
-    return [pageWidth,pageHeight];
-  },
-
-  createOverlayElement: function() {
-   var overlay = new Element('div', { id : 'overlay' });
-    overlay.setStyle( tt.overlay_style );
-    $('wrapper').insert(overlay);
-    $('overlay').hide();
-  },
-
-  createLightBoxElement: function() {
-    // create lightbox element
-    var lb = new Element('div', {id: 'lightbox'});
-    lb.setStyle( tt.lb_style );
-    var lb_frame = new Element('div', {id: 'lightbox_frame'});
-    lb_frame.setStyle( tt.lb_frame_style );
-    var lb_contents = new Element('div', {id : 'lightbox_contents'});
-    close = new Element('a', {href: "#", onclick: "lightbox.deactivate();; return false;"});
-    close.insert('close');
-
-    lb_frame.insert(close);
-    lb_frame.insert(lb_contents);
-    lb.insert(lb_frame);
-
-    $('wrapper').insert(lb);
-    lb.hide();
-  }
-}
-
-var lightbox = null;
-
-document.observe('dom:loaded', function () {
-  lightbox = new Lightbox();
-});

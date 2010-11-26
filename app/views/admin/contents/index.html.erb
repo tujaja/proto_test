@@ -2,6 +2,8 @@
   <h2 class="title">コンテンツ管理</h2>
   <span class="buttons">
     <%= link_to '作成', new_admin_content_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+    <%= link_to_function '新規作成', "resource_new('contents');", { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+
   </span>
 
   <%#= render :partial => "search_form" %>
@@ -13,3 +15,5 @@
   <%#= render :partial => 'thumbs' %>
   <%= render :partial => 'records' %>
 </div>
+
+<%= javascript_include_tag "lightbox.js" %>

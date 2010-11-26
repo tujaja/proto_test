@@ -8,8 +8,10 @@ class Admin::ArtistsController < AdminController
     @artists = Artist.all
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @artists }
+      format.html
+      format.json {
+        render :json => @artists.to_json
+      }
     end
   end
 
@@ -20,7 +22,6 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @artist }
     end
   end
 
@@ -28,16 +29,23 @@ class Admin::ArtistsController < AdminController
   # GET /artists/new.xml
   def new
     @artist = Artist.new
+    @artists = Artist.all
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @artist }
+      format.js   # new.rjs
     end
   end
 
   # GET /artists/1/edit
   def edit
     @artist = Artist.find(params[:id])
+    @artists = Artist.all
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.js   # edit.rjs
+    end
   end
 
   # POST /artists
@@ -49,10 +57,15 @@ class Admin::ArtistsController < AdminController
       if @artist.save
         flash[:notice] = 'Artist was successfully created.'
         format.html { redirect_to admin_artist_path(@artist) }
-        format.xml  { render :xml => @artist, :status => :created, :location => @artist }
+        format.js {
+          @artists = Artist.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @artist.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -66,10 +79,15 @@ class Admin::ArtistsController < AdminController
       if @artist.update_attributes(params[:artist])
         flash[:notice] = 'Artist was successfully updated.'
         format.html { redirect_to admin_artist_path(@artist) }
-        format.xml  { head :ok }
+        format.js {
+          @artists = Artist.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @artist.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -82,7 +100,12 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_artists_path }
-      format.xml  { head :ok }
+      format.js {
+        @artists = Artist.all
+        render :update do |page|
+          page.replace_html 'records', :partial => 'records'
+        end
+      }
     end
   end
 end

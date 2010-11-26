@@ -14,7 +14,6 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @contents }
     end
   end
 
@@ -27,7 +26,6 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @content }
     end
   end
 
@@ -40,7 +38,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @content }
+      format.js
     end
   end
 
@@ -49,6 +47,11 @@ class Admin::ContentsController < AdminController
     @content = Content.find(params[:id])
     @info = @content.attachable_info
     @download = @info.download
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.js
+    end
   end
 
   # POST /contents
@@ -64,10 +67,15 @@ class Admin::ContentsController < AdminController
       if @content.save
         flash[:notice] = 'Content was successfully created.'
         format.html { redirect_to admin_content_path(@content) }
-        format.xml  { render :xml => @content, :status => :created, :location => @content }
+        format.js {
+          @contents = Content.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @content.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -81,10 +89,16 @@ class Admin::ContentsController < AdminController
       if @content.update_attributes(params[:content])
         flash[:notice] = 'Content was successfully updated.'
         format.html { redirect_to admin_content_path(@content) }
+        format.js {
+          @contents = Content.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @content.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,7 +111,12 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_contents_path }
-      format.xml  { head :ok }
+      format.js {
+        @contents = Content.all
+        render :update do |page|
+          page.replace_html 'records', :partial => 'records'
+        end
+      }
     end
   end
 end

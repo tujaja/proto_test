@@ -8,7 +8,9 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @labels }
+      format.json {
+        render :json => @labels.to_json
+      }
     end
   end
 
@@ -19,7 +21,6 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @label }
     end
   end
 
@@ -37,7 +38,6 @@ class Admin::LabelsController < AdminController
 
   # GET /labels/1/edit
   def edit
-    p 'edit'
     @label = Label.find(params[:id])
     @labels = Label.all
 
@@ -56,11 +56,15 @@ class Admin::LabelsController < AdminController
       if @label.save
         flash[:notice] = 'Label was successfully created.'
         format.html { redirect_to admin_labels_path }
-        format.js { @labels = Label.all }
-        format.xml  { render :xml => @label, :status => :created, :location => @label }
+        format.js {
+          @labels = Label.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @label.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -74,11 +78,15 @@ class Admin::LabelsController < AdminController
       if @label.update_attributes(params[:label])
         flash[:notice] = 'Label was successfully updated.'
         format.html { redirect_to admin_label_path(@label) }
-        format.js { @labels = Label.all }
-        format.xml  { head :ok }
+        format.js {
+          @labels = Label.all
+          render :update do |page|
+            page << "lightbox.deactivate();"
+            page.replace_html 'records', :partial => 'records'
+          end
+        }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @label.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -97,7 +105,6 @@ class Admin::LabelsController < AdminController
           page.replace_html 'records', :partial => 'records'
         end
       }
-      format.xml  { head :ok }
     end
   end
 end

@@ -1,7 +1,8 @@
 <div id="contents_header">
   <h2>アーティスト管理</h2>
   <span class="buttons">
-    <%= link_to '作成', new_admin_artist_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+    <%#= link_to '作成', new_admin_artist_path, { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+    <%= link_to_function '新規作成', "resource_new('artists');", { :style => "font-weight: 12px; padding: 5px 10px;" } %>
   </span>
 </div>
 
@@ -9,3 +10,5 @@
 <h3>アーティスト一覧</h3>
   <%= render :partial => 'records' %>
 </div>
+
+<%= javascript_include_tag "lightbox.js" %>

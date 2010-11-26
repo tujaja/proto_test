@@ -1,0 +1,6 @@
+html =  render(:partial => 'remote_form', :locals => { :url => admin_contents_path, :action_name => "作成する"})
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.lb_contents(0).update( #{html} );
+EOS

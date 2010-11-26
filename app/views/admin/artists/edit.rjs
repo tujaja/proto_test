@@ -1,0 +1,6 @@
+html =  render(:partial => 'remote_form', :locals => { :url => admin_artist_path(@artist), :action_name => "更新する"})
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.lb_contents(0).update( #{html} );
+EOS

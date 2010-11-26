@@ -1,0 +1,110 @@
+<%= f.error_messages %>
+
+<p class="txt_ess">
+  * 必須項目
+</p>
+<p>アーティスト情報</p>
+
+<table class="form">
+  <tbody>
+    <tr>
+      <th><span>*</span><%= f.label :domain, "ドメイン(固有名)" %> </th>
+      <td class="field">
+        <%= f.text_field :domain, :style => "width:300px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><span>*</span><%= f.label :name, "アーティスト名" %> </th>
+      <td class="field">
+        <%= f.text_field :name, :style => "width:300px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"> <li><span>全角半角30文字以内</span></li> </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><span>*</span><%= f.label :subname, "アーティスト名(サブ)" %> </th>
+      <td class="field">
+        <%= f.text_field :subname, :style => "width:300px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"> <li><span>全角半角30文字以内</span></li></ul>
+      </td>
+    </tr>
+
+
+    <tr>
+      <th><span>*</span><%= f.label :mail, "メールアドレス" %> </th>
+      <td class="field">
+        <%= f.text_field :mail,  :style => "width:300px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"> <li><span>(例) 3shimeji@gmail.com</span></li> </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :url, "ホームページ" %> </th>
+      <td class="field">
+        <%= f.text_field :url, :style => "width:300px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"> <li><span>(例) http://3shimeji.com</span></li> </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :url, "所属レーベル" %> </th>
+      <td class="field">
+        <p id="label_name"></p>
+        <%= f.hidden_field "label_id" %>
+        <%= link_to_function 'レーベルを選択する',
+          "label_selector(1,
+            function(label) {
+              $('artist_label_id').setValue(label.id);
+              $('label_name').update(label.name);
+            });"
+        %>
+      </td>
+      <td class="desc">
+        <ul class="list1"></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :description, "説明" %> </th>
+      <td class="field">
+        <%= f.text_area :description, :style => "width:300px; height: 200px; font-size: 14px;" %>
+      </td>
+      <td class="desc">
+        <ul class="list1"></ul>
+      </td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :related_image, "関連画像" %> </th>
+      <td class="field">
+        <p id="image_name"></p>
+        <%= f.hidden_field "related_image" %>
+        <%= link_to_function '画像を選択する',
+          "image_selector(1,
+            function(img) {
+              $('image_name').update(img.filename);
+              $('artist_related_image').setValue(img.token);
+              ElementHelper.update_image(img.token, 'thumb_image_tag', 's100');
+            });"
+        %>
+      </td>
+      <td class="desc">
+        <span id="image_wrapper">
+          <img id="thumb_image_tag" src="" />
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
