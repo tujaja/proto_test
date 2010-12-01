@@ -38,40 +38,22 @@ span.btn a:hover {
   background-color: #78576A;
 }
 
+div.btn_small {
+  padding: 3px 0;
+}
+
 span.btn_small a {
   font-size:12px;
-  padding:5px 10px;
+  padding:3px 10px;
   border-radius:3px;
   -webkit-border-radius:3px;
   -moz-border-radius:3px;
 }
 
-span.btn_b_o a {
-  background:#f96;
-  color:#111;
-}
-span.btn_w_b a {
-  background:#4ea6cc;
-  color:#fff;
-}
-
-
-span.buttons a {
-  margin:0;
-  border: none;
-  background:#4ea6cc;
-  color:#fff;
-  line-height:130%;
-  font-size:14px;
-  font-weight:normal;
-  cursor:pointer;
-  padding:10px 20px;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-}
-
-
+span.btn_bk_or a { color:#111; background:#f96;  }
+span.btn_bk_wh a { color:#111; background:#fff; }
+span.btn_bk_gr a { color:#111; background:#9C9; }
+span.btn_wh_bl a { color:#fff; background:#4ea6cc; }
 
 
 /* contents_header */
@@ -92,7 +74,6 @@ span.buttons a {
 }
 
 
-
 /* contents_main */
 #contents_main {
   padding: 10px;
@@ -103,21 +84,23 @@ span.buttons a {
     color: #333;
 }
 
+#contents_main p { padding: 3px 0; font-size: 14px; }
+#contents_main p.notice { padding: 5px 0; font-size: 16px; text-align: center; }
+
 /* thumb */
 
-#image_thumb  {
+#thumbs div.image_thumb  {
   float: left;
   background-color: #EEE;
   margin: 5px;
   padding: 10px;
   border: 3px solid #CCC;
-  /*-moz-border-radius-topleft: 3px;*/
-  /*-moz-border-radius-topright: 3px;*/
-  /*-moz-border-radius-bottomleft: 3px;*/
-  /*-moz-border-radius-bottomright: 3px;*/
-
-  height: 75px;
+  height: 100px;
+  text-align: center;
 }
+#thumbs div.image_thumb p.filename { padding: 0; font-size: 12px; }
+#thumbs div.image_thumb a img { border:2px #FFF solid;  cursor:pointer; }
+#thumbs div.image_thumb a:hover img { border:2px #333 solid;  cursor:pointer; }
 
 /* details */
 
@@ -147,7 +130,9 @@ table.form th {
 /*table.form tr { height: 38px; }*/
 table.form td { padding: 2px 10px; border-bottom: 1px dotted #333; }
 table.form td.field { width:40%; }
+  table.form td.field p { font-size: 14px; padding: 5px 0;}
 table.form td.desc { width:30%; padding:5px; background:#eee; }
+
 
 
 /* record */
@@ -223,6 +208,9 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
   padding: 5px;
 }
 
+/* login form */
+#login_form { padding: 10px; }
+#login_form p { padding: 5px 0; font-size: 14px; }
 
 /* lightbox related */
 #remote_form {
@@ -233,18 +221,37 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
   /*border: 3px solid #333;*/
 }
 
-#image_selector {
-  width: 800px;
-  margin:  0px auto;
-  padding: 0px auto;
-  /*background-color: #FFF;*/
-  /*border: 3px solid #333;*/
+#remote_form p.title { font-size: 16px; padding: 5px 0 0 0; }
+#remote_form p.need { font-size: 16px; padding: 5px 0 0 0; float: right;}
+#remote_form div.image_thumb { 
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  padding: 10px;
+  border: 3px solid #CCC;
+  height: 100px;
+  text-align: center;
 }
+#remote_form div.image_thumb p { padding: 3px 0; }
+
 
 #selector {
   width: 600px;
   margin:  0px auto;
   padding: 0px auto;
+}
+
+#selector p.title { font-size: 16px; padding: 5px 0 0 0; }
+#selector a img { border:2px #FFF solid;  cursor:pointer; }
+#selector a:hover img { border:2px #333 solid;  cursor:pointer; }
+#selector div.image_thumb { 
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  padding: 10px;
+  border: 3px solid #CCC;
+  height: 70px;
+  text-align: center;
 }
 
 #selector div.record {

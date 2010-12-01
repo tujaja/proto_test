@@ -2,10 +2,8 @@
 <% remote_form_for @content, :url => url do |f| %>
   <%= f.error_messages %>
 
-  <p class="txt_ess">
-    * 必須項目
-  </p>
-  <h3>コンテンツ情報</h3>
+  <p class="need"> * 必須項目 </p>
+  <p class="title">コンテンツ 『<%= h(@content.name) %>』 基本情報</p>
 
   <table class="form">
     <tbody>
@@ -64,18 +62,18 @@
         <td class="field">
           <% artist_name = @content.artist ? @content.artist.name : "unknown" -%>
           <% artist_id = @content.artist ? @content.artist.id : 1 -%>
-          <p id="artist_name"><%= artist_name %></p>
+          <p id="artist_name"><%= h(artist_name) %></p>
           <%= f.hidden_field "artist_id" %>
-          <div style="padding: 10px 5px;"><span class="btn btn_small btn_w_b"><%= link_to_function 'アーティストを選択する',
+          <div class="btn_small"><span class="btn btn_small btn_wh_bl"><%= link_to_function 'アーティストを選択する',
             "artist_selector(1,
               function(artist) {
                 $('content_artist_id').setValue(artist.id);
                 $('artist_name').update(artist.name);
               });"
-          %></span>
-  </div>      </td>
+            %></span></div>
+        </td>
         <td class="desc">
-          <ul class="list1"></ul>
+           <ul class="list1"></ul>
         </td>
       </tr>
 

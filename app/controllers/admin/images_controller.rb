@@ -40,7 +40,7 @@ class Admin::ImagesController < AdminController
         @images = Image.all
         html = render_to_string :partial => 'thumbs'
         render :update do |page|
-          page.replace_html 'listing_images', html
+          page.replace_html 'thumbs', html
         end
       end
     else

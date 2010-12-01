@@ -33,13 +33,15 @@ var image_selector = function(_layer, handler) {
       onComplete: function(response) { images = response.responseJSON; }
     });
 
-  // lightbox_contentsに流し込むelement
-  var thumbs = Builder.node('div', { id: 'image_selector' });
+  // Element
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, '画像を選択してください'));
   for (var i=0; i<images.length; i++) {
     var image = images[i].image;
     var img_src = '/images/up/' + image.token + '.s50.jpg';
-    var thumb = Builder.node('div', { id: 'image_thumb' },
-      [Builder.node('img', { classname: 's50', src: img_src, height: '50', width: '50' }),
+    var thumb = Builder.node('div', { className: 'image_thumb' },
+    [Builder.node('a', { href: '#' }, 
+      Builder.node('img', { className: 's50', src: img_src, height: '50px', width: '50px' })),
       Builder.node('p', image.filename)]);
     Event.observe($(thumb).select('img')[0], 'click',
     (function(img) {
@@ -49,11 +51,11 @@ var image_selector = function(_layer, handler) {
       };
     })(image));
 
-    thumbs.insert( thumb );
+    selector.insert( thumb );
   }
-  thumbs.insert( Builder.node('div', { className: 'clear' }));
+  selector.insert( Builder.node('div', { className: 'clear' }));
 
-  lightbox.lb_contents(layer).insert( thumbs );
+  lightbox.lb_contents(layer).insert( selector );
   lightbox.activate(layer);
 }
 
@@ -67,13 +69,14 @@ var label_selector = function(_layer, handler) {
       onComplete: function(response) { labels = response.responseJSON; }
     });
 
-  // lightbox_contentsに流し込むelement
-  var records = Builder.node('div', { id: 'selector' });
+  // Element
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, 'レーベルを選択してください'));
   for (var i=0; i<labels.length; i++) {
     var label = labels[i].label;
-    var row = Builder.node('div', { className: 'record' },
+    var record = Builder.node('div', { className: 'record' },
       [Builder.node('a', { href: '#' }).update(label.name)]);
-    Event.observe($(row), 'click',
+    Event.observe($(record), 'click',
     (function(l) {
       return function() {
         lightbox.deactivate(layer);
@@ -81,10 +84,10 @@ var label_selector = function(_layer, handler) {
       };
     })(label));
 
-    records.insert( row );
+    selector.insert( record );
   }
 
-  lightbox.lb_contents(layer).insert( records );
+  lightbox.lb_contents(layer).insert( selector );
   lightbox.activate(layer);
 }
 
@@ -99,12 +102,13 @@ var artist_selector = function(_layer, handler) {
     });
 
   // lightbox_contentsに流し込むelement
-  var records = Builder.node('div', { id: 'selector' });
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, 'アーティストを選択してください'));
   for (var i=0; i<artists.length; i++) {
     var artist = artists[i].artist;
-    var row = Builder.node('div', { className: 'record' },
-      [Builder.node('a', { href: '#' }).update(artist.name)]);
-    Event.observe($(row), 'click',
+    var record = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(artist.name)]);  // need to escape
+    Event.observe($(record), 'click',
     (function(l) {
       return function() {
         lightbox.deactivate(layer);
@@ -112,10 +116,42 @@ var artist_selector = function(_layer, handler) {
       };
     })(artist));
 
-    records.insert( row );
+    selector.insert( record );
   }
 
-  lightbox.lb_contents(layer).insert( records );
+  lightbox.lb_contents(layer).insert( selector );
+  lightbox.activate(layer);
+}
+
+var download_selector = function(_layer, handler) {
+  var layer = _layer || 0;
+  lightbox.setup(layer);
+
+  var url = '/admin/downloads.json';
+  var downloads = [];
+  new Ajax.Request( url, { asynchronous:false, evalScripts:true, method:'get',
+      onComplete: function(response) { downloads = response.responseJSON; }
+    });
+
+  // lightbox_contentsに流し込むelement
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, 'ダウンロードファイルを選択してください'));
+  for (var i=0; i<downloads.length; i++) {
+    var download = downloads[i].download;
+    var record = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(download.filename)]);
+    Event.observe($(record), 'click',
+    (function(dl) {
+      return function() {
+        lightbox.deactivate(layer);
+        handler(dl);
+      };
+    })(download));
+
+    selector.insert( record );
+  }
+
+  lightbox.lb_contents(layer).insert( selector );
   lightbox.activate(layer);
 }
 
@@ -131,12 +167,13 @@ var music_selector = function(_layer, artist_id,  handler) {
     });
 
   // lightbox_contentsに流し込むelement
-  var records = Builder.node('div', { id: 'selector' });
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, '曲を選択してください'));
   for (var i=0; i<contents.length; i++) {
     var content = contents[i].content;
-    var row = Builder.node('div', { className: 'record' },
+    var record = Builder.node('div', { className: 'record' },
       [Builder.node('a', { href: '#' }).update(content.name)]);
-    Event.observe($(row), 'click',
+    Event.observe($(record), 'click',
     (function(l) {
       return function() {
         lightbox.deactivate(layer);
@@ -144,10 +181,10 @@ var music_selector = function(_layer, artist_id,  handler) {
       };
     })(content.attachable_info_id));
 
-    records.insert( row );
+    selector.insert( record );
   }
 
-  lightbox.lb_contents(layer).insert( records );
+  lightbox.lb_contents(layer).insert( selector );
   lightbox.activate(layer);
 }
 

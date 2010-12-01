@@ -34,7 +34,11 @@ Lightbox.prototype = {
 
     var lb_frame = new Element('div', {className: 'lb-frame'}).setStyle( tt.lb_frame_style );
     var lb_contents = new Element('div', {className : 'lb-contents'}); // 目印として
-    var lb_close = new Element('a', {href: "#"}).update('close');
+    var lb_close = new Element('div', {className : 'lb-close'}).setStyle( tt.lb_close_style );
+    lb_close.update(
+      new Element('a', {href: "#"}).update(
+        new Element('img', { src: '/images/close.jpg', width:'16px', height:'16px' } )));
+
     Event.observe( lb_close, 'click',
       (function(self, l) {
         return function() { self.deactivate(l); };
@@ -180,3 +184,10 @@ tt.lb_frame_style = {
   border: '5px solid #333',
   backgroundColor: '#FFF'
 }
+
+tt.lb_close_style = {
+  position: 'absolute',
+  top: '5px',
+  right: '5px'
+}
+

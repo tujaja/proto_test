@@ -1,4 +1,5 @@
 <div id="records">
+<% if @labels.any? -%>
 <table class="record label">
 <tbody>
 
@@ -13,12 +14,12 @@
     <td class="name"><%= link_to h(label.name), admin_label_path(label) %></td>
     <td class="desc">
       <% unless label.activated -%>
-        <span class="btn btn_small btn_b_o"><%= link_to_function "有効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'true'});" %></span>
+        <span class="btn btn_small btn_bk_gr"><%= link_to_function "有効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'true'});" %></span>
       <% else -%>
-        <span class="btn btn_small btn_b_o"><%= link_to_function "無効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'false'});" %></span>
+        <span class="btn btn_small btn_bk_or"><%= link_to_function "無効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'false'});" %></span>
       <% end -%>
-      <span class="btn btn_small btn_w_b"><%= link_to_function "基本情報", "resource_edit('labels', #{label.id});" %></span>
-      <span class="btn btn_small btn_w_b"><%= link_to_function "関連画像", "resource_edit('labels', #{label.id}, 'edit_images');" %></span>
+      <span class="btn btn_small btn_wh_bl"><%= link_to_function "基本情報", "resource_edit('labels', #{label.id});" %></span>
+      <span class="btn btn_small btn_wh_bl"><%= link_to_function "関連画像", "resource_edit('labels', #{label.id}, 'edit_images');" %></span>
 
     </td>
     <td class="date">
@@ -32,4 +33,7 @@
 <% end %>
 </tbody>
 </table>
+<% else -%>
+  <p class="notice">レーベルは登録されていません</p>
+<% end -%>
 </div>

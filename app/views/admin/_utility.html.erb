@@ -1,15 +1,9 @@
 <div id="utility">
 <% if logged_in? %>
   <ul>
-
-    <li>Hello <%=h current_user.login %></li>
-    <%#= render :partial => "carts/cart_status" %>
-    <li><%= link_to "logout", admin_logout_path %></li>
+    <li>こんにちは <%=h current_user.login %> さん</li>
+    <li><span class="btn btn_small btn_wh_bl"><%= link_to "ログアウト", admin_logout_path %></span></li>
   </ul>
 <% end %>
-
   <div class="clear"></div>
-
 </div>
-
-

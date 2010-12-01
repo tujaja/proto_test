@@ -66,7 +66,7 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_artists_path }
-      format.js { @artist = Artist.all } # create.rjs
+      format.js { @artists = Artist.all } # create.rjs
     end
   end
 

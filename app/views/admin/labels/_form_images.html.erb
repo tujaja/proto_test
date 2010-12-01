@@ -1,15 +1,18 @@
 <div id="remote_form">
+  <p class="title">レーベル 『<%= h(@label.name) %>』 関連画像</p>
+
 <% if @images.any?  -%>
   <% @images.each do |image| %>
-  <div id="image_thumb" style="height: 100px;">
+    <div class="image_thumb">
     <ul>
     <li>
       <p><%= s50_for image %></p>
       <p><%= h(image.filename) %></p>
-      <%= link_to_function '関連解除',
+      <div class="btn_small"><span class="btn btn_small btn_bk_or">
+      <%= link_to_function '解除',
         "resource_update('labels', #{@label.id}, {command:'images', image_id:#{image.id}, flag:'false'});"
       %>
-      </p>
+      </div>
     </li>
   </ul>
   </div>
@@ -20,10 +23,12 @@
 
   <p>関連画像はありません</p>
 <% end -%>
+  <div class="btn_small" style="text-align:center;"><span class="btn btn_small btn_bk_gr">
   <%= link_to_function '画像を追加',
     "image_selector(1,
       function(img) {
         resource_update('labels', #{@label.id}, {command:'images', image_id:img.id, flag:'true'});
       });"
   %>
+  </div>
 </div>

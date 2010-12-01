@@ -1,4 +1,6 @@
-<table class="album_musics">
+<% if music_infos.any?  -%>
+
+  <table class="record">
 <tbody>
 
 <% music_infos.each do |music_info| %>
@@ -16,9 +18,11 @@
       <% if content.download %>
         <span class="mark"><%=h to_megabyte(content.download.size) %></span>
       <% end -%>
-
     </td>
   </tr>
 <% end -%>
 </tbody>
 </table>
+<% else -%>
+  <p>曲が選択されていません</p>
+<% end -%>

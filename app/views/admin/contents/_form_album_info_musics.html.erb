@@ -1,0 +1,44 @@
+<% if music_infos.any?  -%>
+
+<table class="record">
+<tbody>
+
+<% music_infos.each do |music_info| %>
+  <% content = music_info.content -%>
+  <tr>
+    <td class="thumb"><%= s25_for content.images[0] if content.images[0] %></td>
+    <td class="name">
+      <h4><%= h content.name %></h4>
+    </td>
+    <td class="info">
+      <% if content.music_info %>
+        <span class="mark"><%=h content.music_info.file_encoding %></span>
+        <span class="mark"><%=h content.music_info.time %></span>
+      <% end %>
+      <% if content.download %>
+        <span class="mark"><%=h to_megabyte(content.download.size) %></span>
+      <% end -%>
+    </td>
+    <td>
+      <div class="btn_small"><span class="btn btn_small btn_bk_or">
+          <%= link_to_function '解除', "resource_update('contents', #{@content.id}, {command:'album_info_musics', music_info_id:#{music_info.id}, flag:'false'});" %>
+      </div>
+    </td>
+  </tr>
+<% end -%>
+</tbody>
+</table>
+
+<% else -%>
+  <p>曲が選択されていません</p>
+<% end -%>
+  <div class="btn_small" style="text-align:center;"><span class="btn btn_small btn_bk_gr">
+  <%= link_to_function '曲を追加',
+    "music_selector(1, #{@content.artist.id},
+      function(music_info_id) {
+        resource_update('contents', #{@content.id}, {command:'album_info_musics', music_info_id:music_info_id, flag:'true'});
+      });"
+  %>
+  </div>
+</div>
+

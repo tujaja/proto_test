@@ -1,3 +1,7 @@
+<div id="records">
+
+<% if @orders.any? -%>
+
 <table class="record">
 <tbody>
 
@@ -18,3 +22,9 @@
 <% end %>
 </tbody>
 </table>
+
+<% else -%>
+  <p class="notice">オーダーはありません</p>
+<% end -%>
+
+</div>

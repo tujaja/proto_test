@@ -1,4 +1,7 @@
 <div id="records">
+
+<% if @contents.any? -%>
+
 <table class="record content">
 <tbody>
 
@@ -12,21 +15,21 @@
       <%= image_tag "activated.png" if content.activated %>
       <%= image_tag "inactivated.png" unless content.activated %>
     </td>
-    <td class="thumb"><%= link_to ( (s25_for (content.images[0])), admin_content_path(content.id) ) if content.images[0] != nil %></td>
+    <td class="thumb"><%= link_to ( (s25_for(content.images[0])), admin_content_path(content.id) ) if content.images[0] != nil %></td>
     <td class="name"><%= link_to h(content.name), admin_content_path(content) %></td>
     <td class="desc">
       <% unless content.activated -%>
-        <span class="btn btn_small btn_b_o"><%= link_to_function "有効化", "resource_update('contents', #{content.id}, {command:'activated', flag:'true'});" %></span>
+        <span class="btn btn_small btn_bk_gr"><%= link_to_function "有効化", "resource_update('contents', #{content.id}, {command:'activated', flag:'true'});" %></span>
       <% else -%>
-        <span class="btn btn_small btn_b_o"><%= link_to_function "無効化", "resource_update('contents', #{content.id}, {command:'activated', flag:'false'});" %></span>
+        <span class="btn btn_small btn_bk_or"><%= link_to_function "無効化", "resource_update('contents', #{content.id}, {command:'activated', flag:'false'});" %></span>
       <% end -%>
-      <span class="btn btn_small btn_w_b"><%= link_to_function "基本情報", "resource_edit('contents', #{content.id});" %></span>
-      <span class="btn btn_small btn_w_b"><%= link_to_function "関連画像", "resource_edit('contents', #{content.id}, 'edit_images');" %></span>
+      <span class="btn btn_small btn_wh_bl"><%= link_to_function "基本情報", "resource_edit('contents', #{content.id});" %></span>
+      <span class="btn btn_small btn_wh_bl"><%= link_to_function "関連画像", "resource_edit('contents', #{content.id}, 'edit_images');" %></span>
 
       <% if content.attachable_info_type == 'MusicInfo' -%>
-        <span class="btn btn_small btn_w_b"><%= link_to_function "曲情報", "resource_edit('contents', #{content.id}, 'edit_music');" %></span>
+        <span class="btn btn_small btn_wh_bl"><%= link_to_function "曲情報", "resource_edit('contents', #{content.id}, 'edit_music');" %></span>
       <% elsif content.attachable_info_type == 'AlbumInfo' -%>
-        <span class="btn btn_small btn_w_b"><%= link_to_function "アルバム情報", "resource_edit('contents', #{content.id}, 'edit_album');" %></span>
+        <span class="btn btn_small btn_wh_bl"><%= link_to_function "アルバム情報", "resource_edit('contents', #{content.id}, 'edit_album');" %></span>
       <% end -%>
 
     </td>
@@ -41,4 +44,9 @@
 <% end %>
 </tbody>
 </table>
+
+<% else -%>
+  <p class="notice">コンテンツはありません</p>
+<% end -%>
+
 </div>

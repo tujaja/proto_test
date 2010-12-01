@@ -4,6 +4,13 @@ class Admin::DownloadsController < AdminController
   def index
     @downloads = Download.find(:all)
     @download = Download.new(params[:download])
+
+    respond_to do |format|
+      format.html
+      format.json {
+        render :json => @downloads.to_json
+      }
+    end
   end
 
   def dl
@@ -35,7 +42,7 @@ class Admin::DownloadsController < AdminController
         @downloads = Download.all
         html = render_to_string :partial => 'records'
         render :update do |page|
-          page.replace_html 'listing_downloads', html
+          page.replace_html 'records', html
         end
       end
     else

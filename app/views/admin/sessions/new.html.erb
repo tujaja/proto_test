@@ -1,9 +1,10 @@
 <div id="contents_header">
-  <h2>Admin Log In</h2>
+  <h2>管理ページ ログイン</h2>
 </div>
 
 <div id="contents_main">
 
+<div id="login_form">
 <% form_tag admin_session_path do -%>
 <p><%= label_tag 'login' %><br />
 <%= text_field_tag 'login', @login %></p>
@@ -19,6 +20,4 @@
 <p><%= submit_tag 'Log in' %></p>
 <% end -%>
 </div>
-
-<div id="contents_footer">
 </div>

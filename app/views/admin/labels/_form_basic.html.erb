@@ -2,10 +2,8 @@
 <% remote_form_for @label, :url => url do |f| %>
   <%= f.error_messages %>
 
-  <p class="txt_ess">
-    * 必須項目
-  </p>
-  <p>レーベル情報</p>
+  <p class="need"> * 必須項目 </p>
+  <p class="title">レーベル 『<%= h(@label.name) %>』 基本情報</p>
 
   <table class="form">
     <tbody>
