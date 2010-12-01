@@ -11,7 +11,7 @@
       <span class="mark"><%=h to_megabyte(download.size) %></span>
     </td>
     <td class"date">
-      <span class="mark"><%=h to_japan_time(download.created_at) %></span>
+      <span class="mark"><%=h to_japan_time(download.updated_at) %></span>
     </td>
     <td class="gadget">
       <%= link_to (image_tag "download.png", :alt => "download"), dl_admin_download_path(download.id) %>

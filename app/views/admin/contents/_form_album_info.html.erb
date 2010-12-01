@@ -10,7 +10,7 @@
         <td class="field" style="width: 400px;">
           <% download_name = @album_info.download ? @album_info.download.filename : "unknown" -%>
           <% download_id = @album_info.download ? @album_info.download.id : 0 -%>
-          <p id="download_name"><%= download_name %></p>
+          <p id="download_name"><%= h(download_name) %></p>
           <%= f.hidden_field "download_id", { :value => download_id } %>
           <div class="btn_small"><span class="btn btn_small btn_wh_bl">
             <%= link_to_function 'ダウンロードファイルを選択する',

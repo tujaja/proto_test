@@ -4,8 +4,13 @@
 
   <p><%=h @label.description %></p>
 
-  <dl><dt>URL</dt> <dd><%=h @label.url %></dd></dl>
-  <dl><dt>email</dt> <dd><%=h @label.email %></dd></dl>
+  <% if @label.url != "" %>
+    <dl><dt>URL</dt> <dd><%=h @label.url %></dd></dl>
+  <% end %>
+
+  <% if @label.email != "" %>
+    <dl><dt>email</dt> <dd><%=h @label.email %></dd></dl>
+  <% end %>
 
   <% if @label.address != "" %>
     <dl><dt>Address</dt> <dd><%=h @label.address %></dd></dl>

@@ -12,7 +12,7 @@
       <%= image_tag "activated.png" if artist.activated %>
       <%= image_tag "inactivated.png" unless artist.activated %>
     </td>
-    <td class="thumb"><%= link_to ( (s25_for(artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
+    <td class="thumb"><%= link_to((s25_for(artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
     <td class="name"><%= link_to h(artist.name), admin_artist_path(artist) %></td>
     <td class="desc">
       <% unless artist.activated -%>
@@ -25,7 +25,7 @@
 
     </td>
     <td class="date">
-      <span class="mark"><%=h to_japan_time(artist.created_at) %></span>
+      <span class="mark"><%=h to_japan_time(artist.updated_at) %></span>
     </td>
     <td class="gadget">
       <%= link_to_remote (image_tag "delete.png", :alt => "delete"),

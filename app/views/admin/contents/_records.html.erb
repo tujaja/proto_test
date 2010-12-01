@@ -15,7 +15,7 @@
       <%= image_tag "activated.png" if content.activated %>
       <%= image_tag "inactivated.png" unless content.activated %>
     </td>
-    <td class="thumb"><%= link_to ( (s25_for(content.images[0])), admin_content_path(content.id) ) if content.images[0] != nil %></td>
+    <td class="thumb"><%= link_to((s25_for(content.images[0])), admin_content_path(content.id) ) if content.images[0] != nil %></td>
     <td class="name"><%= link_to h(content.name), admin_content_path(content) %></td>
     <td class="desc">
       <% unless content.activated -%>
@@ -29,12 +29,12 @@
       <% if content.attachable_info_type == 'MusicInfo' -%>
         <span class="btn btn_small btn_wh_bl"><%= link_to_function "曲情報", "resource_edit('contents', #{content.id}, 'edit_music');" %></span>
       <% elsif content.attachable_info_type == 'AlbumInfo' -%>
-        <span class="btn btn_small btn_wh_bl"><%= link_to_function "アルバム情報", "resource_edit('contents', #{content.id}, 'edit_album');" %></span>
+        <span class="btn btn_small btn_wh_bl"><%= link_to_function "アルバム情報", "resource_edit('contents', #{content.id}, 'edit_album');" %></span
       <% end -%>
 
     </td>
     <td class="date">
-      <span class="mark"><%=h to_japan_time(content.created_at) %></span>
+      <span class="mark"><%=h to_japan_time(content.updated_at) %></span>
     </td>
     <td class="gadget">
       <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
