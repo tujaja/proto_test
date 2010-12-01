@@ -67,13 +67,15 @@ Lightbox.prototype = {
     this.lb(layer).show();
   },
 
-  deactivate: function(_layer) {
+  deactivate: function(_layer, _duration) {
     var layer = _layer || 0;
+    var dur = _duration || this.overlay_duration;
+
     var contents = this.lb_contents(layer);
     if (contents) { contents.remove(); }
     this.lb(layer).remove();
     if (layer == 0) {
-      $('overlay').fade( { duration: this.overlay_duration });
+      $('overlay').fade( { duration: dur });
     } else {
       $('overlay').setStyle({ zIndex: this.lb_zindex(layer-1)-1 });
     }

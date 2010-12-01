@@ -1,16 +1,27 @@
+// new
 var resource_new = function(resource) {
-  lightbox.setup();
   new Ajax.Request(
       '/admin/' + resource + '/new', { asynchronous:false, evalScript:true, method:'get' } );
-  lightbox.activate();
 }
 
-var resource_edit = function(resource, id) {
-  lightbox.setup();
-  var url = '/admin/' + resource + '/' + id + '/edit';
+// edit
+var resource_edit = function(resource, id, _command)  {
+  var command = _command || 'edit'; // or 'edit_images'
+  var url = '/admin/' + resource + '/' + id + '/' + command;
   new Ajax.Request( url, { asynchronous:false, evalScript:true, method:'get' } );
-  lightbox.activate();
 }
+
+// update
+var resource_update = function(resource, id, _params) {
+  var params = _params || {};
+  var url = '/admin/' + resource + '/' + id;
+
+  new Ajax.Request( url, { asynchronous:false, evalScript:true, method:'put',
+    parameters:params } );
+}
+
+/////////////////////////////////////////////////////////////////////////////////////
+
 
 var image_selector = function(_layer, handler) {
   var layer = _layer || 0;
@@ -23,8 +34,7 @@ var image_selector = function(_layer, handler) {
     });
 
   // lightbox_contentsに流し込むelement
-  var thumbs = Builder.node('div', { className: 'thumbs' });
-  thumbs.setStyle({width:'800px'});
+  var thumbs = Builder.node('div', { id: 'image_selector' });
   for (var i=0; i<images.length; i++) {
     var image = images[i].image;
     var img_src = '/images/up/' + image.token + '.s50.jpg';
@@ -58,12 +68,11 @@ var label_selector = function(_layer, handler) {
     });
 
   // lightbox_contentsに流し込むelement
-  var records = Builder.node('div', { className: 'records' });
-  records.setStyle({width:'400px'});
+  var records = Builder.node('div', { id: 'selector' });
   for (var i=0; i<labels.length; i++) {
     var label = labels[i].label;
-    var row = Builder.node('div', { id: 'record' },
-      [Builder.node('p', label.name)]);
+    var row = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(label.name)]);
     Event.observe($(row), 'click',
     (function(l) {
       return function() {
@@ -90,12 +99,11 @@ var artist_selector = function(_layer, handler) {
     });
 
   // lightbox_contentsに流し込むelement
-  var records = Builder.node('div', { className: 'records' });
-  records.setStyle({width:'400px'});
+  var records = Builder.node('div', { id: 'selector' });
   for (var i=0; i<artists.length; i++) {
     var artist = artists[i].artist;
-    var row = Builder.node('div', { id: 'record' },
-      [Builder.node('p', artist.name)]);
+    var row = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(artist.name)]);
     Event.observe($(row), 'click',
     (function(l) {
       return function() {
@@ -110,3 +118,36 @@ var artist_selector = function(_layer, handler) {
   lightbox.lb_contents(layer).insert( records );
   lightbox.activate(layer);
 }
+
+
+var music_selector = function(_layer, artist_id,  handler) {
+  var layer = _layer || 0;
+  lightbox.setup(layer);
+
+  var url = '/admin/contents/musics/' + artist_id + '.json';
+  var contents = [];
+  new Ajax.Request( url, { asynchronous:false, evalScripts:true, method:'get',
+      onComplete: function(response) { contents = response.responseJSON; }
+    });
+
+  // lightbox_contentsに流し込むelement
+  var records = Builder.node('div', { id: 'selector' });
+  for (var i=0; i<contents.length; i++) {
+    var content = contents[i].content;
+    var row = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(content.name)]);
+    Event.observe($(row), 'click',
+    (function(l) {
+      return function() {
+        lightbox.deactivate(layer);
+        handler(l);
+      };
+    })(content.attachable_info_id));
+
+    records.insert( row );
+  }
+
+  lightbox.lb_contents(layer).insert( records );
+  lightbox.activate(layer);
+}
+

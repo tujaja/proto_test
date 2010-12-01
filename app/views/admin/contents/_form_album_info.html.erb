@@ -1,0 +1,65 @@
+<div id="remote_form">
+<% remote_form_for @album_info, :url => url do |f| %>
+  <p class="txt_ess">
+    * 必須項目
+  </p>
+  <h3>コンテンツ『<%= @content.name %>』アルバム情報</h3>
+  <table class="form">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :download_id, "コンテンツファイル" %> </th>
+        <td style="width: 37%">
+        <%#= f.collection_select "download_id", Download.find(:all), :token, :filename %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <span id="download_wrapper">
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :file_encoding, "エンコーディング" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :file_encoding, :style => "width:150px; font-size: 14px;", :value => @album_info.file_encoding %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <%= hidden_field_tag("command", "album_info") %>
+  <p class="buttons"><%= f.submit action_name %> </p>
+<% end -%>
+
+<%# ---------------------------------------------------------------------- -%>
+
+<p>収録曲</p>
+
+<% music_infos = @album_info.music_infos -%>
+<% if music_infos.any?  -%>
+  <table class="album_musics">
+    <tbody>
+    <% music_infos.each do |music_info| %>
+      <% content = music_info.content -%>
+      <tr>
+        <td class="thumb"><%= link_to((s25_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
+        <td class="name">
+          <h4><%= link_to h(content.name), content_path(content.domain) %></h4>
+        </td>
+        <td class="info">
+          <%= link_to_function '関連解除', "resource_update('contents', #{@content.id}, {command:'album_info_musics', music_info_id:#{music_info.id}, flag:'false'});" %>
+        </td>
+      </tr>
+    <% end -%>
+    </tbody>
+  </table>
+<% else -%>
+  <p>曲が選択されていません</p>
+<% end -%>
+  <%= link_to_function '曲を追加',
+    "music_selector(1, #{@content.artist.id},
+      function(music_info_id) {
+        resource_update('contents', #{@content.id}, {command:'album_info_musics', music_info_id:music_info_id, flag:'true'});
+      });"
+  %>
+</div>

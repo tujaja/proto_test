@@ -3,6 +3,8 @@ class CreateArtists < ActiveRecord::Migration
     create_table :artists do |t|
       t.string  :token,        :null => false, :limit => 50
       t.string  :domain,       :null => false, :limit => 30
+      t.boolean :activated,    :default => false, :null => false
+
       t.string  :name,         :null => false, :limit => 30
       t.string  :subname,      :limit => 30
       t.text    :description,  :limit => 500

@@ -1,3 +1,5 @@
+/* colors */
+
 
 /* generic parts */
 span.mark  {
@@ -24,13 +26,42 @@ p.txt_ess span, p.txt_ess2 span, th span {
 
 p.buttons,div.buttons{text-align:center;}
 
-.buttons a,.buttons button{
+span.btn a {
+  margin:0;
+  border: none;
+  font-weight:normal;
+  cursor:pointer;
+}
+
+span.btn a:hover {
+  color: #D5B006;
+  background-color: #78576A;
+}
+
+span.btn_small a {
+  font-size:12px;
+  padding:5px 10px;
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+}
+
+span.btn_b_o a {
+  background:#f96;
+  color:#111;
+}
+span.btn_w_b a {
+  background:#4ea6cc;
+  color:#fff;
+}
+
+
+span.buttons a {
   margin:0;
   border: none;
   background:#4ea6cc;
   color:#fff;
   line-height:130%;
-  font-family:Arial, Verdana;
   font-size:14px;
   font-weight:normal;
   cursor:pointer;
@@ -39,6 +70,9 @@ p.buttons,div.buttons{text-align:center;}
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
 }
+
+
+
 
 /* contents_header */
 #contents_header {
@@ -129,17 +163,23 @@ table.record {
 /*40 40 200 (280) 180 40*/
 
 table.record tr { height: 40px; }
+table.record tr.inactivated { background-color: #DDD; }
+
+
 table.record td { padding: 5px 5px; border-bottom: 1px solid #CCC; }
 table.record td.id { width: 40px; text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
-table.record td.thumb {width:40px;text-align:center;background:#efffef;cursor:pointer;}
+table.record td.activated { width: 20px; text-align:center; }
+/*table.record td.thumb {width:40px;text-align:center;background:#efffef;cursor:pointer;}*/
+table.record td.thumb {width:30px;text-align:center;cursor:pointer;}
   table.record td.thumb a img{border:2px #fff solid;cursor:pointer; }
   table.record td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
-table.record td.name { width:200px; }
+table.record td.name { width:150px; }
   table.record td.name a { color: #333; }
   table.record td.name a:hover { color: #D5B006; background-color: #78576A; }
-table.record td.desc {width:230px; }
-table.record td.date { width: 180px; text-align: right; }
-table.record td.gadget { width: 40px; text-align: right; }
+table.record td.desc {width:330px; }
+table.record td.date { width: 150px; text-align: right; }
+  table.record td.date span.mark { background-color: #9c9; }
+table.record td.gadget { width: 20px; text-align: right; }
 
 /*table.download td.desc {width:240px;}*/
 /*table.download td.gadget {text-align: right; width:50px;}*/
@@ -183,3 +223,40 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
   padding: 5px;
 }
 
+
+/* lightbox related */
+#remote_form {
+  width: 800px;
+  margin:  0px auto;
+  padding: 0px auto;
+  /*background-color: #FFF;*/
+  /*border: 3px solid #333;*/
+}
+
+#image_selector {
+  width: 800px;
+  margin:  0px auto;
+  padding: 0px auto;
+  /*background-color: #FFF;*/
+  /*border: 3px solid #333;*/
+}
+
+#selector {
+  width: 600px;
+  margin:  0px auto;
+  padding: 0px auto;
+}
+
+#selector div.record {
+  padding: 3px 0;
+  border-bottom: 1px dotted #333;
+}
+
+#selector div.record a {
+  /*border-bottom: 1px dotted #333;*/
+  color: #111;
+}
+#selector div.record a:hover {
+  color: #D5B006;
+  background-color: #78576A;
+}

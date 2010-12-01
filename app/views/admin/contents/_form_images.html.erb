@@ -1,0 +1,30 @@
+<div id="remote_form">
+<% if @images.any?  -%>
+  <% @images.each do |image| %>
+  <div id="image_thumb" style="height: 100px;">
+    <ul>
+    <li>
+      <p><%= s50_for image %></p>
+      <p><%= h(image.filename) %></p>
+      <p><%= link_to_function '関連解除',
+        "resource_update('contents', #{@content.id}, {command:'images', image_id:#{image.id}, flag:'false'});"
+      %>
+      </p>
+    </li>
+  </ul>
+  </div>
+  <% end %>
+
+  <div class="clear"></div>
+<% else -%>
+
+  <p>関連画像はありません</p>
+<% end -%>
+  <%= link_to_function '画像を追加',
+    "image_selector(1,
+      function(img) {
+        resource_update('contents', #{@content.id}, {command:'images', image_id:img.id, flag:'true'});
+      });"
+  %>
+</div>
+

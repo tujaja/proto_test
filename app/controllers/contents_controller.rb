@@ -10,11 +10,15 @@ class ContentsController < StoreController
   def show
     p; p "C===Content#show domain=#{params[:id]}"
     @content = Content.find_by_domain(params[:id])
+    if !@content || !@content.activated
+      render :file => "store/404", :status => "404 Not Found", :layout => 'store'
+      return
+    end
   end
 
-  # GET /contents/singles
-  def singles
-    p; p 'C===Contents#singles'
+  # GET /contents/musics
+  def musics
+    p; p 'C===Contents#musics'
     @contents = Content.find(:all, :conditions => { :attachable_info_type => "MusicInfo" })
     render :action => :index
   end

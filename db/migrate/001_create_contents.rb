@@ -3,6 +3,8 @@ class CreateContents < ActiveRecord::Migration
     create_table :contents do |t|
       t.string  :token,        :null => false, :limit => 50
       t.string  :domain,       :null => false, :limit => 30
+      t.boolean :activated,    :default => false, :null => false
+
       t.string  :name,         :null => false, :limit => 30
       t.string  :subname,      :limit => 30
       t.integer :price,        :default => 0, :null => false, :limit => 10

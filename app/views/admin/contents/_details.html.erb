@@ -12,7 +12,7 @@
   <dl><dt>ドメイン(固有名)</dt><dd><%=h @content.domain %></dd></dl>
   <dl><dt>識別子</dt><dd><%=h @content.token %></dd></dl>
 
-  <%= render :partial => "music_info" if @content.music_info %>
-  <%= render :partial => "album_info" if @content.album_info %>
+  <%= render :partial => "details_music_info" if @content.music_info %>
+  <%= render :partial => "details_album_info" if @content.album_info %>
 
 </div>

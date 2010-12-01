@@ -1,13 +1,15 @@
 <% if @labels.any? %>
   <% @labels.each do |label| %>
+  <% if label.activated -%>
     <div id="thumb" class="label">
     <ul>
       <li>
-        <p><%= link_to (s100_for label.images[0]), label_path(label.domain)  %></p>
+        <p><%= link_to (s100_for label.images[0]), label_path(label.domain) if label.images[0] %></p>
         <p><%= link_to h(label.name), label_path(label.domain) %></p>
       </li>
     </ul>
     </div>
+  <% end %>
   <% end %>
 <% end %>
 <div class="clear"></div>

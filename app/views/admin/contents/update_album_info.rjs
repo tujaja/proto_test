@@ -1,0 +1,7 @@
+page.replace_html 'records', :partial => 'records'
+html =  render(:partial => 'form_album_info', :locals => { :url => admin_content_path(@content), :action_name => "更新する"})
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.lb_contents(0).update( #{html} );
+EOS

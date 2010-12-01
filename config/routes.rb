@@ -17,7 +17,17 @@ ActionController::Routing::Routes.draw do |map|
   map.admin_mails  '/admin/mail',  :controller => 'admin/mails', :action => 'index'
   map.admin_mails_send  '/admin/mail/send_mail',  :controller => 'admin/mails', :action => 'send_mail'
 
-  map.resources(:contents, :collection => { :albums => :get, :singles => :get })
+  map.admin_label_images '/admin/labels/:id/edit_images', :controller => 'admin/labels', :action => 'edit_images', :conditions => { :method => :get }
+  map.admin_artist_images '/admin/artists/:id/edit_images', :controller => 'admin/artists', :action => 'edit_images', :conditions => { :method => :get }
+
+  map.admin_content_edit_images '/admin/contents/:id/edit_images', :controller => 'admin/contents', :action => 'edit_images', :conditions => { :method => :get }
+  map.admin_content_edit_music '/admin/contents/:id/edit_music', :controller => 'admin/contents', :action => 'edit_music_info', :conditions => { :method => :get }
+  map.admin_content_edit_album '/admin/contents/:id/edit_album', :controller => 'admin/contents', :action => 'edit_album_info', :conditions => { :method => :get }
+
+  map.admin_content_musics '/admin/contents/musics/:id.:format', :controller => 'admin/contents', :action => 'musics', :conditions => { :method => :get }
+
+
+  map.resources(:contents, :collection => { :albums => :get, :musics => :get })
   map.resources :artists
   map.resources :labels
 
@@ -29,9 +39,10 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :contents
     admin.resources :artists
+    #admin.resources(:labels, :member => { :images => :get })
     admin.resources :labels
     admin.resources :images
-    admin.resources(:downloads, :member => [:dl] )
+    admin.resources(:downloads, :member => { :dl => :get })
     admin.resource  :session
     admin.resources :users
     admin.resources :orders

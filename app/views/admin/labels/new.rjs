@@ -1,6 +1,8 @@
-html =  render(:partial => 'remote_form', :locals => { :url => admin_labels_path, :action_name => "作成する"})
+html =  render(:partial => 'form_basic', :locals => { :url => admin_labels_path, :action_name => "作成する"})
 html = ::ActiveSupport::JSON.encode(html)
 
 page << <<-EOS
+  lightbox.setup(0);
   lightbox.lb_contents(0).update( #{html} );
+  lightbox.activate(0);
 EOS

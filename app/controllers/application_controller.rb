@@ -8,7 +8,16 @@ class ApplicationController < ActionController::Base
 
   include SslRequirement
 
-
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+  protected
+
+  def notice_for str
+    flash[:notice] = "#{str}  (#{to_japan_time(Time.now)})"
+  end
+
+  def to_japan_time time
+    "#{time.year}年#{time.month}月#{time.day}日#{time.hour}時#{time.min}分"
+  end
 end

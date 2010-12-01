@@ -1,0 +1,18 @@
+<div id="related_images">
+<% if @images.any?  -%>
+  <% @images.each do |image| %>
+  <div id="image_thumb" style="height: 100px;">
+    <ul>
+    <li>
+      <p><%= s50_for image %></p>
+      <p><%= h(image.filename) %></p>
+    </li>
+  </ul>
+  </div>
+  <% end %>
+
+  <div class="clear"></div>
+<% else -%>
+  <p>関連画像はありません</p>
+<% end -%>
+</div>

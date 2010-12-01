@@ -3,22 +3,28 @@
 <tbody>
 
 <% @artists.each do |artist| %>
-  <tr>
+  <tr <%= "class=inactivated" unless artist.activated %> >
     <td class="id"><%=h artist.id %></td>
+    <td class="activated">
+      <%= image_tag "activated.png" if artist.activated %>
+      <%= image_tag "inactivated.png" unless artist.activated %>
+    </td>
     <td class="thumb"><%= link_to ( (s25_for (artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
-    <td class="name"><%= link_to artist.name, admin_artist_path(artist) %></td>
+    <td class="name"><%= link_to h(artist.name), admin_artist_path(artist) %></td>
     <td class="desc">
-      <span class="mark"><%=h (artist.label.name) %></span>
+      <% unless artist.activated -%>
+        <span class="btn btn_small btn_b_o"><%= link_to_function "有効化", "resource_update('artists', #{artist.id}, {command:'activated', flag:'true'});" %></span>
+      <% else -%>
+        <span class="btn btn_small btn_b_o"><%= link_to_function "無効化", "resource_update('artists', #{artist.id}, {command:'activated', flag:'false'});" %></span>
+      <% end -%>
+      <span class="btn btn_small btn_w_b"><%= link_to_function "基本情報", "resource_edit('artists', #{artist.id});" %></span>
+      <span class="btn btn_small btn_w_b"><%= link_to_function "関連画像", "resource_edit('artists', #{artist.id}, 'edit_images');" %></span>
+
     </td>
     <td class="date">
       <span class="mark"><%=h to_japan_time(artist.created_at) %></span>
     </td>
     <td class="gadget">
-      <%#= link_to (image_tag "update.png", :alt => "update"), edit_admin_artist_path(artist) %>
-      <%#= link_to (image_tag "delete.png", :alt => "delete"), admin_artist_path(artist), :confirm => 'Are you sure?', :method => :delete %>
-
-      <%= link_to_function (image_tag "update.png", :alt => "update"),
-        "resource_edit('artists', #{artist.id});" %>
       <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
         :url => admin_artist_path(artist.id), :method => :delete %>
 

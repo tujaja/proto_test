@@ -3,20 +3,28 @@
 <tbody>
 
 <% @labels.each do |label| %>
-  <tr>
+  <tr <%= "class=inactivated" unless label.activated %> >
     <td class="id"><%=h label.id %></td>
+    <td class="activated">
+      <%= image_tag "activated.png" if label.activated %>
+      <%= image_tag "inactivated.png" unless label.activated %>
+    </td>
     <td class="thumb"><%= link_to((s25_for label.images[0]), admin_label_path(label.id)) if label.images[0] != nil %></td>
     <td class="name"><%= link_to h(label.name), admin_label_path(label) %></td>
     <td class="desc">
+      <% unless label.activated -%>
+        <span class="btn btn_small btn_b_o"><%= link_to_function "有効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'true'});" %></span>
+      <% else -%>
+        <span class="btn btn_small btn_b_o"><%= link_to_function "無効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'false'});" %></span>
+      <% end -%>
+      <span class="btn btn_small btn_w_b"><%= link_to_function "基本情報", "resource_edit('labels', #{label.id});" %></span>
+      <span class="btn btn_small btn_w_b"><%= link_to_function "関連画像", "resource_edit('labels', #{label.id}, 'edit_images');" %></span>
+
     </td>
     <td class="date">
       <span class="mark"><%=h to_japan_time(label.created_at) %></span>
     </td>
     <td class="gadget">
-      <%#= link_to (image_tag "update.png", :alt => "update"), edit_admin_label_path(label) %>
-      <%#= link_to (image_tag "delete.png", :alt => "delete"), admin_label_path(label), :confirm => 'Are you sure?', :method => :delete %>
-      <%= link_to_function (image_tag "update.png", :alt => "update"),
-        "resource_edit('labels', #{label.id});" %>
       <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
         :url => admin_label_path(label.id), :method => :delete %>
     </td>

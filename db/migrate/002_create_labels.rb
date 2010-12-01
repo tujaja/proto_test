@@ -3,11 +3,13 @@ class CreateLabels < ActiveRecord::Migration
     create_table :labels do |t|
       t.string  :token,        :null => false, :limit => 50
       t.string  :domain,       :null => false, :limit => 30
+      t.boolean :activated,    :default => false, :null => false
+
       t.string  :name,         :null => false, :limit => 30
       t.string  :subname,      :limit => 30
       t.text    :description,  :limit => 200
       t.string  :url,          :limit => 50
-      t.string  :email,         :limit => 50
+      t.string  :email,        :limit => 50
       t.string  :address,      :limit => 50
       t.string  :phone,        :limit => 15
 

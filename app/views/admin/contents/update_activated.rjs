@@ -1,0 +1,10 @@
+#page << <<-EOS
+  #lightbox.setup(0);
+  #lightbox.lb_contents(0).update( '<div id="indicator">確定します</div>' );
+  #lightbox.activate(0);
+#EOS
+
+page.replace_html 'records', :partial => 'records'
+page[:notice].replace :partial => "admin/notice"
+page.visual_effect :highlight, 'notice'
+

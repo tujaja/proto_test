@@ -86,7 +86,10 @@
   border: 1px solid #333;
   height: 40px;
   padding: 5px;
-  font-size: 16px;
+}
+#notice p {
+  padding: 5px;
+  font-size: 14px;
 }
 
 /*================================================*/
@@ -98,13 +101,7 @@
   border: 1px solid #333;
 }
 
-#remote_form {
-  width: 800px;
-  margin:  0px auto;
-  padding: 0px auto;
-  /*background-color: #FFF;*/
-  /*border: 3px solid #333;*/
-}
+
 
 
 /*================================================*/

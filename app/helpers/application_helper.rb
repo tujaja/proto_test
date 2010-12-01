@@ -30,6 +30,6 @@ module ApplicationHelper
   end
 
   def to_japan_time time
-    "#{time.year}年#{time.month}月#{time.day}日 #{time.hour}時 #{time.min}分"
+    "#{time.year}年#{time.month}月#{time.day}日#{time.hour}時#{time.min}分"
   end
 end

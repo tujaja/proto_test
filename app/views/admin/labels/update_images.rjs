@@ -1,0 +1,7 @@
+page.replace_html 'records', :partial => 'records'
+html =  render(:partial => 'form_images')
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.lb_contents(0).update( #{html} );
+EOS

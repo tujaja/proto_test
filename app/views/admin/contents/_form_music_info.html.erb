@@ -1,0 +1,52 @@
+<div id="remote_form">
+<% remote_form_for @music_info, :url => url do |f| %>
+  <p class="txt_ess">
+    * 必須項目
+  </p>
+  <h3>コンテンツ「<%= @content.name %>」楽曲情報</h3>
+  <table class="form">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :download_id, "コンテンツファイル" %> </th>
+        <td style="width: 37%">
+        <%#= f.collection_select "download_id", Download.find(:all), :token, :filename %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <span id="download_wrapper">
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :file_encoding, "エンコーディング" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :file_encoding, :style => "width:150px; font-size: 14px;", :value => @music_info.file_encoding %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :time, "プレイ時間" %> </th>
+        <td style="width: 37%">
+          <%= f.text_field :time, :style => "width:150px; font-size: 14px;", :value => @music_info.time %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :lyric, "歌詞" %> </th>
+        <td style="width: 37%">
+          <%= f.text_area :lyric, :style => "width:300px; height:200px; font-size: 14px;", :value => @music_info.lyric %>
+        </td>
+        <td class="tableTypeForm1End" style="width: 38%">
+          <ul class="list1"> <li><span>200文字以内</span></li> </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <%= hidden_field_tag("command", "music_info") %>
+  <p class="buttons"><%= f.submit action_name %> </p>
+<% end -%>
+</div>

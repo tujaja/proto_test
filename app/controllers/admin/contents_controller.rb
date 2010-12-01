@@ -2,11 +2,7 @@ class Admin::ContentsController < AdminController
   before_filter :check_admin_authentication
 
   # GET /contents
-  # GET /contents.xml
   def index
-    p
-    p 'C===Admin::Contents#index'
-
     #@contents = Content.all
     @contents = Content.paginate(:page => params[:page],
                                  :order => 'contents.id asc',
@@ -17,11 +13,17 @@ class Admin::ContentsController < AdminController
     end
   end
 
-  # GET /contents/1
-  # GET /contents/1.xml
-  def show
-    p 'C===Admin::Contents#show'
+  # GET /contents/musics/1
+  def musics
+    @musics = Content.find(:all, :conditions => { :artist_id => params[:id], :attachable_info_type => "MusicInfo" })
+    respond_to do |format|
+      #format.html # index.html.erb
+      format.json { render :json => @musics.to_json }
+    end
+  end
 
+  # GET /contents/1
+  def show
     @content = Content.find(params[:id])
 
     respond_to do |format|
@@ -30,93 +32,206 @@ class Admin::ContentsController < AdminController
   end
 
   # GET /contents/new
-  # GET /contents/new.xml
   def new
     @content = Content.new
-    @info = MusicInfo.new
-    @download = Download.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.js
+      format.js { @contents = Content.all } # new.rjs
     end
   end
 
   # GET /contents/1/edit
   def edit
     @content = Content.find(params[:id])
-    @info = @content.attachable_info
-    @download = @info.download
 
     respond_to do |format|
       format.html # new.html.erb
-      format.js
+      format.js { @contents = Content.all } # edit.rjs
+    end
+  end
+
+  # GET /labels/1/edit_images
+  def edit_images
+    @content = Content.find(params[:id])
+    @images = @content.images
+
+    respond_to do |format|
+      format.html # edit_images.html.erb
+      format.js   # edit_images.rjs
+    end
+  end
+
+  # GET /labels/1/edit_music_info
+  def edit_music_info
+    @content = Content.find(params[:id])
+    @music_info = @content.music_info
+    @music_info = MusicInfo.new unless @music_info
+
+    respond_to do |format|
+      format.html # edit_music.html.erb
+      format.js   # edit_music.rjs
+    end
+  end
+
+  # GET /labels/1/edit_album_info
+  def edit_album_info
+    @content = Content.find(params[:id])
+    @album_info = @content.album_info
+    @album_info = AlbumInfo.new unless @album_info
+
+    respond_to do |format|
+      format.html # edit_album.html.erb
+      format.js   # edit_album.rjs
     end
   end
 
   # POST /contents
-  # POST /contents.xml
   def create
-    p params[:content]
-    p params[:music_info]
+    p 'create'
+    p params
     @content = Content.new(params[:content])
-    @info = MusicInfo.new(params[:music_info])
+
+    if params[:content][:attachable_info_type] == 'MusicInfo'
+      @info = MusicInfo.create
+    elsif params[:content][:attachable_info_type] == 'AlbumInfo'
+      @info = AlbumInfo.create
+    end
     @content.attachable_info = @info
+    saved = @content.save
+
+    info = saved ? "コンテンツ 「#{@content.name}」 を作成しました" : "コンテンツの作成に失敗しました"
+    notice_for info
 
     respond_to do |format|
-      if @content.save
-        flash[:notice] = 'Content was successfully created.'
-        format.html { redirect_to admin_content_path(@content) }
-        format.js {
-          @contents = Content.all
-          render :update do |page|
-            page << "lightbox.deactivate();"
-            page.replace_html 'records', :partial => 'records'
-          end
-        }
-      else
-        format.html { render :action => "new" }
-      end
+      format.html { redirect_to admin_labels_path }
+      format.js { @contents = Content.all } # create.rjs
     end
+
   end
 
   # PUT /contents/1
-  # PUT /contents/1.xml
   def update
     @content = Content.find(params[:id])
 
-    respond_to do |format|
-      if @content.update_attributes(params[:content])
-        flash[:notice] = 'Content was successfully updated.'
-        format.html { redirect_to admin_content_path(@content) }
-        format.js {
-          @contents = Content.all
-          render :update do |page|
-            page << "lightbox.deactivate();"
-            page.replace_html 'records', :partial => 'records'
-          end
-        }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-      end
+    case params[:command]
+    when "basic"
+      update_basic
+    when "activated"
+      update_activated
+    when "images"
+      update_images
+    when "music_info"
+      update_music_info
+    when "album_info"
+      update_album_info
+    when "album_info_musics"
+      update_album_info_musics
+    else
     end
   end
 
   # DELETE /contents/1
-  # DELETE /contents/1.xml
   def destroy
     @content = Content.find(params[:id])
     @content.destroy
+    notice_for "コンテンツ 「#{@content.name}」 を削除しました。"
 
     respond_to do |format|
       format.html { redirect_to admin_contents_path }
-      format.js {
-        @contents = Content.all
-        render :update do |page|
-          page.replace_html 'records', :partial => 'records'
-        end
-      }
+      format.js { @contents = Content.all } # destroy.rjs
     end
   end
+
+  private
+
+    def update_basic
+      updated =  @content.update_attributes(params[:content])
+      info = updated ? "コンテンツ 「#{@content.name}」 を更新しました" : "コンテンツ 「#{@content.name}」 の更新に失敗しました"
+      notice_for info
+
+      respond_to do |format|
+        format.html { redirect_to admin_content_path(@content) }
+        format.js {
+          @contents = Content.all
+          render :action => "update_basic.rjs"
+        }
+      end
+    end
+
+    def update_activated
+      flag = (params[:flag] == 'true' ? true : false)
+      updated = @content.update_attribute( :activated, flag )
+      info = flag ? "コンテンツ 「#{@content.name}」 を有効化しました" : "コンテンツ 「#{@content.name}」 を無効化しました"
+      notice_for info
+
+      respond_to do |format|
+        format.html { redirect_to admin_content_path(@content) }
+        format.js {
+          @contents = Content.all
+          render :action => "update_activated.rjs"
+        }
+      end
+    end
+
+    def update_images
+      flag = params[:flag] == 'true' ? true : false
+      @content.connect_image params[:image_id], flag
+
+      respond_to do |format|
+        format.html { render :action => "images" }
+        format.js {
+          @images = @content.images
+          @contents = Content.all
+          render :action => "update_images.rjs"
+        }
+      end
+    end
+
+    def update_music_info
+      @music_info = @content.music_info
+      updated =  @music_info.update_attributes(params[:music_info])
+      info = updated ? "「#{@content.name}」の曲情報を更新しました" : "コンテンツ 「#{@content.name}」の曲情報の更新に失敗しました"
+      notice_for info
+
+      respond_to do |format|
+        format.html { render :action => "update_music_info" }
+        format.js {
+          @contents = Content.all
+          render :action => "update_music_info.rjs"
+        }
+      end
+    end
+
+    def update_album_info
+      p 'update_album_info'
+      @album_info = @content.album_info
+      updated =  @album_info.update_attributes(params[:album_info])
+      info = updated ? "「#{@content.name}」のアルバム情報を更新しました" : "コンテンツ 「#{@content.name}」のアルバム情報の更新に失敗しました"
+      notice_for info
+
+      respond_to do |format|
+        format.html { render :action => "update_album_info" }
+        format.js {
+          @contents = Content.all
+          render :action => "update_album_info.rjs"
+        }
+      end
+    end
+
+    def update_album_info_musics
+      @album_info = @content.album_info
+      flag = params[:flag] == 'true' ? true : false
+
+      @album_info.connect_music params[:music_info_id], flag
+
+      respond_to do |format|
+        format.html { render :action => "images" }
+        format.js {
+          @contents = Content.all
+          render :action => "update_album_info.rjs"
+        }
+      end
+    end
+
 end

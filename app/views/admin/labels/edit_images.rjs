@@ -1,0 +1,8 @@
+html =  render(:partial => 'form_images');
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.setup();
+  lightbox.lb_contents(0).update( #{html} );
+  lightbox.activate();
+EOS

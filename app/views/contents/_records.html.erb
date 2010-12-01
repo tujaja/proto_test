@@ -2,6 +2,7 @@
 <tbody>
 
 <% @contents.each do |content| %>
+<% if content.activated -%>
   <tr>
     <td class="thumb"><%= link_to((s50_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
     <td class="desc">
@@ -47,6 +48,7 @@
 
     </td>
   </tr>
+<% end %>
 <% end %>
 </tbody>
 </table>
