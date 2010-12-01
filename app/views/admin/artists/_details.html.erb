@@ -5,7 +5,7 @@
   <dl><dt>アーティスト名</dt> <dd><%=h(@artist.name) %></dd></dl>
   <dl><dt>アーティスト名(サブ)</dt> <dd><%=h(@artist.subname) %></dd></dl>
 
-  <dl><dt>画像</dt> <dd><%= s100_for @artist.images[0] %></dd></dl>
+  <dl><dt>画像</dt> <dd><%= s100_for @artist.images[0] if @artist.images[0] %></dd></dl>
 
   <dl><dt>説明</dt> <dd><%=h @artist.description %></dd></dl>
   <dl><dt>URL</dt> <dd><%=h @artist.url %></dd></dl>

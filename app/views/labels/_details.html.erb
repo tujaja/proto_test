@@ -7,11 +7,11 @@
   <dl><dt>URL</dt> <dd><%=h @label.url %></dd></dl>
   <dl><dt>email</dt> <dd><%=h @label.email %></dd></dl>
 
-  <% if @label.address %>
+  <% if @label.address != "" %>
     <dl><dt>Address</dt> <dd><%=h @label.address %></dd></dl>
   <% end %>
 
-  <% if @label.phone %>
+  <% if @label.phone != "" %>
     <dl><dt>Phone</dt> <dd><%=h @label.phone %></dd></dl>
   <% end %>
 

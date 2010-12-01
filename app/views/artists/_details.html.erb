@@ -8,10 +8,10 @@
       <%= link_to h(@artist.label.name), label_path(@artist.label.domain) %>
     </dd>
   </dl>
-  <% if @artist.url %>
+  <% if @artist.url != "" %>
     <dl><dt>URL</dt> <dd><%=h @artist.url %></dd></dl>
   <% end %>
-  <% if @artist.mail %>
+  <% if @artist.mail != "" %>
     <dl><dt>email</dt> <dd><%=h @artist.mail %></dd></dl>
   <% end %>
 

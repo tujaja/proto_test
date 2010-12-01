@@ -1,7 +1,7 @@
 <div>
   <dl><dt>コンテンツ名</dt> <dd><%=h(@content.name) %></dd></dl>
   <dl><dt>コンテンツ名(サブ)</dt> <dd><%=h(@content.subname) %></dd></dl>
-  <dl><dt>画像</dt> <dd><%= s100_for @content.images[0] %></dd></dl>
+  <dl><dt>画像</dt> <dd><%= s100_for @content.images[0] if @content.images[0] %></dd></dl>
 
   <dl><dt>アーティスト</dt><dd><%=h @content.artist.name %></dd></dl>
   <dl<dt>レーベル</dt><dd><%=h @content.label.name if content.label %></dd></dl>

@@ -1,9 +1,20 @@
 <% info = @content.music_info -%>
-<dl><dt>エンコーディング</dt> <dd><%=h info.file_encoding %></dd></dl>
-<dl><dt>プレイ時間</dt> <dd><%=h info.time %></dd></dl>
+
+<% if info.file_encoding != "" %>
+  <dl><dt>エンコーディング</dt> <dd><%=h info.file_encoding %></dd></dl>
+<% end -%>
+
+<% if info.time != "" %>
+  <dl><dt>プレイ時間</dt> <dd><%=h info.time %></dd></dl>
+<% end -%>
+
+<% if info.lyric != "" %>
 <!--dl><dt>歌詞</dt> <dd><%=h info.lyric %></dd></dl-->
+<% end -%>
 
 <% if @content.download -%>
   <% download = @content.download -%>
+  <% if download.size != "" %>
   <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(download.size) %></dd></dl>
+  <% end -%>
 <% end -%>

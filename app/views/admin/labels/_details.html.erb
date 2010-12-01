@@ -5,7 +5,7 @@
   <dl><dt>レーベル名</dt> <dd><%=h(@label.name) %></dd></dl>
   <dl><dt>レーベル名(サブ)</dt> <dd><%=h(@label.subname) %></dd></dl>
 
-  <dl><dt>画像</dt> <dd><%= s100_for @label.images[0] %></dd></dl>
+  <dl><dt>画像</dt> <dd><%= s100_for @label.images[0] if @label.images[0] %></dd></dl>
 
   <dl><dt>説明</dt> <dd><%=h @label.description %></dd></dl>
   <dl><dt>URL</dt> <dd><%=h @label.url %></dd></dl>
