@@ -6,5 +6,4 @@ class ImageCategorization < ActiveRecord::Base
     self.priority = self.id
     self.save
   end
-
 end

@@ -1,0 +1,28 @@
+<div id="related_images">
+<% if images.any?  -%>
+  <% primary_image = @artist.primary_image %>
+
+  <div id="primary_image"><%= s300_for primary_image %></div>
+  <div id="image_thumbs">
+    <% if images.length > 1 -%>
+    <% images.each do |image| %>
+    <div class="image_thumb<%= " primary" if primary_image.id == image.id %>">
+      <ul>
+      <li>
+      <p>
+      <%= link_to_function((s50_for image), "switch_image('#{image.token}', $('primary_image').firstDescendant(), 's300');") %>
+      </p>
+
+      </li>
+    </ul>
+    </div>
+    <% end %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
+
+<% else -%>
+  <p>関連画像はありません</p>
+<% end -%>
+</div>

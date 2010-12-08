@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   include AuthenticatedSystem
+  before_filter :check_admin_authentication
 
   def index
     if !logged_in? 
@@ -9,6 +10,7 @@ class AdminController < ApplicationController
 
   protected
   def check_admin_authentication
+    return if controller_name == "admin"
     p '[check_admin_authentication]'
     if logged_in?
       p '-->[logged_in]'

@@ -7,27 +7,27 @@
     <tr>
       <th><span>*</span><%= f.label :name, "お名前" %> </th>
       <td style="width: 37%">
-        <%= f.text_field :name, :value => 'しらとさんぺい', :style => "width:300px; font-size: 14px;" %>
+        <%= f.text_field :name, :style => "width:300px; font-size: 14px;" %>
       </td>
     </tr>
     <tr>
-      <th><span>*</span><%= f.label :mail, "メールアドレス" %></th>
+      <th><span>*</span><%= f.label :email, "メールアドレス" %></th>
       <td style="width: 37%">
-        <%= f.text_field :mail, :value => 'tujaja3@gmail.com', :style => "width:300px; font-size: 14px;" %>
+        <%= f.text_field :email, :style => "width:300px; font-size: 14px;" %>
       </td>
     </tr>
 
     <tr>
       <th><%= f.label :about, "ご用件" %> </th>
       <td style="width: 37%">
-        <%= f.text_field :about, :value => 'ご利用方法について', :style => "width:300px; font-size: 14px;" %>
+        <%= f.select :about, %w(選択してください コンテンツについて ご利用方法について サーバー障害について ご要望・不具合について その他), :style => "width:300px; font-size: 14px;" %>
       </td>
     </tr>
 
     <tr>
       <th><span>*</span><%= f.label :message, "お問い合わせ内容" %> </th>
       <td style="width: 37%">
-        <%= f.text_area :message, :value => 'Fuck you!', :style => "width:400px; height:200px; font-size: 14px;" %>
+        <%= f.text_area :message, :style => "width:400px; height:200px; font-size: 14px;" %>
       </td>
     </tr>
 

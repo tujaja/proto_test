@@ -1,5 +1,4 @@
 class Admin::ImagesController < AdminController
-  before_filter :check_admin_authentication
 
   def index
     @images = Image.find(:all)

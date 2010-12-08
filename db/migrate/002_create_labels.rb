@@ -6,12 +6,14 @@ class CreateLabels < ActiveRecord::Migration
       t.boolean :activated,    :default => false, :null => false
 
       t.string  :name,         :null => false, :limit => 30
-      t.string  :subname,      :limit => 30
-      t.text    :description,  :limit => 200
-      t.string  :url,          :limit => 50
-      t.string  :email,        :limit => 50
-      t.string  :address,      :limit => 50
-      t.string  :phone,        :limit => 15
+      t.string  :subname,      :default => "", :limit => 30
+      t.text    :description,  :default => "", :limit => 200
+      t.string  :url,          :default => "", :limit => 50
+      t.string  :email,        :default => "", :limit => 50
+      t.string  :address,      :default => "", :limit => 50
+      t.string  :phone,        :default => "", :limit => 15
+
+      t.integer :primary_image_id
 
       t.timestamps
     end

@@ -3,7 +3,15 @@ class ContentsController < StoreController
   # GET /contents
   def index
     p; p 'C===Contents#index'
-    @contents = Content.find(:all)
+
+    if (@search_word = params[:search_word] || "").empty?
+      @search_word = nil
+    else
+      @search_word = @search_word.gsub(/[　\s\t]+$/o, "").gsub(/^[　\s\t]+/o, "")
+    end
+
+    @contents = Content.find_with_search @search_word, params[:page]
+
   end
 
   # GET /contents/:token

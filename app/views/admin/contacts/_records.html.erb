@@ -1,0 +1,53 @@
+<div id="records">
+
+<% if @contacts.any? -%>
+
+<table class="record contact">
+<thead>
+  <tr>
+    <td class="id"></td>
+    <td class="status">Status</td>
+    <td class="reply"></td>
+    <!--td class="name">ユーザ</td-->
+    <td class="email">アドレス</td>
+    <td class="about">用件</td>
+    <td class="message">内容</td>
+    <td class="date">送信日時</td>
+    <td class="gadget"></td>
+  </tr>
+</thead>
+<tbody>
+
+<% @contacts.each do |contact| %>
+  <tr>
+    <td class="id"><%=h contact.id %></td>
+     <td class="status">
+      <span class="mark"><%= h(contact.status) %></span>
+    </td>
+    <td>
+      <span class="btn btn_small btn_bk_or"><%= link_to_function "返信", "resource_edit('contacts', #{contact.id}, 'edit_reply');" %></span>
+
+    </td>
+    <!--td class="name"><%#= link_to h(contact.name), admin_contact_path(contact)  %></td-->
+    <td class="email">
+      <%= link_to_function h(contact.email), "resource_show('contacts', #{contact.id});" %>
+    </td>
+    <td class="about"><%=h contact.about %></td>
+    <td class="message"><%=  h(truncate(contact.message, :length => 15)) %></td>
+    <td class="date">
+      <span class="mark"><%=h to_japan_time(contact.created_at) %></span>
+    </td>
+    <td class="gadget">
+      <%#= link_to_remote (image_tag "delete.png", :alt => "delete"),
+        :url => admin_mail_path(mail), :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<% else -%>
+  <p class="notice">お問い合わせはありません</p>
+<% end -%>
+
+</div>

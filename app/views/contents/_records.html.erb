@@ -4,7 +4,7 @@
 <% @contents.each do |content| %>
 <% if content.activated -%>
   <tr>
-    <td class="thumb"><%= link_to((s50_for content.images[0]), content_path(content.domain)) if content.images[0] %></td>
+    <td class="thumb"><%= link_to((s50_for content.primary_image), content_path(content.domain))  %></td>
     <td class="desc">
       <div class="desc_title">
         <h4><%= link_to h(content.name), content_path(content.domain) %></h4>
@@ -23,9 +23,8 @@
           <span class="mark">アルバム</span>
         <% end %>
 
-
         <% if content.download %>
-          <span class="mark"><%#=h to_megabyte(content.download.size) %></span>
+          <span class="mark"><%=h to_megabyte(content.download.size) %></span>
         <% end -%>
       </div>
 
@@ -36,9 +35,6 @@
 
     <td class="buy">
     <%#PUTメソッドで送信%>
-    <%# form_tag( {:controller => "carts", :action => "update",
-                  :protocol => 'https://', :only_path => false}) do -%>
-    <%# form_remote_tag :url => url_for(:controller => "carts", :action => "update", :protocol => 'https://', :only_path => false) do -%>
     <% form_remote_tag :url => url_for(:controller => "carts", :action => "update") do -%>
       <input name="_method" type="hidden" value="put" />
       <%= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>

@@ -1,0 +1,59 @@
+<div id="remote_form">
+<% remote_form_for @mail, :url => url do |f| %>
+  <%= f.error_messages %>
+
+  <p class="need"> * 必須項目 </p>
+  <p class="title">お問い合わせ 「<%= @contact.about %>」 への返信</p>
+
+  <dl><dt>お問い合わせ内容</dt> <dd><%= h(@contact.message) %></dd></dl>
+
+  <table class="form">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :recipients, "宛先" %> </th>
+        <td class="field">
+          <%= h(@contact.email) %>
+          <%= f.hidden_field(:recipients, { :value => @contact.email }) %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+      <tr>
+        <th><span>*</span><%= f.label :from, "送信元" %> </th>
+        <td class="field">
+          info@3shimeji.com
+          <%= f.hidden_field(:from, { :value => "info@3shimeji.com" }) %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :subject, "件名" %> </th>
+        <td class="field">
+          <%= h(@contact.about) %>
+          <%= f.hidden_field(:subject, { :value => @contact.about }) %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :body, "本文" %> </th>
+        <td class="field">
+          <%= f.text_area :body,  :style => "width:300px; height: 200px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <%= hidden_field_tag("command", "send_reply") %>
+  <p class="buttons"><%= f.submit action_name %> </p>
+<% end %>
+</div>

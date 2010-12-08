@@ -1,0 +1,4 @@
+page << "lightbox.deactivate();"
+page.replace_html 'records', :partial => 'records'
+page[:notice].replace :partial => "admin/notice"
+page.visual_effect :highlight, 'notice'

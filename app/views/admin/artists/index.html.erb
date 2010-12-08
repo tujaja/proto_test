@@ -7,6 +7,8 @@
 
 <div id="contents_main">
 <h3>アーティスト一覧</h3>
+<%= render :partial => 'admin/record_results',
+  :locals => { :entries => @artists, :search_word => @search_word  } %>
   <%= render :partial => 'records' %>
 </div>
 

@@ -1,6 +1,6 @@
 <div id="details">
 
-  <%= s300_for @label.images[0] %>
+  <%= render :partial => "label_images", :locals => { :images => @label.images } %>
 
   <p><%=h @label.description %></p>
 

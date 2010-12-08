@@ -14,8 +14,6 @@ ActionController::Routing::Routes.draw do |map|
   map.admin        '/admin',        :controller => 'admin', :action => 'index'
   map.admin_logout '/admin/logout', :controller => 'admin/sessions', :action => 'destroy'
   map.admin_login  '/admin/login',  :controller => 'admin/sessions', :action => 'new'
-  map.admin_mails  '/admin/mail',  :controller => 'admin/mails', :action => 'index'
-  map.admin_mails_send  '/admin/mail/send_mail',  :controller => 'admin/mails', :action => 'send_mail'
 
   map.admin_label_images '/admin/labels/:id/edit_images', :controller => 'admin/labels', :action => 'edit_images', :conditions => { :method => :get }
   map.admin_artist_images '/admin/artists/:id/edit_images', :controller => 'admin/artists', :action => 'edit_images', :conditions => { :method => :get }
@@ -26,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.admin_content_musics '/admin/contents/musics/:id.:format', :controller => 'admin/contents', :action => 'musics', :conditions => { :method => :get }
 
+  map.admin_contact_edit_reply '/admin/contacts/:id/edit_reply', :controller => 'admin/contacts', :action => 'edit_reply', :conditions => { :method => :get }
 
   map.resources(:contents, :collection => { :albums => :get, :musics => :get })
   map.resources :artists
@@ -47,6 +46,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
     admin.resources :orders
     admin.resources :infos
+    admin.resources :mails
+    admin.resources :contacts
   end
 
 

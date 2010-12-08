@@ -1,5 +1,4 @@
 class Admin::ContentsController < AdminController
-  before_filter :check_admin_authentication
 
   # GET /contents
   def index
@@ -28,6 +27,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js # show.rjs
     end
   end
 
@@ -88,8 +88,6 @@ class Admin::ContentsController < AdminController
 
   # POST /contents
   def create
-    p 'create'
-    p params
     @content = Content.new(params[:content])
 
     if params[:content][:attachable_info_type] == 'MusicInfo'
@@ -105,7 +103,15 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_labels_path }
-      format.js { @contents = Content.all } # create.rjs
+      format.js {
+        if saved
+          @contents = Content.all 
+          render :action => "create.rjs"
+        else
+          p 'here'
+          render :action => "new.rjs"
+        end
+      }
     end
 
   end
@@ -127,6 +133,8 @@ class Admin::ContentsController < AdminController
       update_album_info
     when "album_info_musics"
       update_album_info_musics
+    when "image_priority"
+      update_image_priority
     else
     end
   end
@@ -234,4 +242,16 @@ class Admin::ContentsController < AdminController
       end
     end
 
+    def update_image_priority
+      @content.primary_image = params[:image_id].to_i
+
+      respond_to do |format|
+        format.html { render :action => "images" }
+        format.js {
+          @images = @content.images
+          @contents = Content.all
+          render :action => "update_images.rjs"
+        }
+      end
+    end
 end

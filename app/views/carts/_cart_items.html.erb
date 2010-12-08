@@ -7,7 +7,7 @@
   <% @cart.cart_items.each do |item| -%>
   <% content = item.content -%>
   <tr>
-    <td class="thumb"><%= s50_for content.images[0] %></td>
+    <td class="thumb"><%= s50_for content.primary_image %></td>
     <td class="desc">
       <div class="desc_title">
         <h4><%= h(content.name) %></h4>

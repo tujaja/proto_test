@@ -10,8 +10,11 @@
       <%= image_tag "activated.png" if label.activated %>
       <%= image_tag "inactivated.png" unless label.activated %>
     </td>
-    <td class="thumb"><%= link_to((s25_for label.images[0]), admin_label_path(label.id)) if label.images[0] != nil %></td>
-    <td class="name"><%= link_to h(label.name), admin_label_path(label) %></td>
+    <td class="thumb">
+      <%= link_to((s25_for label.primary_image), admin_label_path(label.id)) if label.primary_image != nil %>
+    </td>
+    <td class="name">
+      <%= link_to_function h(label.name), "resource_show('labels', #{label.id});" %></td>
     <td class="desc">
       <% unless label.activated -%>
         <span class="btn btn_small btn_bk_gr"><%= link_to_function "有効化", "resource_update('labels', #{label.id}, {command:'activated', flag:'true'});" %></span>

@@ -1,12 +1,18 @@
 <div id="remote_form">
   <p class="title">レーベル 『<%= h(@label.name) %>』 関連画像</p>
+  <p>画像をクリックしてメイン画像を選択できます。</p>
 
 <% if @images.any?  -%>
+  <% primary_image_id = @label.primary_image.id %>
   <% @images.each do |image| %>
-    <div class="image_thumb">
+    <div class="image_thumb<%= " primary" if primary_image_id == image.id %>">
     <ul>
     <li>
-      <p><%= s50_for image %></p>
+      <p>
+      <%= link_to_function (s50_for image),
+        "resource_update('labels', #{@label.id}, {command:'image_priority', image_id:#{image.id}});"
+      %>
+      </p>
       <p><%= h(image.filename) %></p>
       <div class="btn_small"><span class="btn btn_small btn_bk_or">
       <%= link_to_function '解除',

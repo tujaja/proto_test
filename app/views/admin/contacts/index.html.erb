@@ -1,2 +1,10 @@
-<h1>Admin::Contacts#index</h1>
-<p>Find me in app/views/admin/contacts/index.html.erb</p>
+<div id="contents_header">
+  <h2>お問い合わせ管理</h2>
+</div>
+
+<div id="contents_main">
+<h3>お問い合わせ一覧</h3>
+  <%= render :partial => 'records' %>
+</div>
+
+<%= javascript_include_tag "lightbox.js" %>

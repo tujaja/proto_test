@@ -1,15 +1,28 @@
-<div>
-  <dl><dt>ID</dt> <dd><%=h artist.id %></dd></dl>
-  <dl><dt>識別子</dt> <dd><%=h artist.token %></dd></dl>
-  <dl><dt>ドメイン(固有名)</dt><dd><%=h artist.domain %></dd></dl>
+<div id="details">
+  <p class="title">レーベル 『<%= h(@artist.name) %>』 詳細情報</p>
+  <dl><dt>ID</dt> <dd><%=h @artist.id %></dd></dl>
+  <dl><dt>識別子</dt> <dd><%=h @artist.token %></dd></dl>
+  <dl><dt>ドメイン(固有名)</dt><dd><%=h @artist.domain %></dd></dl>
   <dl><dt>アーティスト名</dt> <dd><%=h(@artist.name) %></dd></dl>
+
+  <% if @artist.subname != ""%>
   <dl><dt>アーティスト名(サブ)</dt> <dd><%=h(@artist.subname) %></dd></dl>
+  <% end %>
 
-  <dl><dt>画像</dt> <dd><%= s100_for @artist.images[0] if @artist.images[0] %></dd></dl>
+  <dl><dt>画像</dt>
+    <dd><%= render :partial => "artist_images", :locals => { :images => @artist.images } %></dd>
+  </dl>
 
+  <% if @artist.email != ""%>
   <dl><dt>説明</dt> <dd><%=h @artist.description %></dd></dl>
+  <% end %>
+  <% if @artist.email != ""%>
   <dl><dt>URL</dt> <dd><%=h @artist.url %></dd></dl>
-  <dl><dt>mail</dt> <dd><%=h @artist.mail %></dd></dl>
+  <% end %>
+  <% if @artist.email != ""%>
+  <dl><dt>email</dt> <dd><%=h @artist.email %></dd></dl>
+  <% end %>
 
-  <dl><dt>作成日時</dt><dd><%=h to_japan_time(artist.created_at) %></dd></dl>
+  <dl><dt>更新日時</dt><dd><%=h(to_japan_time(@artist.updated_at)) %></dd></dl>
+  <dl><dt>作成日時</dt><dd><%=h(to_japan_time(@artist.created_at)) %></dd></dl>
 </div>

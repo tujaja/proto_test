@@ -1,7 +1,15 @@
 <% info = @content.music_info -%>
+<p class="title">『コンテンツ 『<%= h(@content.name) %>』 曲情報</p>
+
+<% if info.file_encoding != "" %>
 <dl><dt>エンコーディング</dt> <dd><%=h info.file_encoding %></dd></dl>
+<% end %>
+<% if info.time != "" %>
 <dl><dt>プレイ時間</dt> <dd><%=h info.time %></dd></dl>
-<!--dl><dt>歌詞</dt> <dd><%=h info.lyric %></dd></dl-->
+<% end %>
+<% if info.lyric != "" %>
+<dl><dt>歌詞</dt> <dd><%=h info.lyric %></dd></dl>
+<% end %>
 
 <% if @content.download -%>
   <% download = @content.download -%>

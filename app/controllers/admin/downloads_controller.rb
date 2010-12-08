@@ -1,5 +1,4 @@
 class Admin::DownloadsController < AdminController
-  before_filter :check_admin_authentication
 
   def index
     @downloads = Download.find(:all)

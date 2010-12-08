@@ -1,8 +1,9 @@
 class MultiMailer < ActionMailer::Base
-  def multipurpose(recipients, subject)
+  def multipurpose(recipients, from,  subject, body, sent_on)
     @recipients = recipients
-    @from = 'admin@3shimeji.com'
+    @from = from
     @subject = subject
-    @sent_on = Time.now
+    @body = body
+    @sent_on = sent_on
   end
 end

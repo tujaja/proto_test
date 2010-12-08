@@ -106,6 +106,18 @@ div.form_button { padding: 30px 0 0; text-align: center; }
 #details a:hover img { border:2px #333 solid;cursor:pointer; }
 
 
+#related_images { padding: 10px 0; }
+#related_images #primary_image {width: 350px; float: left; text-align: center;}
+#related_images #image_thumbs  {width: 350px; float: left; text-align: center; }
+#related_images p { padding: 2px; }
+
+#related_images div.image_thumb {
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  border: 1px solid #CCC;
+  text-align: center;
+}
 /* record */
 
 table.record tr { height: 90px; }

@@ -12,8 +12,13 @@
       <%= image_tag "activated.png" if artist.activated %>
       <%= image_tag "inactivated.png" unless artist.activated %>
     </td>
-    <td class="thumb"><%= link_to((s25_for(artist.images[0])), admin_artist_path(artist.id) ) if artist.images[0] != nil %></td>
-    <td class="name"><%= link_to h(artist.name), admin_artist_path(artist) %></td>
+    <td class="thumb">
+      <%= link_to((s25_for(artist.primary_image)), admin_artist_path(artist.id) ) if artist.primary_image != nil %>
+    </td>
+    <td class="name">
+      <%= link_to_function h(artist.name), "resource_show('artists', #{artist.id});" %>
+    </td>
+
     <td class="desc">
       <% unless artist.activated -%>
         <span class="btn btn_small btn_bk_gr"><%= link_to_function "有効化", "resource_update('artists', #{artist.id}, {command:'activated', flag:'true'});" %></span>

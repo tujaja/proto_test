@@ -1,5 +1,4 @@
 class Admin::LabelsController < AdminController
-  before_filter :check_admin_authentication
 
   # GET /labels
   def index
@@ -17,6 +16,7 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js # show.rjs
     end
   end
 
@@ -60,7 +60,15 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_labels_path }
-      format.js { @labels = Label.all } # create.rjs
+      format.js {
+        if saved
+          @labels = Label.all
+          render :action => "create.rjs"
+        else
+          @failed = true
+          render :action => "new.rjs"
+        end
+      }
     end
   end
 
@@ -75,6 +83,8 @@ class Admin::LabelsController < AdminController
       update_activated
     when "images"
       update_images
+    when "image_priority"
+      update_image_priority
     else
     end
   end
@@ -135,4 +145,18 @@ class Admin::LabelsController < AdminController
         }
       end
     end
+
+    def update_image_priority
+      @label.primary_image = params[:image_id].to_i
+
+      respond_to do |format|
+        format.html { render :action => "images" }
+        format.js {
+          @images = @label.images
+          @labels = Label.all
+          render :action => "update_images.rjs"
+        }
+      end
+    end
+
 end

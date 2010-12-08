@@ -1,10 +1,12 @@
 class Admin::ArtistsController < AdminController
   #ssl_required :index, :show
-  before_filter :check_admin_authentication
 
   # GET /artists
   def index
-    @artists = Artist.all
+    #@artists = Artist.all
+    @artists = Artist.paginate(:page => params[:page],
+                               :order => 'artists.id asc',
+                               :per_page => 10)
 
     respond_to do |format|
       format.html
@@ -20,6 +22,7 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js # show.rjs
     end
   end
 
@@ -81,6 +84,8 @@ class Admin::ArtistsController < AdminController
       update_activated
     when "images"
       update_images
+    when "image_priority"
+      update_image_priority
     else
     end
   end
@@ -131,6 +136,19 @@ class Admin::ArtistsController < AdminController
     def update_images
       flag = params[:flag] == 'true' ? true : false
       @artist.connect_image params[:image_id], flag
+
+      respond_to do |format|
+        format.html { render :action => "images" }
+        format.js {
+          @images = @artist.images
+          @artists = Artist.all
+          render :action => "update_images.rjs"
+        }
+      end
+    end
+
+    def update_image_priority
+      @artist.primary_image = params[:image_id].to_i
 
       respond_to do |format|
         format.html { render :action => "images" }

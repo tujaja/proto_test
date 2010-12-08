@@ -5,7 +5,7 @@ class CreateDownloads < ActiveRecord::Migration
       t.string   :token,        :null => false, :limit => 100
       t.string   :filename,     :null => false, :limit => 50
       t.integer  :size,         :default => 0, :null => false, :limit => 10
-      t.bool     :checked,      :default => 'false', :null => false
+      t.bool     :activated,    :default => 'false', :null => false
       t.string   :content_type, :default => "unknown", :null => false, :limit => 50
       t.string   :comment,  :default => "no comments", :null => false, :limit => 100
 

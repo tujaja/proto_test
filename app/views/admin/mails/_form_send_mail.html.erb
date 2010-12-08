@@ -1,0 +1,54 @@
+<div id="remote_form">
+<% remote_form_for @mail, :url => url do |f| %>
+  <%= f.error_messages %>
+
+  <p class="need"> * 必須項目 </p>
+  <p class="title">新規メールを作成</p>
+
+  <table class="form">
+    <tbody>
+      <tr>
+        <th><span>*</span><%= f.label :recipients, "宛先" %> </th>
+        <td class="field">
+          <%= f.text_field :recipients, :value => 'tujaja2@gmail.com', :style => "width:300px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+      <tr>
+        <th><span>*</span><%= f.label :from, "送信元" %> </th>
+        <td class="field">
+          <%= f.text_field :from, :value => 'info@3shimeji.com', :style => "width:300px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :subject, "件名" %> </th>
+        <td class="field">
+          <%= f.text_field :subject, :value => 'そんな装備で大丈夫か？', :style => "width:300px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><span>*</span><%= f.label :body, "本文" %> </th>
+        <td class="field">
+          <%= f.text_area :body, :value => '大丈夫だ問題ない',  :style => "width:300px; height: 200px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <%= hidden_field_tag("command", "send_mail") %>
+  <p class="buttons"><%= f.submit action_name %> </p>
+<% end %>
+</div>

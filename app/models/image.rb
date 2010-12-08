@@ -6,6 +6,7 @@ class Image < ActiveRecord::Base
   #validates_presence_of :filename, :message => "select file"
   #validates_inclusion_of :size, :in => (1..MAX_FILE_SIZE),
     #:message => "Uploaded file's size is over the capacity."
+  #
 
   def uploaded_file=(file)
     return if file == ""
@@ -46,48 +47,48 @@ class Image < ActiveRecord::Base
   end
 
   private
-  def storage_path
-    "#{APP_CONFIG['storage']['images_path']}"
-  end
-
-  def delete_file_from_storage token
-    %w(s25 s50 s100 s300).each do |size|
-      File.delete "#{storage_path}/#{token}.#{size}.jpg"  if File.exist? "#{storage_path}/#{token}.#{size}.jpg"
+    def storage_path
+      "#{APP_CONFIG['storage']['images_path']}"
     end
-  end
 
-  def save_file_to_storage
-    [ ['s25',25], ['s50',50], ['s100',100], ['s300',300] ].each do |size, pixel|
-      img = convert_image(@image.clone, pixel)
-      path = eval("#{size}_file_path")
-      File.open(path, "wb") {|f|
-        f.write img
-      }
+    def delete_file_from_storage token
+      %w(s25 s50 s100 s300).each do |size|
+        File.delete "#{storage_path}/#{token}.#{size}.jpg"  if File.exist? "#{storage_path}/#{token}.#{size}.jpg"
+      end
     end
-  end
 
-
-  def base_part_of(filename)
-    File.basename(filename).gsub(/[^\w._-]/, '')
-  end
-
-  def with_image(file_data=nil)
-    # 入力stringをb64にencodeする
-    data = Base64.encode64(file_data || self.blob)
-    img = Magick::Image::read_inline(data).first
-    yield img
-    img = nil
-    GC.start
-  end
-
-  def convert_image(image, size)
-    geometry_string = (1 > (height.to_f / width.to_f)) ? "x#{size}" : "#{size}"
-    image = image.change_geometry(geometry_string) do |cols, rows, img|
-      img.resize!(cols, rows)
+    def save_file_to_storage
+      [ ['s25',25], ['s50',50], ['s100',100], ['s300',300] ].each do |size, pixel|
+        img = convert_image(@image.clone, pixel)
+        path = eval("#{size}_file_path")
+        File.open(path, "wb") {|f|
+          f.write img
+        }
+      end
     end
-    image = image.crop(Magick::CenterGravity, size, size)
-    image.profile!('*', nil)
-    return image.to_blob { self.format='JPG'; self.quality = 60 }
-  end
+
+
+    def base_part_of(filename)
+      File.basename(filename).gsub(/[^\w._-]/, '')
+    end
+
+    def with_image(file_data=nil)
+      # 入力stringをb64にencodeする
+      data = Base64.encode64(file_data || self.blob)
+      img = Magick::Image::read_inline(data).first
+      yield img
+      img = nil
+      GC.start
+    end
+
+    def convert_image(image, size)
+      geometry_string = (1 > (height.to_f / width.to_f)) ? "x#{size}" : "#{size}"
+      image = image.change_geometry(geometry_string) do |cols, rows, img|
+        img.resize!(cols, rows)
+      end
+      image = image.crop(Magick::CenterGravity, size, size)
+      image.profile!('*', nil)
+      return image.to_blob { self.format='JPG'; self.quality = 60 }
+    end
 
 end

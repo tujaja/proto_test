@@ -1,5 +1,4 @@
 class Admin::UsersController < AdminController
-  before_filter :check_admin_authentication
 
   # GET /users
   # GET /users.xml

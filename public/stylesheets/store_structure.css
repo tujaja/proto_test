@@ -75,6 +75,24 @@
 
 #cart_info{ position: absolute; top: 30px; right: 30px; }
 
+/* search  */
+
+#search_form {
+  position: absolute;
+  top: 0px;
+  right: 100px;
+  width: 200px;
+}
+
+
+#search_form input[type="text"] {
+  float: left;
+
+  display: block;
+  width: 150px;
+  height: 14px;
+}
+
 
 /* contents*/
 

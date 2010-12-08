@@ -3,6 +3,7 @@
 </div>
 
 <div id="contents_main">
-  <h3>レーベル詳細</h3>
-  <%= render :partial => "details", :locals => { :label => @label } %>
+  <%= render :partial => "details" %>
 </div>
+
+<%= javascript_include_tag "lightbox.js" %>

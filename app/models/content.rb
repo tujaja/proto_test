@@ -1,19 +1,12 @@
 class Content < ActiveRecord::Base
-  belongs_to :artist
-  belongs_to :attachable_info, :polymorphic => true
-
+  include ImagesOwner # enables to use 'connect_image', 'primary_image'
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
 
-  attr_accessor :related_download, :file_encoding, :time, :lyric
+  belongs_to :artist
+  belongs_to :attachable_info, :polymorphic => true
 
-  def connect_image image_id, flag
-    # 既に追加済み
-    return if flag && ImageCategorization.find_by_owner_id_and_image_id_and_owner_type(self.id, image_id, 'Content')
-    image = Image.find_by_id(image_id)
-    self.images << image if image && flag
-    self.images.delete image if image && !flag
-  end
+  attr_accessor :related_download, :file_encoding, :time, :lyric
 
   def related_download=(download_token)
     @download = Download.find_by_token(download_token)
@@ -57,5 +50,29 @@ class Content < ActiveRecord::Base
     self.sales = self.sales + 1
     save
   end
+
+  def self.find_with_search search_word, page
+    where = nil
+    if search_word
+      words = search_word.split(/\s|　/)
+      semantics = []
+      place_holder = ""
+      words.each_with_index do |w, i|
+        place_holder << " AND " if i!=0
+        place_holder << "(contents.name LIKE ? OR contents.subname LIKE ? OR contents.description LIKE ? OR artists.name LIKE ? OR artists.subname LIKE ? OR labels.name LIKE ? OR labels.subname LIKE ?)"
+        semantics.concat ["%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%"]
+      end
+      where = [place_holder] + semantics
+    end
+
+
+    contents = Content.paginate(:page => page,
+                               :order => 'contents.id asc',
+                               :include => { :artist => :label },
+                               :conditions => where,
+                               :per_page => 50)
+  end
+
+
 
 end

@@ -25,7 +25,7 @@ class SampleAlbums < ActiveRecord::Migration
     content.artist = Artist.find_by_domain('jimi-hendrix')
     content.attachable_info = jimi_album_info
     content.save
-    content.images << Image.find_by_filename("jimi01.jpg")
+    content.connect_image Image.find_by_filename("jimi01.jpg")
 
 
   end

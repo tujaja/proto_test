@@ -1,0 +1,13 @@
+<div id="details">
+  <p class="title">ご用件 『<%= h(@contact.about) %>』</p>
+
+  <dl><dt>お名前</dt><dd><%= h(@contact.name) %></dd></dl>
+  <dl><dt>メールアドレス</dt> <dd><%= h(@contact.email) %></dd></dl>
+  <dl><dt>内容</dt> <dd><%= h(@contact.message) %></dd></dl>
+
+  <dl><dt>更新日時</dt><dd><%= h(to_japan_time(@contact.updated_at)) %></dd></dl>
+  <dl><dt>作成日時</dt><dd><%= h(to_japan_time(@contact.created_at)) %></dd></dl>
+  <dl><dt>ID</dt> <dd><%= h(@contact.id) %></dd></dl>
+  <dl><dt>Status</dt> <dd><%= h(@contact.status) %></dd></dl>
+
+</div>

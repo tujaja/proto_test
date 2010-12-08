@@ -1,4 +1,4 @@
-html =  render(:partial => 'remote_form', :locals => { :url => admin_content_path(@content), :action_name => "更新する"})
+html =  render(:partial => 'form_reply', :locals => { :url => admin_contact_path(@contact), :action_name => "返信する"})
 html = ::ActiveSupport::JSON.encode(html)
 
 page << <<-EOS

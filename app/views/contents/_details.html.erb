@@ -1,6 +1,6 @@
 <div id="details">
+  <%= render :partial => "content_images", :locals => { :images => @content.images } %>
 
-  <%= s300_for @content.images[0] %>
   <p><%=h @content.description %></p>
   <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(@content.price) %>(税込)</dd></dl>
 

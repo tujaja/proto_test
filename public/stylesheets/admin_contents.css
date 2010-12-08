@@ -55,6 +55,17 @@ span.btn_bk_wh a { color:#111; background:#fff; }
 span.btn_bk_gr a { color:#111; background:#9C9; }
 span.btn_wh_bl a { color:#fff; background:#4ea6cc; }
 
+#image_wrapper {
+  border: 1px solid #CCC;
+}
+div.image_thumb {
+  float: left;
+  background-color: #EEE;
+  margin: 5px;
+  border: 1px solid #CCC;
+  text-align: center;
+}
+div.primary { border: 3px solid #D5B006; }
 
 /* contents_header */
 #contents_header {
@@ -89,15 +100,7 @@ span.btn_wh_bl a { color:#fff; background:#4ea6cc; }
 
 /* thumb */
 
-#thumbs div.image_thumb  {
-  float: left;
-  background-color: #EEE;
-  margin: 5px;
-  padding: 10px;
-  border: 3px solid #CCC;
-  height: 100px;
-  text-align: center;
-}
+#thumbs div.image_thumb  { padding: 10px; border: 3px solid #CCC; height: 100px; }
 #thumbs div.image_thumb p.filename { padding: 0; font-size: 12px; }
 #thumbs div.image_thumb a img { border:2px #FFF solid;  cursor:pointer; }
 #thumbs div.image_thumb a:hover img { border:2px #333 solid;  cursor:pointer; }
@@ -146,12 +149,18 @@ table.record {
 
 /*780*/
 /*40 40 200 (280) 180 40*/
+table.record thead tr { height: 15px; }
+table.record thead tr td { text-align: left; font-weight: bold; font-size: 12px; border-bottom: 1px solid #333; }
+table.record thead tr td.date { text-align: left; }
+
 
 table.record tr { height: 40px; }
 table.record tr.inactivated { background-color: #DDD; }
 
 
 table.record td { padding: 5px 5px; border-bottom: 1px solid #CCC; }
+table.record td a { color: #111; }
+table.record td a:hover { color: #D5B006; background-color: #78576A; }
 table.record td.id { width: 40px; text-align:center;font-weight:bold;color:#fff;background:#4ea6cc; }
 table.record td.activated { width: 20px; text-align:center; }
 /*table.record td.thumb {width:40px;text-align:center;background:#efffef;cursor:pointer;}*/
@@ -165,6 +174,22 @@ table.record td.desc {width:330px; }
 table.record td.date { width: 150px; text-align: right; }
   table.record td.date span.mark { background-color: #9c9; }
 table.record td.gadget { width: 20px; text-align: right; }
+
+table.mail td.id { width: 20px; }
+table.mail td.status { width: 50px; }
+table.mail td.rcpt { width: 150px; }
+table.mail td.subject { width: 100px; }
+table.mail td.body { width: 200px; }
+
+table.contact td.id { width: 20px; }
+table.contact td.status { width: 50px; }
+table.contact td.reply { width: 70px; }
+table.contact td.name { width: 100px; }
+table.contact td.email { width: 150px; }
+table.contact td.about { width: 150px; }
+table.contact td.message { width: 200px; }
+
+
 
 /*table.download td.desc {width:240px;}*/
 /*table.download td.gadget {text-align: right; width:50px;}*/
@@ -212,7 +237,18 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
 #login_form { padding: 10px; }
 #login_form p { padding: 5px 0; font-size: 14px; }
 
+/* related_images */
+#related_images a img { border:2px #FFF solid;  cursor:pointer; }
+#related_images a:hover img { border:2px #333 solid;  cursor:pointer; }
+
 /* lightbox related */
+#details {
+  width: 800px;
+  margin:  0px auto;
+  padding: 0px auto;
+}
+#details p.title { font-size: 16px; padding: 5px 0 0 0; }
+
 #remote_form {
   width: 800px;
   margin:  0px auto;
@@ -223,16 +259,9 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
 
 #remote_form p.title { font-size: 16px; padding: 5px 0 0 0; }
 #remote_form p.need { font-size: 16px; padding: 5px 0 0 0; float: right;}
-#remote_form div.image_thumb { 
-  float: left;
-  background-color: #EEE;
-  margin: 5px;
-  padding: 10px;
-  border: 3px solid #CCC;
-  height: 100px;
-  text-align: center;
-}
+#remote_form div.image_thumb { padding: 10px; border: 3px solid #CCC; height: 100px; }
 #remote_form div.image_thumb p { padding: 3px 0; }
+#remote_form div.primary { border: 3px solid #D5B006; }
 
 
 #selector {
@@ -244,15 +273,7 @@ ul.list1 li span {font-size: 11px;color:#da4740;}
 #selector p.title { font-size: 16px; padding: 5px 0 0 0; }
 #selector a img { border:2px #FFF solid;  cursor:pointer; }
 #selector a:hover img { border:2px #333 solid;  cursor:pointer; }
-#selector div.image_thumb { 
-  float: left;
-  background-color: #EEE;
-  margin: 5px;
-  padding: 10px;
-  border: 3px solid #CCC;
-  height: 70px;
-  text-align: center;
-}
+#selector div.image_thumb { padding: 10px; border: 3px solid #CCC; height: 70px; }
 
 #selector div.record {
   padding: 3px 0;

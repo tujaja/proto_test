@@ -53,7 +53,7 @@ class SampleContents < ActiveRecord::Migration
         # n (0 1 2 3 4 5 )
         # m (1 2 3)
         image = Image.find_by_filename("jimi0#{n+m}.jpg")
-        content.images << image
+        content.connect_image image
       end
     end
 

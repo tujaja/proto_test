@@ -1,0 +1,51 @@
+<div id="records">
+
+<% if @mails.any? -%>
+
+<table class="record mail">
+<thead>
+  <tr>
+    <td class="id"></td>
+    <td class="status">Status</td>
+    <td class="rcpt">宛先</td>
+    <td class="subject">件名</td>
+    <td class="body">本文</td>
+    <td class="date">送信日時</td>
+    <td class="gadget"></td>
+  </tr>
+</thead>
+<tbody>
+
+<% @mails.each do |mail| %>
+  <tr>
+    <td class="id"><%=h mail.id %></td>
+    <td class="status">
+      <span class="mark"><%= h(mail.mail_type) %></span>
+      <span class="mark"><%= h(mail.status) %></span>
+    </td>
+    <td class="rcpt">
+      <%= link_to_function h(mail.recipients), "resource_show('mails', #{mail.id});" %>
+    </td>
+    <td class="subject">
+      <%= h(mail.subject) %>
+    </td>
+    <td class="body">
+      <%= h(mail.body) %>
+    </td>
+    <td class="date">
+      <span class="mark"><%=h to_japan_time(mail.updated_at) %></span>
+    </td>
+    <td class="gadget">
+      <%= link_to_remote (image_tag "delete.png", :alt => "delete"),
+        :url => admin_mail_path(mail), :method => :delete %>
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<% else -%>
+  <p class="notice">メールはありません</p>
+<% end -%>
+
+</div>

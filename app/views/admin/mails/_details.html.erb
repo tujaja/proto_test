@@ -1,0 +1,13 @@
+<div id="details">
+  <p class="title">件名 『<%= h(@mail.subject) %>』</p>
+
+  <dl><dt>宛先</dt><dd><%= h(@mail.recipients) %></dd></dl>
+  <dl><dt>送信元</dt> <dd><%= h(@mail.from) %></dd></dl>
+  <dl><dt>本文</dt> <dd><%= h(@mail.body) %></dd></dl>
+
+  <dl><dt>更新日時</dt><dd><%= h(to_japan_time(@mail.updated_at)) %></dd></dl>
+  <dl><dt>作成日時</dt><dd><%= h(to_japan_time(@mail.created_at)) %></dd></dl>
+  <dl><dt>ID</dt> <dd><%= h(@mail.id) %></dd></dl>
+  <dl><dt>Mail Type</dt> <dd><%= h(@mail.mail_type) %></dd></dl>
+  <dl><dt>Status</dt> <dd><%= h(@mail.status) %></dd></dl>
+</div>

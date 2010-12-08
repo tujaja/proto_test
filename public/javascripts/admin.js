@@ -1,3 +1,13 @@
+//
+//
+
+
+// show
+var resource_show = function(resource, id) {
+  var url = '/admin/' + resource + '/' + id;
+  new Ajax.Request( url, { asynchronous:false, evalScript:true, method:'get' } );
+}
+
 // new
 var resource_new = function(resource) {
   new Ajax.Request(

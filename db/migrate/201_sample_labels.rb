@@ -11,7 +11,7 @@ class SampleLabels < ActiveRecord::Migration
     email = 'info@sonymusic.com'
 
     sony = Label.create(:domain => domain, :name => name, :subname => subname, :description => desc, :url => url, :email => email)
-    sony.images <<  Image.find_by_filename('sonymusic.jpg')
+    sony.connect_image Image.find_by_filename('sonymusic.jpg')
 
     # Warner Music Group
     domain = 'warner-music-group'
@@ -23,7 +23,7 @@ class SampleLabels < ActiveRecord::Migration
     email = 'info@warnermusic.com'
 
     wmg = Label.create(:domain => domain, :name => name, :description => desc, :url => url, :email => email)
-    wmg.images <<  Image.find_by_filename('wmg.jpg')
+    wmg.connect_image Image.find_by_filename('wmg.jpg')
 
     # 3shimeji
     domain = '3shimeji'
@@ -35,7 +35,7 @@ class SampleLabels < ActiveRecord::Migration
     email = 'info@3shimeji.com'
 
     shimeji = Label.create(:domain => domain, :name => name, :description => desc, :url => url, :email => email)
-    shimeji.images <<  Image.find_by_filename('3shimeji.jpg')
+    shimeji.connect_image Image.find_by_filename('3shimeji.jpg')
 
 
 

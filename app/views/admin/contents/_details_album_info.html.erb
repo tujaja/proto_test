@@ -1,5 +1,7 @@
 <% album_info = @content.album_info -%>
 <% music_infos = album_info.music_infos -%>
 
+<p class="title">『コンテンツ 『<%= h(@content.name) %>』 アルバム情報</p>
+
 <p class="title">収録曲</p>
 <%= render :partial => "details_album_info_musics", :locals => { :music_infos => music_infos } %>

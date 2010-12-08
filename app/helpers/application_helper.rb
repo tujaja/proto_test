@@ -5,9 +5,13 @@ module ApplicationHelper
   [ ['s25', 25], ['s50', 50], ['s100', 100], ['s300', 300 ]].each do |size, pixel|
     class_eval <<-EOS
       def #{size}_for image
-        url = "up/\#{image.token}.#{size}.jpg"
-        image_html = image_tag(url, :size => "#{pixel}x#{pixel}", :class => "#{size}",
-          :alt => "\#{image.filename}")
+        if image == nil
+          ""
+        else
+          url = "up/\#{image.token}.#{size}.jpg"
+          image_tag(url, :size => "#{pixel}x#{pixel}", :class => "#{size}",
+            :alt => "\#{image.filename}")
+        end
       end
     EOS
   end
