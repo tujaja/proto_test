@@ -6,9 +6,10 @@
   <%= render :partial => "order" %>
   <p class="order_notice">以上のご注文で間違いないでしょうか？</p>
   <%#PUTメソッドで送信%>
-  <% form_tag payment_path do -%>
+  <% form_tag payment_path, {:id => 'create_payment'} do -%>
     <input name="_method" type="hidden" value="put" />
     <%= hidden_field_tag("payment_method", "free_confirm") %>
-    <div class="form_button"><%= submit_tag "注文を確定する" %></div>
+    <!--div class="form_button"><%#= submit_tag "注文を確定する" %></div-->
+    <div class="btn" style="padding-top: 30px"><span class="btn"><%= link_to_function "注文を確定する", "$('create_payment').submit();" %></span></div>
   <% end -%>
 </div>

@@ -3,10 +3,23 @@ class Admin::ArtistsController < AdminController
 
   # GET /artists
   def index
-    #@artists = Artist.all
-    @artists = Artist.paginate(:page => params[:page],
-                               :order => 'artists.id asc',
-                               :per_page => 10)
+    @page = params[:page] || 1
+    @activated = params[:activated] || "all"
+
+    if (@search_word = params[:search_word] || "").empty?
+      @search_word = nil
+    else
+      @search_word = @search_word.gsub(/[　\s\t]+$/o, "").gsub(/^[　\s\t]+/o, "")
+    end
+
+    session[:search_page] = @page
+    session[:search_word] = @search_word
+    session[:search_activated] = @activated
+
+    @artists = Artist.find_by_admin(:activated => @activated,
+                                    :search_word => @search_word,
+                                    :page => @page,
+                                    :per_page => 10)
 
     respond_to do |format|
       format.html
@@ -29,7 +42,6 @@ class Admin::ArtistsController < AdminController
   # GET /artists/new
   def new
     @artist = Artist.new
-    @artists = Artist.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +52,6 @@ class Admin::ArtistsController < AdminController
   # GET /artists/1/edit
   def edit
     @artist = Artist.find(params[:id])
-    @artists = Artist.all
 
     respond_to do |format|
       format.html # edit.html.erb
@@ -69,14 +80,22 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_artists_path }
-      format.js { @artists = Artist.all } # create.rjs
+      format.js {
+        if saved
+          @artists = find_current_artists
+          render :action => "create.rjs"
+        else
+          @failed = true
+          render :action => "new.rjs"
+        end
+      }
     end
   end
 
   # PUT /artists/1
   def update
+    p session
     @artist = Artist.find(params[:id])
-
     case params[:command]
     when "basic"
       update_basic
@@ -98,7 +117,7 @@ class Admin::ArtistsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_artists_path }
-      format.js { @artists = Artist.all } # destroy.rjs
+      format.js { @artists = find_current_artists } # destroy.rjs
     end
   end
 
@@ -112,7 +131,7 @@ class Admin::ArtistsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_artist_path(@artist) }
         format.js {
-          @artists = Artist.all
+          @artists = find_current_artists
           render :action => "update_basic.rjs"
         }
       end
@@ -127,7 +146,7 @@ class Admin::ArtistsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_artist_path(@artist) }
         format.js {
-          @artists = Artist.all
+          @artists = find_current_artists
           render :action => "update_activated.rjs"
         }
       end
@@ -141,7 +160,7 @@ class Admin::ArtistsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @artist.images
-          @artists = Artist.all
+          @artists = find_current_artists
           render :action => "update_images.rjs"
         }
       end
@@ -154,9 +173,17 @@ class Admin::ArtistsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @artist.images
-          @artists = Artist.all
+          @artists = find_current_artists
           render :action => "update_images.rjs"
         }
       end
+    end
+
+    # alias
+    def find_current_artists
+      Artist.find_by_admin(:activated => session[:search_activated],
+                           :search_word => session[:search_word],
+                           :page => session[:search_page],
+                           :per_page => 10)
     end
 end

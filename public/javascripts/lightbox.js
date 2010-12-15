@@ -27,7 +27,7 @@ Lightbox.prototype = {
 
     // 指定した位置に出せた方が良いのである
     var array_pagescroll = document.viewport.getScrollOffsets();
-    var lb_top = array_pagescroll[1] + (document.viewport.getHeight() / 10) + layer*10;
+    var lb_top = array_pagescroll[1] + (document.viewport.getHeight() / 20) + layer*10;
     var lb_left = array_pagescroll[0];
     lb.setStyle({ top: lb_top + 'px', left: lb_left + 'px', zIndex: this.lb_zindex(layer) })
       .show();
@@ -38,6 +38,15 @@ Lightbox.prototype = {
     lb_close.update(
       new Element('a', {href: "#"}).update(
         new Element('img', { src: '/images/close.jpg', width:'16px', height:'16px' } )));
+
+    Event.observe( document, 'keydown',
+      (function(self, l) {
+        return function(ev) {
+          var code = ev.keyCode
+          if (code == 27) { self.deactivate(l); } // 27 is ESC
+        };
+      })(this, layer)
+    );
 
     Event.observe( lb_close, 'click',
       (function(self, l) {
@@ -56,19 +65,23 @@ Lightbox.prototype = {
   // dispay overlay and lightbox
   activate: function(_layer) {
     var layer = _layer || 0;
+    var lb_w =  this.lb_contents(layer).firstDescendant().getStyle('width');
+    var lb_h =  this.lb_contents(layer).firstDescendant().getStyle('height');
+    this.lb_frame(layer).setStyle({ width: lb_w, height: '100%' });
+    this.lb(layer).show();
 
     // overlay setting
     if (layer == 0) {
       var doc_sizes = this.document_pagesize();
+      doc_sizes[1] += 50;
       $('overlay').setStyle({ width: doc_sizes[0] + 'px', height: doc_sizes[1] + 'px' });
       $('overlay').appear({ duration: this.overlay_duration, from: 0.0, to: this.overlay_opacity });
     } else {
       $('overlay').setStyle({ zIndex: this.lb_zindex(layer)-1 });
     }
 
-    var w =  this.lb_contents(layer).firstDescendant().getStyle('width');
-    this.lb_frame(layer).setStyle({ width: w, height: '100%' });
-    this.lb(layer).show();
+
+
   },
 
   deactivate: function(_layer, _duration) {
@@ -163,8 +176,8 @@ tt.overlay_style = {
   position: 'absolute',
   top: '0',
   left: '0',
-  width: '100%',
-  height: '100%',
+  width: '200%',
+  height: '200%',
   zIndex:'1000',
   backgroundColor:'#333'
 }

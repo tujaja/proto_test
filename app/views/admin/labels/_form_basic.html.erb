@@ -79,6 +79,30 @@
           <ul class="list1"> <li><span>全角半角200文字以内</span></li> </ul>
         </td>
       </tr>
+
+      <tr>
+        <th><%= f.label :url, "メイン画像" %> </th>
+        <td class="field">
+          <% image_name = @label.primary_image ? @label.primary_image.name : "選択されていません" -%>
+          <% image_id = @label.primary_image ? @label.primary_image.id : 0 -%>
+          <p id="image_name"><%= h(image_name) %></p>
+          <%= f.hidden_field "primary_image", { :value => image_id } %>
+          <div class="btn_small"><span class="btn btn_small btn_wh_bl">
+            <%= link_to_function '画像を選択する',
+              "image_selector(1,
+              function(img) {
+                $('label_primary_image').setValue(img.id);
+                $('image_name').update(img.filename);
+                switch_image(img.token, $('image_thumb'), 's50');
+              });"
+            %>
+          </span></div>
+        </td>
+        <td class="desc">
+          <ul class="list1"><img id="image_thumb" class="s50" width="50" height="50" src="/images/noimage-50.jpg" /></ul>
+        </td>
+      </tr>
+
     </tbody>
   </table>
   <%= hidden_field_tag("command", "basic") %>

@@ -1,5 +1,5 @@
 <% info = @content.music_info -%>
-<p class="title">『コンテンツ 『<%= h(@content.name) %>』 曲情報</p>
+<p class="title">コンテンツ 『<%= h(@content.name) %>』 曲情報</p>
 
 <% if info.file_encoding != "" %>
 <dl><dt>エンコーディング</dt> <dd><%=h info.file_encoding %></dd></dl>
@@ -13,5 +13,6 @@
 
 <% if @content.download -%>
   <% download = @content.download -%>
+  <dl class="size"><dt>ファイル名</dt> <dd><%=h(download.filename) %></dd></dl>
   <dl class="size"><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(download.size) %></dd></dl>
 <% end -%>

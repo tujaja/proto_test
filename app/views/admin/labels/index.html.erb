@@ -3,10 +3,13 @@
   <div class="btn_small"><span class="btn btn_small btn_bk_wh">
     <%= link_to_function '新規作成', "resource_new('labels');", { :style => "font-weight: 12px; padding: 5px 10px;" } %>
   </span></div>
+  <%= render :partial => "search" %>
 </div>
 
 <div id="contents_main">
 <h3>レーベル一覧</h3>
+<%= render :partial => 'admin/record_results',
+  :locals => { :entries => @labels, :search_word => @search_word  } %>
   <%= render :partial => 'records' %>
 </div>
 

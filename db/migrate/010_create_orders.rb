@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string  :token,   :null => false, :limit => 50
       t.string  :email,   :null => false, :limit => 50
       t.string  :payment_type,   :null => false, :limit => 20
+      t.string  :status,  :default => 'pending', :null => false, :limit => 20
 
       t.datetime :order_time
       t.datetime :expire_time

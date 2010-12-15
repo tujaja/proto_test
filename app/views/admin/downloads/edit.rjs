@@ -1,0 +1,8 @@
+html =  render(:partial => 'form', :locals => { :url => admin_download_path(@download), :action_name => "更新する"})
+html = ::ActiveSupport::JSON.encode(html)
+
+page << <<-EOS
+  lightbox.setup(0);
+  lightbox.lb_contents(0).update( #{html} );
+  lightbox.activate(0);
+EOS

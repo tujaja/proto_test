@@ -1,0 +1,12 @@
+<% if search_word %>
+<div id="record_results">
+  <p>
+    <%= page_entries_info entries %>
+      <span class="search">検索ワード "<%= h("#{search_word}") %>"</span>
+  </p>
+</div>
+<% end %>
+<%= will_paginate entries, :previous_label => '&laquo', :next_label => '&raquo',
+  :inner_window => '2', :outer_window => '0',
+  :renderer => 'WillPaginate::MyLinkRenderer' %>
+

@@ -30,6 +30,19 @@
     <dl><dt>連絡先</dt> <dd><%=h(@label.phone) %></dd></dl>
   <% end %>
 
+  <% if @label.artists.any?  %>
+    <dl>
+      <dt>所属アーティスト</dt>
+      <dd>
+        <ul>
+        <% @label.artists.each do |artist| %>
+          <li><%= h(artist.name) %></li>
+        <% end %>
+        </ul>
+      </dd>
+    </dl>
+  <% end -%>
+
   <dl><dt>更新日時</dt><dd><%=h(to_japan_time(@label.updated_at)) %></dd></dl>
   <dl><dt>作成日時</dt><dd><%=h(to_japan_time(@label.created_at)) %></dd></dl>
 </div>

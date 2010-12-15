@@ -9,6 +9,10 @@ span.mark  {
   white-space: nowrap;
 }
 
+div.btn {
+  text-align: center;
+}
+
 span.btn a {
   color: #FFF;
   background:#4ea6cc;
@@ -17,6 +21,8 @@ span.btn a {
   padding: 5px 20px;
   white-space: nowrap;
 }
+span.btn a:hover { color: #D5B006; background-color: #78576A; }
+span.form_btn a { }
 
 
 p.head { font-size: 16px; padding: 5px 0;}
@@ -29,8 +35,6 @@ p.order_notice { padding-top: 20px; font-size: 16px; text-align: center; }
 div.thankyou p { font-size: 14px; padding: 3px; text-align: center; }
 div.thankyou p.large { font-size: 36px; color: #888; text-align: center; padding: 0 0 10px;}
 
-
-div.form_button { padding: 30px 0 0; text-align: center; }
 
 /* contents_header */
 #contents_header {
@@ -67,6 +71,54 @@ div.form_button { padding: 30px 0 0; text-align: center; }
 #submenu {
   text-align: right;
 }
+
+/* pagination */
+div.pagination {
+  overflow: hidden;
+  position: relative:
+  text-align: center;
+}
+
+div.pagination ul  {
+  float: left;
+  left: 50%;
+  position: relative;
+}
+
+div.pagination ul li {
+  float: left;
+  font-size: 12px;
+  left: -50%;
+  margin-right: 8px;
+  position: relative;
+}
+
+div.pagination ul li a,
+div.pagination ul li span.gap
+{
+  background-color: #F5F5F5;
+  border: 1px solid #CDCDCD;
+  color: #565656;
+  display: block;
+  padding: 3px 7px;
+  position: relative;
+}
+
+div.pagination ul li span.current {
+  background-color: #1E1E1E;
+  border: 1px solid #000000;
+  color: #FFFFFF;
+  font-weight: bold;
+  display: block;
+  padding: 3px 8px;
+}
+
+#record_results p {
+  padding: 2px 0 5px 0;
+  /*text-align: center;*/
+  font-size: 14px;
+}
+#record_results p span.search { font-size: 16px;}
 
 /* thumb */
 
@@ -121,7 +173,7 @@ div.form_button { padding: 30px 0 0; text-align: center; }
 /* record */
 
 table.record tr { height: 90px; }
-table.record td { padding: 5px 10px; border-bottom: 1px dotted #aaa; }
+table.record td { padding: 5px 10px; border-bottom: 1px solid #EEE; }
 
 table.record td.thumb {width:70px;text-align:center;background:#efffef;cursor:pointer;}
   table.record td.thumb a img{border:2px #fff solid;cursor:pointer; }
@@ -138,19 +190,21 @@ table.record td.buy {width:100px;font-size: 14px;text-align: center;}
 
 /* album_musics */
 
-table.album_musics tr { height: 40px; border-bottom: 1px dotted #999;}
+table.album_musics tr { height: 40px; border-bottom: 1px solid #EEE;}
 table.album_musics td { padding: 3px; }
 
 table.album_musics td.thumb {width:50px;text-align:center;background:#efffef;cursor:pointer;}
   table.album_musics td.thumb a img{border:2px #fff solid;cursor:pointer; }
   table.album_musics td.thumb a:hover img{border:2px #333 solid;cursor:pointer; }
 
-table.album_musics td.name {width:400px;}
+table.album_musics td.name {width:200px;}
   table.album_musics td.name a { color: #333; }
   table.album_musics td.name a:hover { color: #D5B006; background-color: #78576A; }
   table.album_musics td.name div.name_title h4 { font-size:16px; }
   table.album_musics td.name div.name_mini { font-size:12px; padding: 0 0 5px;}
 
+table.album_musics td.price {width:200px; text-align: right;}
+table.album_musics td.info {width:200px;}
 
 /* cart items */
 
@@ -165,12 +219,12 @@ table.cart_items td { border-bottom: 1px dotted #333; }
 
 table.cart_items td.thumb { width:100px; text-align:center; background:#efffef; }
 
-table.cart_items td.desc {width:420px;}
+table.cart_items td.desc {width:370px;}
   table.cart_items td.desc div.desc_title h4 { font-size:16px; }
   table.cart_items td.desc div.desc_mini { font-size:12px; padding: 0 0 5px;}
 
 table.cart_items td.price {width:100px;font-size: 20px;text-align: center; }
-table.cart_items td.delete {width:100px;font-size: 14px;text-align: center;}
+table.cart_items td.delete {width:150px;font-size: 14px;text-align: center;}
 table.cart_items td.empty { width:720px; font-size: 16px; text-align: center; }
 
 table.cart_items td.total_price {

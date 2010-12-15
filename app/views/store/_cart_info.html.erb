@@ -1,3 +1,4 @@
 <div id="cart_info" style="display:none">
   <p><%=h flash[:cart_info] %></p>
+  <%= link_to "#{@cart.length} Items Total ￥#{@cart.total_price}", cart_path, { :class => "cart"} %>
 </div>

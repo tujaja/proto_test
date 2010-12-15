@@ -20,8 +20,9 @@
   <tr>
     <td class="id"><%=h mail.id %></td>
     <td class="status">
-      <span class="mark"><%= h(mail.mail_type) %></span>
+      <span class="mark"><%= h(mail.deliver) %></span>
       <span class="mark"><%= h(mail.status) %></span>
+      <span class="mark"><%= h(mail.kind) %></span>
     </td>
     <td class="rcpt">
       <%= link_to_function h(mail.recipients), "resource_show('mails', #{mail.id});" %>

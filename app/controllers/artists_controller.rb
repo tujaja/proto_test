@@ -3,7 +3,9 @@ class ArtistsController < StoreController
   # GET /artists
   def index
     p; p 'C===Artists#index'
-    @artists = Artist.find(:all)
+    page = params[:page] || 1
+
+    @artists = Artist.activates( {:page => page, :per_page => '16'} )
   end
 
   # GET /artists/:token

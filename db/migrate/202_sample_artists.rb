@@ -17,6 +17,21 @@ class SampleArtists < ActiveRecord::Migration
     jimi.label = Label.find_by_domain('sony-music-entertainment')
     jimi.save
 
+    # led zeppelin
+    domain = 'led-zeppelin'
+    name = 'Led Zeppelin'
+    subname = 'レッド・ツェッペリン'
+    desc = 'Hendrix was born on November 27, 1942, in Seattle, Washington, while his father was stationed at an Army base in Oklahoma.'
+    url = 'ledzeppelin.com'
+    email = 'info@ledzeppelin.com'
+
+    led = Artist.create(:domain => domain, :name => name, :subname => subname, :description => desc, :url => url, :email => email)
+    led_images = Image.find(:all, :conditions => ["filename LIKE ?", "led%"])
+    led_images.each do |image|
+      led.connect_image image
+    end
+    led.label = Label.find_by_domain('sony-music-entertainment')
+    led.save
 
     # Eric Clapton
     domain = 'eric-clapton'

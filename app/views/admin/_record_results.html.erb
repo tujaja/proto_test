@@ -1,10 +1,11 @@
-<div id="record_results" class="double_dotted">
-  <p class="float_left">
+<div id="record_results">
+  <p>
     <%= page_entries_info entries %>
     <% if search_word %>
-      <span class="search_word">検索ワード "<%= "#{search_word}" %>"</span>
+      <span class="search">検索ワード "<%= h("#{search_word}") %>"</span>
     <% end %>
   </p>
-  <%= will_paginate entries, :prev_label => 'prev', :next_label => 'next' %>
 </div>
-
+  <%= will_paginate entries, :previous_label => '&laquo', :next_label => '&raquo',
+  :inner_window => '2', :outer_window => '0',
+  :renderer => 'WillPaginate::MyLinkRenderer' %>

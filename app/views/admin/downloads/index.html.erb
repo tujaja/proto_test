@@ -1,10 +1,13 @@
 <div id="contents_header">
   <h2>ファイル管理</h2>
   <%= render :partial => 'upload_button' %>
+  <%= render :partial => "search" %>
 </div>
 
 <div id="contents_main">
 <h3>ファイル一覧</h3>
-  <%#= render :partial => 'thumbs' %>
+  <%= render :partial => 'admin/record_results',
+    :locals => { :entries => @downloads, :search_word => @search_word  } %>
   <%= render :partial => 'records' %>
 </div>
+<%= javascript_include_tag "lightbox.js" %>

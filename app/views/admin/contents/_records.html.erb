@@ -5,8 +5,6 @@
 <table class="record content">
 <tbody>
 
-<%#= will_paginate @contents, :prev_label => 'prev', :next_label => 'next' %>
-
 <% @contents.each do |content| %>
   <tr <%= "class=inactivated" unless content.activated %> >
 

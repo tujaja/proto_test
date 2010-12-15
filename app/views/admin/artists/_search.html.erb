@@ -1,0 +1,25 @@
+<div id="search_form">
+  <% form_tag( admin_artists_path, {:method => "get",  :name => "search" } ) do %>
+    <%#= text_field_tag :search_word, session[:search_word] %>
+    <%= text_field_tag :search_word, @search_word %>
+    <%= hidden_field_tag :activated, "#{@activated}", {:id => 'search_activated'} %>
+    <%= link_to_function image_tag("/images/btn.gif"), "document.search.submit();", { :id  => "search_btn" } %>
+  <% end %>
+</div>
+
+<div id="search_activated">
+  <ul>
+    <li class="search_salt">
+    <% name = (@activated == 'all' || @activated == '') ? 'focus all' : 'all' %>
+    <%= link_to_function "すべて", "select_search_salt('search_activated', 'all');", { :class => "#{name}" } %>
+    </li>
+    <li class="search_salt">
+    <% name = (@activated == 'true') ? 'focus true' : 'true' %>
+    <%= link_to_function "有効のみ", "select_search_salt('search_activated', 'true');", { :class => "#{name}" } %>
+    </li>
+    <li class="search_salt">
+    <% name = (@activated == 'false') ? 'focus false' : 'false' %>
+    <%= link_to_function "無効のみ", "select_search_salt('search_activated', 'false');", { :class => "#{name}" } %>
+    </li>
+  </ul>
+</div>

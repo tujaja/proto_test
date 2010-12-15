@@ -2,6 +2,11 @@ module ImagesOwner
   #has_many :image_categorizations, :as => :owner
   #has_many :images, :through => :image_categorizations
 
+  def after_save
+    connect_image @image
+  end
+
+
   def connect_image(image, flag=true)
     # 既に追加済み
     image = Image.find_by_id(image) unless instance_of?(Image)
@@ -38,6 +43,11 @@ module ImagesOwner
   end
 
   def primary_image= image_id
+    unless self.image_categorizations.any?
+      @image = Image.find_by_id image_id
+      return
+    end
+
     self.image_categorizations.each do |image_tag|
       if image_tag.priority == 0
         image_tag.update_attribute(:priority, image_tag.image.id)

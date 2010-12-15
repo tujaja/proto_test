@@ -1,0 +1,7 @@
+<div id="search_form">
+  <% form_tag( admin_images_path, {:method => "get",  :name => "search" } ) do %>
+    <%#= text_field_tag :search_word, session[:search_word] %>
+    <%= text_field_tag :search_word, @search_word %>
+    <%= link_to_function image_tag("/images/btn.gif"), "document.search.submit();", { :id  => "search_btn" } %>
+  <% end %>
+</div>

@@ -2,10 +2,28 @@ class Admin::ContentsController < AdminController
 
   # GET /contents
   def index
-    #@contents = Content.all
-    @contents = Content.paginate(:page => params[:page],
-                                 :order => 'contents.id asc',
-                                 :per_page => 10)
+    @page = params[:page] || 1
+    @category = params[:category] || ""
+    @activated = params[:activated] || "all"
+
+    if (@search_word = params[:search_word] || "").empty?
+      @search_word = nil
+    else
+      @search_word = @search_word.gsub(/[　\s\t]+$/o, "").gsub(/^[　\s\t]+/o, "")
+    end
+
+    session[:search_page] = @page
+    session[:search_word] = @search_word
+    session[:search_category] = @category
+    session[:search_activated] = @activated
+
+    @contents = Content.find_by_admin(:search_word => @search_word,
+                                      :category => @category,
+                                      :page => @page,
+                                      :per_page => 10,
+                                      :activated => @activated)
+
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -37,7 +55,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.js { @contents = Content.all } # new.rjs
+      format.js # new.rjs
     end
   end
 
@@ -47,7 +65,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.js { @contents = Content.all } # edit.rjs
+      format.js # edit.rjs
     end
   end
 
@@ -105,10 +123,9 @@ class Admin::ContentsController < AdminController
       format.html { redirect_to admin_labels_path }
       format.js {
         if saved
-          @contents = Content.all 
+          @contents = find_current_contents
           render :action => "create.rjs"
         else
-          p 'here'
           render :action => "new.rjs"
         end
       }
@@ -147,7 +164,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_contents_path }
-      format.js { @contents = Content.all } # destroy.rjs
+      format.js { @contents = find_current_contents }
     end
   end
 
@@ -161,7 +178,7 @@ class Admin::ContentsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_content_path(@content) }
         format.js {
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_basic.rjs"
         }
       end
@@ -176,7 +193,7 @@ class Admin::ContentsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_content_path(@content) }
         format.js {
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_activated.rjs"
         }
       end
@@ -190,7 +207,7 @@ class Admin::ContentsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @content.images
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_images.rjs"
         }
       end
@@ -205,7 +222,7 @@ class Admin::ContentsController < AdminController
       respond_to do |format|
         format.html { render :action => "update_music_info" }
         format.js {
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_music_info.rjs"
         }
       end
@@ -221,7 +238,7 @@ class Admin::ContentsController < AdminController
       respond_to do |format|
         format.html { render :action => "update_album_info" }
         format.js {
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_album_info.rjs"
         }
       end
@@ -236,7 +253,7 @@ class Admin::ContentsController < AdminController
       respond_to do |format|
         format.html { render :action => "images" }
         format.js {
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_album_info.rjs"
         }
       end
@@ -249,9 +266,18 @@ class Admin::ContentsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @content.images
-          @contents = Content.all
+          @contents = find_current_contents
           render :action => "update_images.rjs"
         }
       end
+    end
+
+    # alias
+    def find_current_contents
+      Content.find_by_admin(:activated => session[:search_activated],
+                            :category => session[:search_category],
+                            :search_word => session[:search_word],
+                            :page => session[:search_page],
+                            :per_page => 10)
     end
 end

@@ -9,10 +9,15 @@ class Image < ActiveRecord::Base
   #
 
   def uploaded_file=(file)
+    @newer = true
+    @image = nil
     return if file == ""
 
     # update時 既存のファイルを削除する
-    delete_file_from_storage self.token if self.token
+    if self.token
+      @newer = false
+      delete_file_from_storage self.token
+    end
 
     with_image file.read do |img|
       self.width  = img.columns
@@ -26,11 +31,11 @@ class Image < ActiveRecord::Base
   end
 
   def before_create
-    self.token = make_unique_token self.filename
+    self.token = make_unique_token self.filename if @newer
   end
 
   def after_save
-    save_file_to_storage
+    save_file_to_storage if @image
   end
 
   def after_destroy
@@ -44,6 +49,36 @@ class Image < ActiveRecord::Base
         "\#{storage_path}/\#{self.token}.#{size}.jpg"
       end
     END
+  end
+
+  def references
+    #p owners
+  end
+
+  def self.find_by_admin options
+    where = nil
+    semantics = []
+    place_holder = ""
+
+    @search_word = options[:search_word]
+    @page = options[:page]
+    @per_page = options[:per_page]
+
+    if @search_word
+      words = @search_word.split(/\s|　/)
+      words.each_with_index do |w, i|
+        place_holder << " AND " if place_holder != ""
+        place_holder << "(images.filename LIKE ? OR images.comment LIKE ?)"
+        semantics.concat ["%#{w}%","%#{w}%"]
+      end
+    end
+
+    where = [place_holder] + semantics
+
+    Image.paginate(:page => @page,
+                   :order => 'images.id asc',
+                   :conditions => where,
+                   :per_page => @per_page)
   end
 
   private

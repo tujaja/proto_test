@@ -2,7 +2,23 @@ class Admin::LabelsController < AdminController
 
   # GET /labels
   def index
-    @labels = Label.all
+    @page = params[:page] || 1
+    @activated = params[:activated] || "all"
+
+    if (@search_word = params[:search_word] || "").empty?
+      @search_word = nil
+    else
+      @search_word = @search_word.gsub(/[　\s\t]+$/o, "").gsub(/^[　\s\t]+/o, "")
+    end
+
+    session[:search_page] = @page
+    session[:search_word] = @search_word
+    session[:search_activated] = @activated
+
+    @labels = Label.find_by_admin(:activated => @activated,
+                                  :search_word => @search_word,
+                                  :page => @page,
+                                  :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,7 +52,7 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html # edit.html.erb
-      format.js  {  @labels = Label.all } # edit.rjs
+      format.js   # edit.rjs
     end
   end
 
@@ -62,7 +78,7 @@ class Admin::LabelsController < AdminController
       format.html { redirect_to admin_labels_path }
       format.js {
         if saved
-          @labels = Label.all
+          @labels = find_current_labels
           render :action => "create.rjs"
         else
           @failed = true
@@ -97,7 +113,7 @@ class Admin::LabelsController < AdminController
 
     respond_to do |format|
       format.html { redirect_to admin_labels_path }
-      format.js { @labels = Label.all } # destroy.rjs
+      format.js { @labels = find_current_labels } # destroy.rjs
     end
   end
 
@@ -111,7 +127,7 @@ class Admin::LabelsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_label_path(@label) }
         format.js {
-          @labels = Label.all
+          @labels = find_current_labels
           render :action => "update_basic.rjs"
         }
       end
@@ -126,7 +142,7 @@ class Admin::LabelsController < AdminController
       respond_to do |format|
         format.html { redirect_to admin_label_path(@label) }
         format.js {
-          @labels = Label.all
+          @labels = find_current_labels
           render :action => "update_activated.rjs"
         }
       end
@@ -140,7 +156,7 @@ class Admin::LabelsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @label.images
-          @labels = Label.all
+          @labels = find_current_labels
           render :action => "update_images.rjs"
         }
       end
@@ -153,10 +169,18 @@ class Admin::LabelsController < AdminController
         format.html { render :action => "images" }
         format.js {
           @images = @label.images
-          @labels = Label.all
+          @labels = find_current_labels
           render :action => "update_images.rjs"
         }
       end
+    end
+
+    # alias
+    def find_current_labels
+      Label.find_by_admin(:activated => session[:search_activated],
+                          :search_word => session[:search_word],
+                          :page => session[:search_page],
+                          :per_page => 10)
     end
 
 end

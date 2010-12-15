@@ -36,4 +36,23 @@ module ApplicationHelper
   def to_japan_time time
     "#{time.year}年#{time.month}月#{time.day}日#{time.hour}時#{time.min}分"
   end
+
+
+  def to_valid_url_link str
+    if str =~ /^http\:\/\/[\w\+\$\;\?\.\%\,\!\#\~\*\/\:\@\&\\\=\_\-]+/
+      link_to str, str
+    else
+      "invalid url"
+    end
+  end
+
+  def to_valid_mail_link str
+    if str =~ /(\S+)@(\S+)/
+      mail_to str
+    else
+      "invalid url"
+    end
+  end
+
+
 end

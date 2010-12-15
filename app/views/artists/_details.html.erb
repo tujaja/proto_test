@@ -16,4 +16,16 @@
     <dl><dt>email</dt> <dd><%=h @artist.email %></dd></dl>
   <% end %>
 
+  <% if @artist.contents.any?  %>
+    <dl>
+      <dt>コンテンツ</dt>
+      <dd>
+        <ul>
+        <% @artist.contents.each do |content| %>
+          <li><%= h(content.name) %></li>
+        <% end %>
+        </ul>
+      </dd>
+    </dl>
+  <% end -%>
 </div>

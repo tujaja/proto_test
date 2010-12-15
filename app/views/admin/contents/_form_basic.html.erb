@@ -60,7 +60,7 @@
       <tr>
         <th><span>*</span><%= f.label :url, "アーティスト" %> </th>
         <td class="field">
-          <% artist_name = @content.artist ? @content.artist.name : "unknown" -%>
+          <% artist_name = @content.artist ? @content.artist.name : "選択されていません" -%>
           <% artist_id = @content.artist ? @content.artist.id : 1 -%>
           <p id="artist_name"><%= h(artist_name) %></p>
           <%= f.hidden_field "artist_id" %>
@@ -74,6 +74,29 @@
         </td>
         <td class="desc">
            <ul class="list1"></ul>
+        </td>
+      </tr>
+
+      <tr>
+        <th><%= f.label :url, "メイン画像" %> </th>
+        <td class="field">
+          <% image_name = @content.primary_image ? @content.primary_image.name : "選択されていません" -%>
+          <% image_id = @content.primary_image ? @content.primary_image.id : 0 -%>
+          <p id="image_name"><%= h(image_name) %></p>
+          <%= f.hidden_field "primary_image", { :value => image_id } %>
+          <div class="btn_small"><span class="btn btn_small btn_wh_bl">
+            <%= link_to_function '画像を選択する',
+              "image_selector(1,
+              function(img) {
+                $('content_primary_image').setValue(img.id);
+                $('image_name').update(img.filename);
+                switch_image(img.token, $('image_thumb'), 's50');
+              });"
+            %>
+          </span></div>
+        </td>
+        <td class="desc">
+          <ul class="list1"><img id="image_thumb" class="s50" width="50" height="50" src="/images/noimage-50.jpg" /></ul>
         </td>
       </tr>
 

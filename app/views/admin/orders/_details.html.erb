@@ -1,10 +1,14 @@
-<dl><dt>ID</dt> <dd><%=h @order.id %></dd></dl>
-<dl><dt>識別子</dt> <dd><%=h @order.token %></dd></dl>
-<dl><dt>email</dt> <dd><%=h @order.email %></dd></dl>
-<dl><dt>決済方法</dt> <dd><%=h @order.payment_type %></dd></dl>
-<dl><dt>発行日</dt> <dd><%=h to_japan_time(@order.order_time) %></dd></dl>
-<dl><dt>有効期限</dt> <dd><%=h to_japan_time(@order.expire_time) %></dd></dl>
-<dl>
-  <dt>オーダーコンテンツ</dt>
-  <dd><%= render :partial => 'order_items' %></dd>
-</dl>
+<div id="details">
+  <p class="title">オーダー詳細</p>
+
+  <dl><dt>ID</dt> <dd><%=h @order.id %></dd></dl>
+  <dl><dt>識別子</dt> <dd><%=h @order.token %></dd></dl>
+  <dl><dt>email</dt> <dd><%=h @order.email %></dd></dl>
+  <dl><dt>決済方法</dt> <dd><%=h @order.payment_type %></dd></dl>
+  <dl><dt>発行日</dt> <dd><%=h to_japan_time(@order.order_time) %></dd></dl>
+  <dl><dt>有効期限</dt> <dd><%=h to_japan_time(@order.expire_time) %></dd></dl>
+  <dl>
+    <dt>オーダーコンテンツ</dt>
+    <dd><%= render :partial => 'order_items' %></dd>
+  </dl>
+</div>

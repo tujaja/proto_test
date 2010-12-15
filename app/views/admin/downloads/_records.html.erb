@@ -1,14 +1,21 @@
 <div id="records">
+<% if @downloads.any? -%>
+
 <table class="record download">
 <tbody>
 
 <% @downloads.each do |download| %>
   <tr>
     <td class="id"><%=h download.id %></td>
-    <td class="name"><%= link_to h(download.filename), admin_download_path(download) %></td>
+    <td class="name">
+      <%#= link_to h(download.filename), admin_download_path(download) %>
+      <%= link_to_function h(download.filename), "resource_show('downloads', #{download.id});" %>
+    </td>
     <td class="desc">
       <span class="mark"><%=h download.content_type %></span>
       <span class="mark"><%=h to_megabyte(download.size) %></span>
+      <span class="btn btn_small btn_wh_bl"><%= link_to_function "更新", "resource_edit('downloads', #{download.id});" %></span>
+
     </td>
     <td class"date">
       <span class="mark"><%=h to_japan_time(download.updated_at) %></span>
@@ -16,10 +23,13 @@
     <td class="gadget">
       <%= link_to (image_tag "download.png", :alt => "download"), dl_admin_download_path(download.id) %>
 
-      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_download_path(download), :confirm => 'Are you sure?', :method => :delete %>
+      <%= link_to (image_tag "delete.png", :alt => "delete"), admin_download_path(download), :method => :delete %>
     </td>
   </tr>
 <% end %>
 </tbody>
 </table>
+<% else -%>
+  <p class="notice">ファイルは登録されていません</p>
+<% end -%>
 </div>

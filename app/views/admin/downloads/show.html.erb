@@ -3,9 +3,5 @@
 </div>
 
 <div id="contents_main">
-<h3>ファイル詳細</h3>
-  <dl><dt>ファイル名</dt> <dd><%=h @download.filename %></dd></dl>
-  <dl><dt>ファイルサイズ</dt> <dd><%=h to_megabyte(@download.size) %></dd></dl>
-  <dl><dt>コメント</dt> <dd><%=h @download.comment %></dd></dl>
-  <dl><dt>識別子</dt> <dd><%=h @download.token %></dd></dl>
+  <%= render :partial => "details" %>
 </div>

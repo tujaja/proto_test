@@ -3,7 +3,8 @@ class OrderItem < ActiveRecord::Base
   belongs_to :content, :dependent => :destroy
 
   def before_create
-    self.token = make_unique_token self.id
+    self.token = make_unique_token self.content_id
+    p "self.token #{self.content_id}:#{self.token}"
   end
 
   def unit_price

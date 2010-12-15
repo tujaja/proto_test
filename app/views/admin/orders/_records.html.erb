@@ -3,13 +3,17 @@
 <% if @orders.any? -%>
 
 <table class="record">
+
 <tbody>
 
 <% @orders.each do |order| %>
   <tr>
     <td class="id"><%=h order.id %></td>
 
-    <td class="name"><%= link_to h(order.email), admin_order_path(order)  %></td>
+    <td class="name">
+      <%= link_to_function h(order.email), "resource_show('orders', #{order.id});" %>
+    </td>
+
     <td class="desc">
       <span class="mark"><%=h order.first_ordered_content.name %> etc</span>
       <span class="mark"><%=h order.payment_type %></span>

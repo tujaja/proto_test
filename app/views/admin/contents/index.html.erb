@@ -4,12 +4,13 @@
     <%= link_to_function '新規作成', "resource_new('contents');", { :style => "font-weight: 12px; padding: 5px 10px;" } %>
   </span></div>
 
-  <%#= render :partial => "search_form" %>
+  <%= render :partial => "search" %>
 
 </div>
 
 <div id="contents_main">
 <h3>コンテンツ一覧</h1>
+  <%= render :partial => "admin/record_results", :locals => { :entries => @contents, :search_word => @search_word } %>
   <%= render :partial => 'records' %>
 </div>
 

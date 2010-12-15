@@ -24,24 +24,25 @@ class CartsController < StoreController
       #redirect_to store_path and return
     end
 
-    content_id = params[:cart_item][:content_id].to_i
-    quantity = params[:cart_item][:quantity].to_i
+    @command = params[:command]
+    content_id = params[:content_id].to_i
+    quantity = params[:quantity].to_i
+    @row = params[:row].to_i
 
     name = Content.find_by_id(content_id).name
-
-    if quantity == 0
-      @cart.delete_cart_item(content_id)
-      flash[:cart_info] = "カートから#{name}を削除しました"
-    else
+    if @command == 'add'
       if @cart.add_cart_item(content_id)
         flash[:cart_info] = "カートに#{name}が追加されました"
       else
         flash[:cart_info] = "#{name}は既にカートに入っています"
       end
+    elsif @command == 'delete'
+      @cart.delete_cart_item(content_id)
+      flash[:cart_info] = "カートから#{name}を削除しました"
     end
 
     respond_to do |format|
-      format.html { redirect_to :action => "show" }# new.html.erb
+      format.html { redirect_to :action => "show" }# show.html.erb
       format.js # update.rjs
     end
   end

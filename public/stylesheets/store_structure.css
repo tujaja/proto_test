@@ -55,16 +55,13 @@
   padding: 6px 20px;
 }
 
-#navigation li a:hover {
-  color: #D5B006;
-  background-color: #78576A;
-}
+#navigation li a:hover { color: #D5B006; background-color: #78576A; }
 
 /* utility */
 #cart_status {
   position: absolute;
   top: 10px;
-  right: 30px;
+  right: 10px;
 }
 
 #cart_status a.cart {
@@ -73,25 +70,85 @@
   padding-left: 25px;
 }
 
-#cart_info{ position: absolute; top: 30px; right: 30px; }
+/*#cart_info{ position: absolute; top: 30px; right: 30px; }*/
+#cart_info {
+  position: fixed;
+  top: 130px;
+  right: 60px;
+  z-index: 1000;
+
+  width: 300px;
+  height: 70px;
+  /*padding-top: 10px;*/
+  background-color: #FFF;
+  text-align: center;
+  border: solid 1px #333;
+  -moz-border-radius: 5px;
+}
+#cart_info p {line-height: 40px; font-size: 14px; }
+#cart_info a.cart {
+  color: #333;
+  background: transparent url(/images/cart.gif) no-repeat scroll 0 50%;
+  padding-left: 25px;
+}
 
 /* search  */
 
 #search_form {
   position: absolute;
-  top: 0px;
-  right: 100px;
-  width: 200px;
+  top: 35px;
+  right: 10px;
+  width: 225px;
 }
 
+/*#search_form input[type="image"] {*/
+#search_btn {
+  position: absolute;
+  border: none;
+  padding: 0;
+  top: 0px;
+  _top: 1px;
+  left: 192px;
+}
+#search_btn img { border: none; }
 
 #search_form input[type="text"] {
-  float: left;
-
-  display: block;
-  width: 150px;
-  height: 14px;
+  width: 184px;
+  height: 16px;
+  background: #DDD;
+  /*background: #999;*/
+  border: none;
+  padding: 4px;
+  color: #333;
 }
+
+#search_category {
+  position: absolute;
+  top: 58px;
+  right: 10px;
+  width: 225px;
+}
+
+#search_category ul li {
+  float: left;
+}
+
+#search_category li a {
+  display: block;
+  text-align: center;
+  width: 55px;
+  color: #333;
+  background:#EEE;
+  /*background:#4ea6cc;*/
+  font-size: 12px;
+  /*font-weight: bold;*/
+  padding: 3px 10px;
+  /*margin-right: 1px;*/
+  white-space: nowrap;
+}
+
+#search_category li a:hover { color: #D5B006; background-color: #78576A; }
+#search_category li a.focus { font-weight: bold; color: #FFF; background-color: #4ea6cc; }
 
 
 /* contents*/

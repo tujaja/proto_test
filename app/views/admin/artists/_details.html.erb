@@ -23,6 +23,19 @@
   <dl><dt>email</dt> <dd><%=h @artist.email %></dd></dl>
   <% end %>
 
+  <% if @artist.contents.any?  %>
+    <dl>
+      <dt>コンテンツ</dt>
+      <dd>
+        <ul>
+        <% @artist.contents.each do |content| %>
+          <li><%= h(content.name) %></li>
+        <% end %>
+        </ul>
+      </dd>
+    </dl>
+  <% end -%>
+
   <dl><dt>更新日時</dt><dd><%=h(to_japan_time(@artist.updated_at)) %></dd></dl>
   <dl><dt>作成日時</dt><dd><%=h(to_japan_time(@artist.created_at)) %></dd></dl>
 </div>

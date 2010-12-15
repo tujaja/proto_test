@@ -43,8 +43,9 @@ class Order < ActiveRecord::Base
     p '==========================='
 
     cart.cart_items.each do  |cart_item|
-      item = OrderItem.new( :content_id => cart_item.content_id,
+      item = OrderItem.create( :content_id => cart_item.content_id,
                             :quantity => cart_item.quantity)
+      p "item_token:#{item.token}"
       self.order_items << item
       Content.find_by_id(cart_item.content_id).increment_sales
     end

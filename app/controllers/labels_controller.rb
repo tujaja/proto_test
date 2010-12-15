@@ -3,7 +3,9 @@ class LabelsController < StoreController
   # GET /labels
   def index
     p; p 'C===Labels#index'
-    @labels = Label.find(:all)
+    page = params[:page] || 1
+
+    @labels = Label.activates( {:page => page, :per_page => '16'} )
   end
 
   # GET /labels/:token

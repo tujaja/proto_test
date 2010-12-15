@@ -9,8 +9,9 @@ class SampleContents < ActiveRecord::Migration
     time = ['3:20', '4:12', '5:20', '3:49', '3:45', '3:12']
     desc = []
 
-    jimi = Artist.find_by_id 1
-    download = Download.find_by_id 1
+    download_names = [ "foxy-lady.mp3", "hey-joe.mp3", "little-wing.mp3", "purple-haze.mp3", "voodoo-chile.mp3", "stone-free.mp3"]
+
+    jimi = Artist.find_by_domain('jimi-hendrix')
 
     #fox_lady_desc
     desc[0] = '"Foxy Lady" (or alternatively "Foxey Lady") is a song by The Jimi Hendrix Experience from their 1967 album Are you Experienced. It can also be found on a number of Hendrix\'s greatest hits compilations, including Smash Hits (1968/1969) and Experience Hendrix: The Best of Jimi Hendrix (1997). '
@@ -37,9 +38,11 @@ class SampleContents < ActiveRecord::Migration
                             :name => name[n],
                             :subname => subname[n],
                             :price => price[n],
-                            :description => desc[n])
+                            :description => desc[n],
+                            :activated => true)
       content.artist = jimi
       content.save
+      download = Download.find_by_filename(download_names[n])
 
       music_info = MusicInfo.new
       music_info.download = download
@@ -47,7 +50,6 @@ class SampleContents < ActiveRecord::Migration
       music_info.time = time[n]
       music_info.save
       music_info.content = content
-
 
       (1..3).each do |m|
         # n (0 1 2 3 4 5 )
@@ -59,48 +61,46 @@ class SampleContents < ActiveRecord::Migration
 
 
     # Others
-    #first_e = ['aoi', 'ituwarino', 'tuiokuno', 'arifureta', 'shizukana', 'yumeno', 'kakegaenonai', 'hidamarino', 'kitto', 'samayoeru']
-    #last_e = ['uta', 'kuni', 'koibito', 'melody', 'kounotori', 'touhikou', 'kissaten', 'bara', 'knit', 'aerobics']
-    #first = ['青い', '偽りの', '追憶の', 'ありふれた', '静かな', '夢の', 'かけがえのない', 'ひだまりの', 'きっと', 'さまよえる']
-    #last = ['歌', '国', '恋人', 'メロディ', 'コウノトリ', '逃避行', '喫茶店', 'バラ', 'ニット', 'エアロビクス']
+    first_e = ['aoi', 'ituwarino', 'tuiokuno', 'arifureta', 'shizukana', 'yumeno', 'kakegaenonai', 'hidamarino', 'kitto', 'samayoeru']
+    last_e = ['uta', 'kuni', 'koibito', 'melody', 'kounotori', 'touhikou', 'kissaten', 'bara', 'knit', 'aerobics']
+    first = ['青い', '偽りの', '追憶の', 'ありふれた', '静かな', '夢の', 'かけがえのない', 'ひだまりの', 'きっと', 'さまよえる']
+    last = ['歌', '国', '恋人', 'メロディ', 'コウノトリ', '逃避行', '喫茶店', 'バラ', 'ニット', 'エアロビクス']
 
-    #key_when = ['おととし', '去年', 'おととい', '昨日', 'さっき']
-    #key_where = ['家で', '公園で', '海で', '山で', 'デパートで']
-    #key_what = ['遊んだ', '寝た', '歌った', '走った', 'けんかした']
+    key_when = ['おととし', '去年', 'おととい', '昨日', 'さっき']
+    key_where = ['家で', '公園で', '海で', '山で', 'デパートで']
+    key_what = ['遊んだ', '寝た', '歌った', '走った', 'けんかした']
 
-    #(1...100).each do |n|
-      #r1 = rand(10); r2 = rand(10);
-      #f_e = first_e[r1]
-      #l_e = last_e[r2]
-      #f = first[r1]
-      #l = last[r2]
+    download = Download.find_by_id(1)
 
-      #domain = "#{f_e}-#{l_e}-#{n}"
-      #name = "#{f}#{l}"
-      #subname = name
-      #desc = key_when[rand(5)] + key_where[rand(5)] + key_what[rand(5)]
-      #price = rand(1000)
+    (1...100).each do |n|
+      r1 = rand(10); r2 = rand(10);
+      f_e = first_e[r1]
+      l_e = last_e[r2]
+      f = first[r1]
+      l = last[r2]
 
-      #content = Content.new(:domain => domain, :name => name, :subname => subname, :description => desc, :price => price)
+      domain = "#{f_e}-#{l_e}-#{n}"
+      name = "#{f}#{l}"
+      subname = name
+      desc = key_when[rand(5)] + key_where[rand(5)] + key_what[rand(5)]
+      price = rand(1000)
 
-      #content.artist = Artist.find_by_id(rand(30)+1)
-      #content.save
+      content = Content.new(:domain => domain, :name => name, :subname => subname, :description => desc, :price => price, :activated => true)
 
-      #image = Image.find_by_id(rand(10)+1)
-      #content.images << image
+      content.artist = Artist.find_by_id(rand(30)+1)
+      content.save
 
-      #music_info = MusicInfo.new
-      #music_info.download = download
-      #music_info.file_encoding = 'mp3/128kbps'
-      #music_info.time = time[n]
-      #music_info.save
-      #music_info.content = content
+      image = Image.find_by_id(rand(10)+1)
+      content.connect_image image
 
-      #images = Image.find(:all, :conditions => ["filename LIKE ?", "lh%"])
-      #images.each do |image|
-        #artist.images << image
-      #end
-    #end
+      music_info = MusicInfo.new
+      music_info.download = download
+      music_info.file_encoding = 'mp3/128kbps'
+      music_info.time = time[n]
+      music_info.save
+      music_info.content = content
+
+    end
 
 
   end

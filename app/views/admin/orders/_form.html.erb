@@ -1,0 +1,36 @@
+<div id="remote_form">
+<% remote_form_for @order, :url => url do |f| %>
+  <p class="need"> * 必須項目 </p>
+  <p class="title">オーダーの新規発行</p>
+
+  <table class="form">
+    <tbody>
+      <tr>
+        <th><%= f.label :email, "メールアドレス" %> </th>
+        <td class="field">
+          <%= f.text_field :email, :style => "width:300px; font-size: 14px;" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
+        </td>
+      </tr>
+      <tr>
+        <th><%= f.label :payment_type, "お支払い方法" %></th>
+        <td>
+          <%= f.radio_button(:payment_type, "free", {:checked => true} ) %>Free
+          <%= f.radio_button(:payment_type, "paypal") %> <%= image_tag "paypal.gif" %>
+        </td>
+        <td class="desc">
+          <ul class="list1"></ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="buttons"><%= f.submit action_name %> </p>
+<% end -%>
+
+<%# ---------------------------------------------------------------------- -%>
+
+<p class="title">収録曲</p>
+<%# music_infos = @album_info.music_infos -%>
+<%#= render :partial => "form_album_info_musics", :locals => { :music_infos => music_infos } %>

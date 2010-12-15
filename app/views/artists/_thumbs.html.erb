@@ -1,18 +1,17 @@
 <% if @artists.any? %>
   <% @artists.each do |artist| %>
-  <% if artist.activated -%>
-    <div id="thumb" class="artist">
-      <ul>
-        <li>
-        <p><%= link_to (s100_for artist.primary_image), artist_path(artist.domain)  %></p>
-        <p><%= link_to h(artist.name), artist_path(artist.domain) %></p>
-        <p><%= link_to h(artist.label.name), label_path(artist.label.domain) if artist.label %></p>
+  <div id="thumb" class="artist">
+    <ul>
+      <li>
+      <p><%= link_to (s100_for artist.primary_image), artist_path(artist.domain)  %></p>
+      <p><%= link_to h(artist.name), artist_path(artist.domain) %></p>
+      <p><%= link_to h(artist.label.name), label_path(artist.label.domain) if artist.label %></p>
 
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
+  </div>
   <% end %>
-  <% end %>
+  <div class="clear"></div>
+<% else %>
+  <p class="notice">アーティストは登録されていません</p>
 <% end %>
-
-<div class="clear"></div>

@@ -1,3 +1,3 @@
 <div id="cart_status">
-  <%= link_to "#{@cart.length} Items", cart_path, { :class => "cart"} %>
+  <%= link_to "#{@cart.length} Items Total ￥#{@cart.total_price}", cart_path, { :class => "cart"} %>
 </div>

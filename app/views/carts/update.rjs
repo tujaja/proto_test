@@ -1,6 +1,24 @@
-p 'update.rjs'
-quantity = params[:cart_item][:quantity].to_i
-page[:cart_items].replace :partial => "cart_items" if quantity == 0
-page[:cart_status].replace :partial => "store/cart_status"
-page[:cart_info].replace :partial => "store/cart_info"
-page[:cart_info].visual_effect :appear
+if @command == 'delete'
+  #page << "new Effect.SlideUp($$('tr.item#{@row}')[0], {duration:1.0});"
+  #page << "blind_up_cart_item($$('tr.item#{@row}')[0]);"
+  page.replace 'cart_items', :partial => "cart_items"
+
+elsif @command == 'add'
+  page.replace 'cart_status', :partial => "store/cart_status"
+  #page.insert_html 'top', 'utility', :partial => "store/cart_info"
+  info_html = ::ActiveSupport::JSON.encode( render(:partial => 'store/cart_info') )
+
+page << <<-EOS
+  if ($('cart_info') == null) {
+    $('utility').insert( #{info_html} );
+  }
+  else {
+    $('cart_info').replace( #{info_html} );
+  }
+EOS
+
+  page << "new Effect.Appear('cart_info', {duration: 0.5});"
+  page << "selftimer(\"new Effect.Fade('cart_info', {duration: 0.5});\", 2000);"
+  #page << "setTimeout(\"new Effect.Fade('cart_info', {duration: 0.5});\", 2000);"
+  page << "setTimeout(\"$('cart_info').remove();\", 2500);"
+end

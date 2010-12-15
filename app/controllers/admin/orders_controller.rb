@@ -15,6 +15,16 @@ class Admin::OrdersController < AdminController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.js
+    end
+  end
+
+  def new
+    @order = Order.new
+
+    respond_to do |format|
+      format.html #
+      format.js   # new.rjs
     end
   end
 

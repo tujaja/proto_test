@@ -17,5 +17,11 @@ class FileController < ApplicationController
     @item.exec_download
     send_file(@download.file_path, :filename => @download.filename, :type => @download.content_type)
 
+    #redirect_to download_url_for(@order)
+    #render :update do |page|
+      #html = render_to_string :partial => 'download/download_items'
+      #page.replace_html 'download_items', html
+    #end
+
   end
 end

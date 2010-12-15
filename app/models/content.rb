@@ -24,7 +24,6 @@ class Content < ActiveRecord::Base
     @lyric = lyric
   end
 
-
   def before_create
     self.token = make_unique_token self.domain
   end
@@ -51,28 +50,91 @@ class Content < ActiveRecord::Base
     save
   end
 
-  def self.find_with_search search_word, page
+  def self.find_by_store options
+    type = {"music" => "MusicInfo", "album" => "AlbumInfo"}
     where = nil
-    if search_word
-      words = search_word.split(/\s|　/)
-      semantics = []
-      place_holder = ""
+    semantics = []
+    place_holder = ""
+
+    @search_word = options[:search_word]
+    @category = options[:category]
+    @page = options[:page]
+    @per_page = options[:per_page]
+
+    # always must be activated
+    place_holder << "(contents.activated = ? AND artists.activated = ? AND labels.activated = ?)"
+    semantics.concat [true, true, true]
+
+    if @search_word
+      words = @search_word.split(/\s|　/)
       words.each_with_index do |w, i|
-        place_holder << " AND " if i!=0
+        place_holder << " AND " if place_holder != ""
         place_holder << "(contents.name LIKE ? OR contents.subname LIKE ? OR contents.description LIKE ? OR artists.name LIKE ? OR artists.subname LIKE ? OR labels.name LIKE ? OR labels.subname LIKE ?)"
         semantics.concat ["%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%","%#{w}%"]
       end
-      where = [place_holder] + semantics
     end
 
+    if (@category == 'music' || @category == 'album')
+      place_holder << " AND " if place_holder != ""
+      place_holder << "(contents.attachable_info_type = ?)"
+      semantics.concat ["#{type[@category]}"]
+    end
 
-    contents = Content.paginate(:page => page,
+    where = [place_holder] + semantics
+
+    contents = Content.paginate(:page => @page,
                                :order => 'contents.id asc',
                                :include => { :artist => :label },
                                :conditions => where,
-                               :per_page => 50)
+                               :per_page => @per_page)
   end
 
+
+  def self.find_by_admin options
+    type = {"music" => "MusicInfo", "album" => "AlbumInfo"}
+    where = nil
+    semantics = []
+    place_holder = ""
+
+    @search_word = options[:search_word]
+    @category = options[:category]
+    @activated = options[:activated] # "all", "true", "false"
+    @page = options[:page]
+    @per_page = options[:per_page]
+
+    case @activated
+    when "all"
+    when "true"
+      place_holder << "(contents.activated = ?)"
+      semantics.concat [true]
+    when "false"
+      place_holder << "(contents.activated = ?)"
+      semantics.concat [false]
+    end
+
+
+    if @search_word
+      words = @search_word.split(/\s|　/)
+      words.each_with_index do |w, i|
+        place_holder << " AND " if place_holder != ""
+        place_holder << "(contents.name LIKE ? OR contents.subname LIKE ? OR contents.description LIKE ?)"
+        semantics.concat ["%#{w}%","%#{w}%","%#{w}%"]
+      end
+    end
+
+    if (@category == 'music' || @category == 'album')
+      place_holder << " AND " if place_holder != ""
+      place_holder << "(contents.attachable_info_type = ?)"
+      semantics.concat ["#{type[@category]}"]
+    end
+
+    where = [place_holder] + semantics
+
+    contents = Content.paginate(:page => @page,
+                               :order => 'contents.id asc',
+                               :conditions => where,
+                               :per_page => @per_page)
+  end
 
 
 end

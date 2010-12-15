@@ -1,6 +1,27 @@
+<% category = session[:search_category] -%>
+
 <div id="search_form" class="right">
-  <% form_tag ( contents_path, {:method => "get",  :name => "search" } ) do %>
-    <%= text_field_tag :search_word, @search_word %>
-    <div class="abutton"><%= link_to "検索", "#", :onclick => "document.search.submit();" %></div>
+  <% form_tag( contents_path, {:method => "get",  :name => "search" } ) do %>
+    <%= text_field_tag :search_word, session[:search_word] %>
+    <%= hidden_field_tag :category, "#{category}", {:id => 'category'} %>
+    <%= link_to_function image_tag("/images/btn.gif"), "document.search.submit();", { :id  => "search_btn" } %>
+
+
   <% end %>
+</div>
+<div id="search_category">
+  <ul>
+    <li>
+    <% name = (category == 'all' || category == '') ? 'focus all' : 'all' %>
+    <%= link_to_function "すべて", "select_search_category('all');", { :class => "#{name}" } %>
+    </li>
+    <li>
+    <% name = (category == 'music') ? 'focus music' : 'music' %>
+    <%= link_to_function "曲", "select_search_category('music');", { :class => "#{name}" }  %>
+    </li>
+    <li>
+    <% name = (category == 'album') ? 'focus album' : 'album' %>
+    <%= link_to_function "アルバム", "select_search_category('album');", { :class => "#{name}" }  %>
+    </li>
+  </ul>
 </div>

@@ -1,8 +1,14 @@
 <div id="contents_header">
   <h2>オーダー管理</h2>
+  <div class="btn_small"><span class="btn btn_small btn_bk_wh">
+    <%= link_to_function 'オーダー作成', "resource_new('orders');", { :style => "font-weight: 12px; padding: 5px 10px;" } %>
+  </span></div>
+
 </div>
 
 <div id="contents_main">
 <h3>オーダー一覧</h3>
   <%= render :partial => 'records' %>
 </div>
+
+<%= javascript_include_tag "lightbox.js" %>

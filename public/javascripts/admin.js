@@ -31,7 +31,15 @@ var resource_update = function(resource, id, _params) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
+var select_search_salt = function(field, name) {
+  var div = '#' + field
+  $$(div + ' li a').invoke('removeClassName', 'focus');
+  var class_name = 'div' + ' li a.' + name;
+  $$(class_name).invoke('addClassName', 'focus');
+  $(field).setValue(name);
+}
 
+/////////////////////////////////////////////////////////////////////////////////////
 
 var image_selector = function(_layer, handler) {
   var layer = _layer || 0;

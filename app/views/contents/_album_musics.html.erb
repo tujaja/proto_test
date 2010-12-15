@@ -16,7 +16,18 @@
       <% if content.download %>
         <span class="mark"><%=h to_megabyte(content.download.size) %></span>
       <% end -%>
-
+    </td>
+    <td class="price">
+      単品価格<%= h(to_yen(content.price)) %>
+    </td>
+    <td class="buy">
+    <%#PUTメソッドで送信%>
+    <%# form_remote_tag :url => url_for(:controller => "carts", :action => "update") do -%>
+      <!--input name="_method" type="hidden" value="put" /-->
+      <%#= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>
+      <%#= hidden_field_tag("cart_item[quantity]", "1") %>
+    <%# end -%>
+    <div class="btn"><span class="btn"><%= link_to_function "この曲をカートに入れる", "resource_update('cart', '', {content_id:#{content.id}, quantity:'1'});" %></span></div>
     </td>
   </tr>
 <% end -%>

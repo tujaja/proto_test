@@ -1,15 +1,16 @@
 class SampleAlbums < ActiveRecord::Migration
   def self.up
     # jimi hendrix album
-    jimi_album_info = AlbumInfo.create(:file_encoding => 'mp3/128kbps')
-    jimi_album_info.download = Download.find_by_id(1)
+    jimi_album_info = AlbumInfo.create(:file_encoding => 'mp3/128kbps',
+                                       :compress_format => 'zip')
+    jimi_album_info.download = Download.find_by_filename('electric-ladyland.zip')
 
     jimi_musics = Content.find(:all)
     #total_time = Time.new
     (0...6).each do |n|
       info = jimi_musics[n].attachable_info
       #total_time = total_time + Time.new(info.time)
-      jimi_album_info.music_infos << info
+      jimi_album_info.connect_music info
     end
     #jimi_album_info.total_time = total_time.to_s
     #jimi_album_info.save
@@ -21,7 +22,8 @@ class SampleAlbums < ActiveRecord::Migration
                              :name => 'Erectilic Ladyland',
                              :subname => 'エレクトリック・レディランド',
                              :price => '1500',
-                             :description => desc)
+                             :description => desc,
+                             :activated => true)
     content.artist = Artist.find_by_domain('jimi-hendrix')
     content.attachable_info = jimi_album_info
     content.save

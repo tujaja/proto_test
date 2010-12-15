@@ -1,3 +1,5 @@
+<% if @contents.any? -%>
+
 <table class="record">
 <tbody>
 
@@ -21,6 +23,9 @@
           <span class="mark"><%=h content.music_info.time %></span>
         <% elsif content.album_info %>
           <span class="mark">アルバム</span>
+          <span class="mark"><%=h content.album_info.music_count %>曲</span>
+          <span class="mark"><%=h content.album_info.file_encoding %></span>
+          <span class="mark"><%=h content.album_info.compress_format %>形式</span>
         <% end %>
 
         <% if content.download %>
@@ -35,16 +40,18 @@
 
     <td class="buy">
     <%#PUTメソッドで送信%>
-    <% form_remote_tag :url => url_for(:controller => "carts", :action => "update") do -%>
-      <input name="_method" type="hidden" value="put" />
-      <%= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>
-      <%= hidden_field_tag("cart_item[quantity]", "1") %>
-      <%= submit_tag "カートに入れる" %>
-    <% end -%>
-
+    <%# form_remote_tag :url => url_for(:controller => "carts", :action => "update") do -%>
+      <!--input name="_method" type="hidden" value="put" /-->
+      <%#= hidden_field_tag("cart_item[content_id]", "#{content.id}") %>
+      <%#= hidden_field_tag("cart_item[quantity]", "1") %>
+    <%# end -%>
+    <div class="btn"><span class="btn"><%= link_to_function "カートに入れる", "resource_update('cart', '', {command:'add', content_id:#{content.id}, quantity:'1'});" %></span></div>
     </td>
   </tr>
 <% end %>
 <% end %>
 </tbody>
 </table>
+<% else -%>
+  <p class="notice">コンテンツは登録されていません</p>
+<% end -%>

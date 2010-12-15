@@ -98,6 +98,116 @@ div.primary { border: 3px solid #D5B006; }
 #contents_main p { padding: 3px 0; font-size: 14px; }
 #contents_main p.notice { padding: 5px 0; font-size: 16px; text-align: center; }
 
+/* search  */
+
+#search_form {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 225px;
+}
+
+/*#search_form input[type="image"] {*/
+#search_btn {
+  position: absolute;
+  border: none;
+  padding: 0;
+  top: 0px;
+  _top: 1px;
+  left: 192px;
+}
+#search_btn img { border: none; }
+
+#search_form input[type="text"] {
+  width: 184px;
+  height: 16px;
+  background: #DDD;
+  /*background: #999;*/
+  border: none;
+  padding: 4px;
+  color: #333;
+}
+
+#search_category {
+  position: absolute;
+  top: 38px;
+  right: 10px;
+  /*75 x 3*/
+  width: 225px;
+}
+
+#search_activated {
+  position: absolute;
+  top: 15px;
+  right: 245px;
+  /*75 x 3*/
+  width: 225px;
+}
+
+li.search_salt { float: left; }
+
+li.search_salt a {
+  display: block;
+  text-align: center;
+  width: 55px;
+  color: #333;
+  background:#EEE;
+  /*background:#4ea6cc;*/
+  font-size: 12px;
+  /*font-weight: bold;*/
+  padding: 3px 10px;
+  /*margin-right: 1px;*/
+  white-space: nowrap;
+}
+
+li.search_salt a:hover { color: #D5B006; background-color: #78576A; }
+li.search_salt a.focus { font-weight: bold; color: #333; background-color: #99CC99; }
+
+
+
+/* pagination */
+div.pagination {
+  padding: 5px 0;
+  overflow: hidden;
+  position: relative:
+  text-align: center;
+}
+
+div.pagination ul  {
+  float: left;
+  left: 50%;
+  position: relative;
+}
+
+div.pagination ul li {
+  float: left;
+  font-size: 12px;
+  left: -50%;
+  margin-right: 8px;
+  position: relative;
+}
+
+div.pagination ul li a,
+div.pagination ul li span.gap
+{
+  background-color: #F5F5F5;
+  border: 1px solid #CDCDCD;
+  color: #565656;
+  display: block;
+  padding: 3px 7px;
+  position: relative;
+}
+
+div.pagination ul li span.current {
+  background-color: #1E1E1E;
+  border: 1px solid #000000;
+  color: #FFFFFF;
+  font-weight: bold;
+  display: block;
+  padding: 3px 8px;
+}
+
+
 /* thumb */
 
 #thumbs div.image_thumb  { padding: 10px; border: 3px solid #CCC; height: 100px; }
