@@ -36,7 +36,7 @@ class SampleContents < ActiveRecord::Migration
 
       content = Content.new(:domain => domain[n],
                             :name => name[n],
-                            :subname => subname[n],
+                            #:subname => subname[n],
                             :price => price[n],
                             :description => desc[n],
                             :activated => true)
@@ -61,46 +61,46 @@ class SampleContents < ActiveRecord::Migration
 
 
     # Others
-    first_e = ['aoi', 'ituwarino', 'tuiokuno', 'arifureta', 'shizukana', 'yumeno', 'kakegaenonai', 'hidamarino', 'kitto', 'samayoeru']
-    last_e = ['uta', 'kuni', 'koibito', 'melody', 'kounotori', 'touhikou', 'kissaten', 'bara', 'knit', 'aerobics']
-    first = ['青い', '偽りの', '追憶の', 'ありふれた', '静かな', '夢の', 'かけがえのない', 'ひだまりの', 'きっと', 'さまよえる']
-    last = ['歌', '国', '恋人', 'メロディ', 'コウノトリ', '逃避行', '喫茶店', 'バラ', 'ニット', 'エアロビクス']
+    #first_e = ['aoi', 'ituwarino', 'tuiokuno', 'arifureta', 'shizukana', 'yumeno', 'kakegaenonai', 'hidamarino', 'kitto', 'samayoeru']
+    #last_e = ['uta', 'kuni', 'koibito', 'melody', 'kounotori', 'touhikou', 'kissaten', 'bara', 'knit', 'aerobics']
+    #first = ['青い', '偽りの', '追憶の', 'ありふれた', '静かな', '夢の', 'かけがえのない', 'ひだまりの', 'きっと', 'さまよえる']
+    #last = ['歌', '国', '恋人', 'メロディ', 'コウノトリ', '逃避行', '喫茶店', 'バラ', 'ニット', 'エアロビクス']
 
-    key_when = ['おととし', '去年', 'おととい', '昨日', 'さっき']
-    key_where = ['家で', '公園で', '海で', '山で', 'デパートで']
-    key_what = ['遊んだ', '寝た', '歌った', '走った', 'けんかした']
+    #key_when = ['おととし', '去年', 'おととい', '昨日', 'さっき']
+    #key_where = ['家で', '公園で', '海で', '山で', 'デパートで']
+    #key_what = ['遊んだ', '寝た', '歌った', '走った', 'けんかした']
 
-    download = Download.find_by_id(1)
+    #download = Download.find_by_id(1)
 
-    (1...100).each do |n|
-      r1 = rand(10); r2 = rand(10);
-      f_e = first_e[r1]
-      l_e = last_e[r2]
-      f = first[r1]
-      l = last[r2]
+    #(1...100).each do |n|
+      #r1 = rand(10); r2 = rand(10);
+      #f_e = first_e[r1]
+      #l_e = last_e[r2]
+      #f = first[r1]
+      #l = last[r2]
 
-      domain = "#{f_e}-#{l_e}-#{n}"
-      name = "#{f}#{l}"
-      subname = name
-      desc = key_when[rand(5)] + key_where[rand(5)] + key_what[rand(5)]
-      price = rand(1000)
+      #domain = "#{f_e}-#{l_e}-#{n}"
+      #name = "#{f}#{l}"
+      #subname = name
+      #desc = key_when[rand(5)] + key_where[rand(5)] + key_what[rand(5)]
+      #price = rand(1000)
 
-      content = Content.new(:domain => domain, :name => name, :subname => subname, :description => desc, :price => price, :activated => true)
+      #content = Content.new(:domain => domain, :name => name, :subname => subname, :description => desc, :price => price, :activated => true)
 
-      content.artist = Artist.find_by_id(rand(30)+1)
-      content.save
+      #content.artist = Artist.find_by_id(rand(30)+1)
+      #content.save
 
-      image = Image.find_by_id(rand(10)+1)
-      content.connect_image image
+      #image = Image.find_by_id(rand(10)+1)
+      #content.connect_image image
 
-      music_info = MusicInfo.new
-      music_info.download = download
-      music_info.file_encoding = 'mp3/128kbps'
-      music_info.time = time[n]
-      music_info.save
-      music_info.content = content
+      #music_info = MusicInfo.new
+      #music_info.download = download
+      #music_info.file_encoding = 'mp3/128kbps'
+      #music_info.time = time[n]
+      #music_info.save
+      #music_info.content = content
 
-    end
+    #end
 
 
   end

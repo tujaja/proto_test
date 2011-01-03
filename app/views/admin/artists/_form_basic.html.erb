@@ -1,62 +1,24 @@
 <div id="remote_form">
-<% remote_form_for @artist, :url => url do |f| %>
-  <%= f.error_messages %>
+  <% remote_form_for @artist, :url => url, :builder => ErrorHandlingFormBuilder do |f| %>
 
   <p class="need"> * 必須項目 </p>
   <p class="title">アーティスト 『<%= h(@artist.name) %>』 基本情報</p>
 
   <table class="form">
     <tbody>
-      <tr>
-        <th><span>*</span><%= f.label :domain, "ドメイン(固有名)" %> </th>
-        <td class="field">
-          <%= f.text_field :domain, :style => "width:300px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"> <li><span>半角英数小文字3～30文字</span></li> </ul>
-        </td>
-      </tr>
 
-      <tr>
-        <th><span>*</span><%= f.label :name, "アーティスト名" %> </th>
-        <td class="field">
-          <%= f.text_field :name, :style => "width:300px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"> <li><span>全角半角30文字以内</span></li> </ul>
-        </td>
-      </tr>
-
-      <tr>
-        <th><span>*</span><%= f.label :subname, "アーティスト名(サブ)" %> </th>
-        <td class="field">
-          <%= f.text_field :subname, :style => "width:300px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"> <li><span>全角半角30文字以内</span></li></ul>
-        </td>
-      </tr>
-
-
-      <tr>
-        <th><span>*</span><%= f.label :email, "メールアドレス" %> </th>
-        <td class="field">
-          <%= f.text_field :email,  :style => "width:300px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"> <li><span>(例) 3shimeji@gmail.com</span></li> </ul>
-        </td>
-      </tr>
-
-      <tr>
-        <th><%= f.label :url, "ホームページ" %> </th>
-        <td class="field">
-          <%= f.text_field :url, :style => "width:300px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"> <li><span>(例) http://3shimeji.com</span></li> </ul>
-        </td>
-      </tr>
+      <%= f.text_field :domain, {:style => "width:300px;"},
+        {:name => "ドメイン", :descs=> ["半角英数字とハイフンのみ3～20文字","登録済みのドメイン名は使えません"]} %>
+      <%= f.text_field :name, {:style => "width:300px;"},
+        {:name => "アーティスト名", :descs=> ["全角文字,半角英数字30文字以内","半角かな,半角カナは使えません", "全角スペースは使えません"]} %>
+      <%= f.text_field :subname, {:style => "width:300px;"},
+        {:name => "アーティスト名(サブ)", :descs=> "アーティスト名に準拠"} %>
+      <%= f.text_field :email, {:style => "width:300px;"},
+        {:name => "メールアドレス", :descs=> ["半角英数", "info@example.com"]} %>
+      <%= f.text_field :url, {:style => "width:300px;"},
+        {:name => "ホームページ", :descs=> ["半角英数", "http://example.com"]} %>
+      <%= f.text_area :description, {:style => "width:300px; height: 200px;"},
+        {:name => "説明", :descs=> "200文字以内"} %>
 
       <tr>
         <th><%= f.label :url, "所属レーベル" %> </th>
@@ -82,19 +44,9 @@
       </tr>
 
       <tr>
-        <th><%= f.label :description, "説明" %> </th>
-        <td class="field">
-          <%= f.text_area :description, :style => "width:300px; height: 200px; font-size: 14px;" %>
-        </td>
-        <td class="desc">
-          <ul class="list1"></ul>
-        </td>
-      </tr>
-
-      <tr>
         <th><%= f.label :url, "メイン画像" %> </th>
         <td class="field">
-          <% image_name = @artist.primary_image ? @artist.primary_image.name : "選択されていません" -%>
+          <% image_name = @artist.primary_image ? @artist.primary_image.filename : "選択されていません" -%>
           <% image_id = @artist.primary_image ? @artist.primary_image.id : 0 -%>
           <p id="image_name"><%= h(image_name) %></p>
           <%= f.hidden_field "primary_image", { :value => image_id } %>

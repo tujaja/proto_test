@@ -1,25 +1,44 @@
 class Label < ActiveRecord::Base
   include ImagesOwner # enables to use 'connect_image', 'primary_image'
+  include ValidationSnack
+
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
-
-  #extend EmailValidation
   has_many :artists
 
-  #validates_format_of :email, :with => EmailValidation::EMAIL_PATTERN
-  #validates_presence_of :domain, :name
-  #validates_uniqueness_of :token, :domain
+  validates_presence_of :domain, :name, :message => "必須項目です"
+  validates_uniqueness_of :domain, :message => "このドメインは既に使われており使用できません"
+  validates_length_of :domain, :within => (3..30),
+    :too_short => "3文字以上で入力してください", :too_long => "30文字以内で入力してください"
+  validates_length_of :name, :maximum => 30, :too_long => "30文字以内で入力してください"
+  validates_length_of :subname, :maximum => 50, :too_long => "30文字以内で入力してください"
+  validates_length_of :url, :maximum => 50, :too_long => "50文字以内で入力してください"
+  validates_length_of :email, :maximum => 50, :too_long => "50文字以内で入力してください"
+  validates_length_of :address, :maximum => 50, :too_long => "50文字以内で入力してください"
 
-  #validates_length_of :domain, :within => (4..20)
-  #validates_length_of :name, :within => (1..30)
-  #validates_length_of :subname, :within => (1..30)
-  #validates_length_of :url, :maximum => 50
-  #validates_length_of :email, :maximum => 50
-  #validates_length_of :address, :maximum => 50
-  #validates_length_of :phone, :maximum => 15
-
-  #attr_accessor :related_image, :related_image_method
-
+  def validate
+    unless valid_domain? self.domain
+      errors.add(:domain, "正しいドメインでありません")
+    end
+    unless valid_name? self.name
+      errors.add(:name, "正しいレーベル名でありません")
+    end
+    unless valid_subname? self.subname
+      errors.add(:subname, "正しいレーベル名(サブ)でありません")
+    end
+    unless valid_email? self.email
+      errors.add(:email, "正しいメールアドレスでありません")
+    end
+    unless valid_url? self.url
+      errors.add(:url, "正しいURLでありません")
+    end
+    unless valid_phone? self.phone
+      errors.add(:phone, "正しい電話番号でありません")
+    end
+    unless valid_address? self.address
+      errors.add(:address, "正しいで住所ありません")
+    end
+  end
 
 
   def before_create

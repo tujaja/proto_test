@@ -1,12 +1,38 @@
 class Content < ActiveRecord::Base
   include ImagesOwner # enables to use 'connect_image', 'primary_image'
+  include ValidationSnack
+
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
-
   belongs_to :artist
   belongs_to :attachable_info, :polymorphic => true
 
   attr_accessor :related_download, :file_encoding, :time, :lyric
+
+  validates_presence_of :domain, :name, :price, :artist_id,  :message => "必須項目です"
+  validates_uniqueness_of :domain, :message => "このドメインは既に使われており使用できません"
+  validates_length_of :domain, :within => (3..20),
+    :too_short => "3文字以上で入力してください", :too_long => "20文字以内で入力してください"
+  validates_length_of :name, :maximum => 30, :too_long => "30文字以内で入力してください"
+  validates_length_of :subname, :maximum => 30, :too_long => "30文字以内で入力してください"
+  validates_length_of :price, :maximum => 10, :too_long => "10文字以内で入力してください"
+
+  #def validate
+    #unless valid_domain? self.domain
+      #errors.add(:domain, "正しいドメインでありません")
+    #end
+    #unless valid_name? self.name
+      #errors.add(:name, "正しいレーベル名でありません")
+    #end
+    #unless valid_subname? self.subname
+      #errors.add(:subname, "正しいレーベル名(サブ)でありません")
+    #end
+    #unless valid_price? self.price
+      #errors.add(:price, "正しい価格設定でありません")
+    #end
+  #end
+
+
 
   def related_download=(download_token)
     @download = Download.find_by_token(download_token)

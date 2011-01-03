@@ -50,6 +50,7 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :contacts
   end
 
+  map.admin_mock_order '/admin/orders', :controller => 'admin/orders', :action => 'update', :conditions => {:method => :put}
 
   #map.connect ':controller/:action/:id'
   #map.connect ':controller/:action/:id.:format'

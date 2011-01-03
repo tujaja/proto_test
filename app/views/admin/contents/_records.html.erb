@@ -5,7 +5,7 @@
 <table class="record content">
 <tbody>
 
-<% @contents.each do |content| %>
+<ul><% @contents.each do |content| %></ul>
   <tr <%= "class=inactivated" unless content.activated %> >
 
     <td class="id"><%=h content.id %></td>

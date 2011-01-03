@@ -1,0 +1,18 @@
+<tr>
+  <th><%= label %></th>
+  <td class="field">
+    <%= element %>
+    <ul class="list1">
+    <% errors.each do |e| %>
+      <li><%= h e %></li>
+    <% end  %>
+    </ul>
+  </td>
+  <td class="desc">
+    <ul class="list1">
+      <% descs.each do |d| -%>
+        <li><span><%= d %></span></li>
+      <% end -%>
+    </ul>
+  </td>
+</tr>

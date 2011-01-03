@@ -26,11 +26,20 @@
       </tr>
     </tbody>
   </table>
-  <p class="buttons"><%= f.submit action_name %> </p>
+
+
+  <%= render :partial => "mock_order" %>
+
+
+
+  <div class="btn_small" style="text-align:center;"><span class="btn btn_small btn_bk_gr">
+  <%= link_to_function 'コンテンツを追加',
+    "content_selector(1,
+      function(content) {
+        resource_update('orders', '', {command:'mock_order_add', content_id:content.id});
+      });"
+  %>
+  </span></div>
+
+  <p class="buttons" style="padding-top: 50px;"><%= f.submit action_name %> </p>
 <% end -%>
-
-<%# ---------------------------------------------------------------------- -%>
-
-<p class="title">収録曲</p>
-<%# music_infos = @album_info.music_infos -%>
-<%#= render :partial => "form_album_info_musics", :locals => { :music_infos => music_infos } %>

@@ -1,10 +1,38 @@
 class Artist < ActiveRecord::Base
   include ImagesOwner # enables to use 'connect_image', 'primary_image'
+  include ValidationSnack
+
   has_many :image_categorizations, :as => :owner
   has_many :images, :through => :image_categorizations
-
   belongs_to :label
   has_many :contents
+
+  validates_presence_of :domain, :name, :message => "必須項目です"
+  validates_uniqueness_of :domain, :message => "このドメインは既に使われており使用できません"
+  validates_length_of :domain, :within => (3..20),
+    :too_short => "3文字以上で入力してください", :too_long => "20文字以内で入力してください"
+  validates_length_of :name, :maximum => 30, :too_long => "30文字以内で入力してください"
+  validates_length_of :subname, :maximum => 30, :too_long => "30文字以内で入力してください"
+  validates_length_of :url, :maximum => 50, :too_long => "50文字以内で入力してください"
+  validates_length_of :email, :maximum => 50, :too_long => "50文字以内で入力してください"
+
+  def validate
+    unless valid_domain? self.domain
+      errors.add(:domain, "正しいドメインでありません")
+    end
+    unless valid_name? self.name
+      errors.add(:name, "正しいレーベル名でありません")
+    end
+    unless valid_subname? self.subname
+      errors.add(:subname, "正しいレーベル名(サブ)でありません")
+    end
+    unless valid_email? self.email
+      errors.add(:email, "正しいメールアドレスでありません")
+    end
+    unless valid_url? self.url
+      errors.add(:url, "正しいURLでありません")
+    end
+  end
 
   def before_create
     self.token = make_unique_token self.domain

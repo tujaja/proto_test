@@ -27,6 +27,7 @@ class Admin::ContentsController < AdminController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render :json => @contents.to_json }
     end
   end
 

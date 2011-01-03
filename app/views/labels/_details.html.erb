@@ -5,11 +5,11 @@
   <p><%=h @label.description %></p>
 
   <% if @label.url != "" %>
-    <dl><dt>URL</dt> <dd><%=to_valid_url_link(@label.url) %></dd></dl>
+    <dl><dt>URL</dt> <dd><%=h(to_valid_url_link(@label.url)) %></dd></dl>
   <% end %>
 
   <% if @label.email != "" %>
-    <dl><dt>email</dt> <dd><%=to_valid_mail_link(@label.email) %></dd></dl>
+    <dl><dt>email</dt> <dd><%=h(to_valid_mail_link(@label.email)) %></dd></dl>
   <% end %>
 
   <% if @label.address != "" %>

@@ -141,6 +141,39 @@ var artist_selector = function(_layer, handler) {
   lightbox.activate(layer);
 }
 
+var content_selector = function(_layer, handler) {
+  var layer = _layer || 0;
+  lightbox.setup(layer);
+
+  var url = '/admin/contents.json';
+  var contents = [];
+  new Ajax.Request( url, { asynchronous:false, evalScripts:true, method:'get',
+      onComplete: function(response) { contents = response.responseJSON; }
+    });
+
+  // lightbox_contentsに流し込むelement
+  var selector = Builder.node('div', { id: 'selector' },
+    Builder.node('p', { className: 'title' }, 'コンテンツを選択してください'));
+  for (var i=0; i<contents.length; i++) {
+    var content = contents[i].content;
+    var record = Builder.node('div', { className: 'record' },
+      [Builder.node('a', { href: '#' }).update(content.name)]);  // need to escape
+    Event.observe($(record), 'click',
+    (function(l) {
+      return function() {
+        lightbox.deactivate(layer);
+        handler(l);
+      };
+    })(content));
+
+    selector.insert( record );
+  }
+
+  lightbox.lb_contents(layer).insert( selector );
+  lightbox.activate(layer);
+}
+
+
 var download_selector = function(_layer, handler) {
   var layer = _layer || 0;
   lightbox.setup(layer);
@@ -205,4 +238,7 @@ var music_selector = function(_layer, artist_id,  handler) {
   lightbox.lb_contents(layer).insert( selector );
   lightbox.activate(layer);
 }
+
+
+
 
