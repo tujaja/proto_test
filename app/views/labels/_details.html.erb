@@ -1,35 +1,48 @@
 <div id="details">
 
+  <% primary_image = @label.primary_image %>
+
+  <div id="primary_image"><%= s300_for primary_image %></div>
+
+  <div id="information">
+    <% if @label.url != "" %>
+      <dl><dt>URL</dt> <dd>
+        <%#=h(to_valid_url_link(@label.url)) %>
+        <%=h(@label.url) %>
+        </dd></dl>
+    <% end %>
+
+    <% if @label.email != "" %>
+      <dl><dt>email</dt> <dd>
+        <%#=h(to_valid_mail_link(@label.email)) %>
+        <%=h(@label.email) %>
+        </dd></dl>
+    <% end %>
+
+    <% if @label.address != "" %>
+      <dl><dt>Address</dt> <dd><%=h @label.address %></dd></dl>
+    <% end %>
+
+    <% if @label.phone != "" %>
+      <dl><dt>Phone</dt> <dd><%=h @label.phone %></dd></dl>
+    <% end %>
+  </div>
+
+  <div class="clear"></div>
   <%= render :partial => "label_images", :locals => { :images => @label.images } %>
 
   <p><%=h @label.description %></p>
 
-  <% if @label.url != "" %>
-    <dl><dt>URL</dt> <dd><%=h(to_valid_url_link(@label.url)) %></dd></dl>
-  <% end %>
-
-  <% if @label.email != "" %>
-    <dl><dt>email</dt> <dd><%=h(to_valid_mail_link(@label.email)) %></dd></dl>
-  <% end %>
-
-  <% if @label.address != "" %>
-    <dl><dt>Address</dt> <dd><%=h @label.address %></dd></dl>
-  <% end %>
-
-  <% if @label.phone != "" %>
-    <dl><dt>Phone</dt> <dd><%=h @label.phone %></dd></dl>
-  <% end %>
-
-  <% if @label.artists.any?  %>
-    <dl>
+  <%# if @label.artists.any?  %>
+    <!--dl>
       <dt>所属アーティスト</dt>
       <dd>
         <ul>
-        <% @label.artists.each do |artist| %>
-          <li><%= h(artist.name) %></li>
-        <% end %>
+        <%# @label.artists.each do |artist| %>
+          <li><%#= h(artist.name) %></li>
+        <%# end %>
         </ul>
       </dd>
-    </dl>
-  <% end -%>
+    </dl-->
+  <%# end -%>
 </div>

@@ -1,7 +1,7 @@
 class CartsController < StoreController
   before_filter :prepare_cart
-  ssl_required :show
-  ssl_allowed :update
+  #ssl_required :show
+  #ssl_allowed :update
 
   # GET /cart
   def show

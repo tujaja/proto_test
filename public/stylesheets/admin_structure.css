@@ -64,13 +64,18 @@
 #navigation li a {
   text-decoration: none;
   text-align: center;
-  color: #222;
-  background-color: #FFF;
+  /*color: #222;*/
+  /*background-color: #FFF;*/
+  color: #FFF;
+  background-color: #4EA6CC;
   display: block;
-  width: 70px;
+  width: 75px;
   margin: 2px;
   padding: 5px 16px;
-  border: solid 3px #AAA;
+  /*border: solid 2px #AAA;*/
+  border-radius:3px;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;  
 }
 
 #navigation li a:hover {

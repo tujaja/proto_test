@@ -1,22 +1,40 @@
 <div id="details">
+
+  <% primary_image = @content.primary_image %>
+
+  <div id="primary_image"><%= s300_for primary_image %></div>
+
+
+  <div id="information">
+    <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(@content.price) %>(税込)</dd></dl>
+
+    <dl><dt>アーティスト</dt>
+      <dd>
+        <%= link_to((s25_for @content.artist.images[0]), artist_path(@content.artist.domain)) if @content.artist.images[0] %>
+        <%= link_to h(@content.artist.name), artist_path(@content.artist.domain) %>
+      </dd>
+    </dl>
+    <dl><dt>レーベル</dt>
+      <dd>
+        <%= link_to((s25_for @content.label.images[0]), label_path(@content.label.domain)) if @content.label.images[0] %>
+        <%= link_to h(@content.label.name), label_path(@content.label.domain) %>
+      </dd>
+    </dl>
+  <%= render :partial => "music_info" if @content.music_info %>
+  <%= render :partial => "album_info" if @content.album_info %>
+
+  </div>
+
+  <div class="clear"></div>
+
   <%= render :partial => "content_images", :locals => { :images => @content.images } %>
 
   <p><%=h @content.description %></p>
-  <dl class="price"><dt>ダウンロード価格</dt><dd><%=h to_yen(@content.price) %>(税込)</dd></dl>
 
-  <dl><dt>アーティスト</dt>
-    <dd>
-      <%= link_to((s50_for @content.artist.images[0]), artist_path(@content.artist.domain)) if @content.artist.images[0] %>
-      <%= link_to h(@content.artist.name), artist_path(@content.artist.domain) %>
-    </dd>
-  </dl>
-  <dl><dt>レーベル</dt>
-    <dd>
-      <%= link_to((s50_for @content.label.images[0]), label_path(@content.label.domain)) if @content.label.images[0] %>
-      <%= link_to h(@content.label.name), label_path(@content.label.domain) %>
-    </dd>
-  </dl>
+<% if @content.album_info %>
+  <%= render :partial => "album_musics" %>
+<% end -%>
 
-  <%= render :partial => "music_info" if @content.music_info %>
-  <%= render :partial => "album_info" if @content.album_info %>
+
+
 </div>

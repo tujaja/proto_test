@@ -145,22 +145,29 @@ div.pagination ul li span.current {
 /* details */
 
 #details p { padding: 10px; }
-#details dl { padding: 10px 0px; }
+#details dl { position: relative; padding: 10px; margin-bottom: 30px; }
 #details dt {
-  padding: 0 0 5px 0;
+  position: absolute;
+  left: 0px;
+  /*padding: 0 0 5px 0;*/
   font-weight: bold;
   font-size: 14px;
 }
-#details dd { padding-left: 10px; }
+#details dd { 
+  position: absolute;
+  left: 130px;
+  /*padding-left: 20px; */
+}
 #details a { color: #333; }
 #details a:hover { color: #D5B006; background-color: #78576A; }
 #details a img { border:2px #eee solid;cursor:pointer; }
 #details a:hover img { border:2px #333 solid;cursor:pointer; }
 
+#details #primary_image {width: 350px; float: left; text-align: center;}
+#details #information {width: 350px; float: left; }
 
 #related_images { padding: 10px 0; }
-#related_images #primary_image {width: 350px; float: left; text-align: center;}
-#related_images #image_thumbs  {width: 350px; float: left; text-align: center; }
+#related_images #image_thumbs  {width: 700px; float: left; text-align: center; }
 #related_images p { padding: 2px; }
 
 #related_images div.image_thumb {

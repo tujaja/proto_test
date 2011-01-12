@@ -2,7 +2,6 @@
 <% if images.any?  -%>
   <% primary_image = @label.primary_image %>
 
-  <div id="primary_image"><%= s300_for primary_image %></div>
   <div id="image_thumbs">
     <% if images.length > 1 -%>
     <% images.each do |image| %>

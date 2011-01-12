@@ -1,3 +1,7 @@
+<% album_info = @content.album_info -%>
+<% music_infos = album_info.music_infos -%>
+    <dl><dt>収録曲 全<%=h album_info.music_count %>曲</dt></dl>
+
 <table class="album_musics">
 <tbody>
 

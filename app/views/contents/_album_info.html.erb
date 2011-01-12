@@ -1,6 +1,4 @@
 <% album_info = @content.album_info -%>
-<% music_infos = album_info.music_infos -%>
-<dl>
 
 
 <% if album_info.file_encoding != "" %>
@@ -10,7 +8,4 @@
   <dl><dt>圧縮形式</dt> <dd><%=h album_info.compress_format %></dd></dl>
 <% end -%>
 
-<dl>
-<dt>収録曲 全<%=h album_info.music_count %>曲</dt>
-<%= render :partial => "album_musics", :locals => { :music_infos => music_infos } %>
-</dl>
+

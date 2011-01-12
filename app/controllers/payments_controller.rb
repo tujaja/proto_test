@@ -1,5 +1,5 @@
 class PaymentsController < StoreController
-  ssl_required :show, :create, :update
+  #ssl_required :show, :create, :update
 
   # GET /payment
   def show
