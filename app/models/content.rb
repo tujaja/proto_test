@@ -17,20 +17,20 @@ class Content < ActiveRecord::Base
   validates_length_of :subname, :maximum => 30, :too_long => "30文字以内で入力してください"
   validates_length_of :price, :maximum => 10, :too_long => "10文字以内で入力してください"
 
-  #def validate
-    #unless valid_domain? self.domain
-      #errors.add(:domain, "正しいドメインでありません")
-    #end
-    #unless valid_name? self.name
-      #errors.add(:name, "正しいレーベル名でありません")
-    #end
-    #unless valid_subname? self.subname
-      #errors.add(:subname, "正しいレーベル名(サブ)でありません")
-    #end
-    #unless valid_price? self.price
-      #errors.add(:price, "正しい価格設定でありません")
-    #end
-  #end
+  def validate
+    unless valid_domain? self.domain
+      errors.add(:domain, "正しいドメインでありません")
+    end
+    unless valid_name? self.name
+      errors.add(:name, "正しいレーベル名でありません")
+    end
+    unless valid_subname? self.subname
+      errors.add(:subname, "正しいレーベル名(サブ)でありません")
+    end
+    unless valid_price? self.price
+      errors.add(:price, "正しい価格設定でありません")
+    end
+  end
 
 
 

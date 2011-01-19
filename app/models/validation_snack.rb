@@ -4,6 +4,7 @@ module ValidationSnack
 
 
   EMAIL_PATTERN =  /(\S+)@(\S+)/
+  URL_PATTERN =  /\Ahttp:\/\/([a-z0-9]+).([a-z]+)/
   DOMAIN_PATTERN = /\A[a-z0-9-]*$/
   PHONE_PATTERN =  /(\d+)-(\d+)-(\d+)/
   PRICE_PATTERN =  /\A[1-9][0-9][0-9]+$/
@@ -20,6 +21,7 @@ module ValidationSnack
 
   def valid_url? url
     return true if url == "" || url == nil
+    return unless url =~ URL_PATTERN
     uri = URI.parse(url)
     return "http" == uri.scheme
   end

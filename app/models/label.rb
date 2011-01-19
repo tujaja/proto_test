@@ -38,6 +38,9 @@ class Label < ActiveRecord::Base
     unless valid_address? self.address
       errors.add(:address, "正しいで住所ありません")
     end
+    if self.artist_id == ""
+      errors.add(:artist_id, "アーティストが選択されていません")
+    end
   end
 
 

@@ -69,6 +69,7 @@ div.primary { border: 3px solid #D5B006; }
 
 /* contents_header */
 #contents_header {
+  height: 50px;
   padding: 10px;
   color: #FFF;
   background-color: #4EA6CC;
